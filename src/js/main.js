@@ -21,4 +21,4 @@ require('gsap');
 /** theme **/
 /** light **/
 //require('../../sketches/theme/light/point-light#00/app'); // shit
-require('../../sketches/theme/post-processing/godray/app');
+require('../../sketches/theme/post-processing/godray0/app');
