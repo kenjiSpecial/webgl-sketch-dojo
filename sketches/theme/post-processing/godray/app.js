@@ -10,6 +10,8 @@ document.body.appendChild( renderer.domElement );
 var SCREEN_WIDTH = window.innerWidth;
 var SCREEN_HEIGHT = window.innerHeight;
 
+var finalcomposer, oclcomposer, hblur, vblur;
+
 // MAIN SCENE
 var camera = new THREE.PerspectiveCamera( 75, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 100000 );
 var scene = new THREE.Scene();
@@ -58,7 +60,8 @@ function createScene( geometry, x, y, z, b ) {
     oclscene.add(gmesh);
 }
 
-
+var effectFXAA = new THREE.ShaderPass( THREE.ShaderExtras[ "fxaa" ] );
+effectFXAA.uniforms[ 'resolution' ].value.set( 1 / SCREEN_WIDTH, 1 / SCREEN_HEIGHT );
 
 // Prepare the occlusion composer's render target
 var renderTargetParameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBFormat, stencilBufer: false };
@@ -73,6 +76,7 @@ var bluriness = 3;
 hblur.uniforms[ "h" ].value = bluriness / SCREEN_WIDTH;
 vblur.uniforms[ "v" ].value = bluriness / SCREEN_HEIGHT;
 
+var renderModel = new THREE.RenderPass( scene, camera );
 // Prepare the occlusion scene render pass
 var renderModelOcl = new THREE.RenderPass( oclscene, oclcamera );
 
@@ -83,6 +87,11 @@ var renderModelOcl = new THREE.RenderPass( oclscene, oclcamera );
 var grPass = new THREE.ShaderPass( THREE.Extras.Shaders.Godrays );
 grPass.needsSwap = true;
 
+
+var finalPass = new THREE.ShaderPass( THREE.Extras.Shaders.Additive );
+finalPass.needsSwap = true;
+finalPass.renderToScreen = true;
+
 // Prepare the composer
 var oclcomposer = new THREE.EffectComposer( renderer, renderTargetOcl );
 oclcomposer.addPass( renderModelOcl );
@@ -91,3 +100,13 @@ oclcomposer.addPass( vblur );
 oclcomposer.addPass( hblur );
 oclcomposer.addPass( vblur );
 oclcomposer.addPass( grPass );
+
+finalPass.uniforms[ 'tAdd' ].texture = oclcomposer.renderTarget1;
+
+renderTarget = new THREE.WebGLRenderTarget( SCREEN_WIDTH, SCREEN_HEIGHT, renderTargetParameters );
+
+finalcomposer = new THREE.EffectComposer( renderer, renderTarget );
+
+finalcomposer.addPass( renderModel );
+finalcomposer.addPass( effectFXAA );
+finalcomposer.addPass( finalPass );

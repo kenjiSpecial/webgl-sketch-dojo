@@ -36,9 +36,9 @@ gulp.task('watch', ['sass'], function(cb) {
   //watch SASS
   gulp.watch('src/sass/*.scss', ['sass'])
 
-  var ready = function(){}
-  var pretty = garnish()
-  pretty.pipe(process.stdout)
+  var ready = function(){};
+  var pretty = garnish();
+  pretty.pipe(process.stdout);
 
   //dev server
   budo(entry, {
