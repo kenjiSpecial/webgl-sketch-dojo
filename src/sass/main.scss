@@ -1,0 +1,57 @@
+@import "reset";
+
+$gray: hsla(0, 0%, 25%, 0.05);
+
+body {
+  color: #1d1d1d;
+  font-family: 'Helvetica', sans-serif;
+}
+
+canvas {
+  pointer-events: none;
+}
+
+a {
+  color: #af2626;
+  font-size: 14px;
+  margin-top: 10px;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px;
+  
+
+  &:after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    height: 0px;
+    position: relative;
+    top: 2px; left: 0;
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    -ms-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+  }
+
+  &:hover {
+    &:after {
+      top: 3px;
+      height: 6px;
+    }
+  }
+}
+
+
+//nicer error messages during development
+.errorify {
+  color: red;
+  padding: 20px;
+  font-family: 'Courier', monospace;
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
