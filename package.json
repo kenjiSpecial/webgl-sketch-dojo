@@ -27,7 +27,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "start": "budo src/js/main.js:bundle.js --live -d -t glslify | garnish",
+    "start": "budo main.js:bundle.js --live -t glslify | garnish",
     "build": "browserify src/js/main.js -t glslify | uglifyjs -nm > example/bundle.js"
   },
   "keywords": [
