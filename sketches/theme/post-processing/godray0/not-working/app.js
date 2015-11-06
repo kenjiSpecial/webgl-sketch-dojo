@@ -20,7 +20,7 @@ var renderer, renderTarget, renderTargetOcl;
 
 var mesh, zmesh, geometry, pointLight, pmesh, vlight;
 
-var finalcomposer, oclcomposer, hblur, vblur;
+var finalcomposer, oclcomposer, hblur, vblur, oclcamera;
 
 var mouseX = 0, mouseY = 0;
 

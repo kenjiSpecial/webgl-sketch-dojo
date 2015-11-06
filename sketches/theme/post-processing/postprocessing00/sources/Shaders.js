@@ -103,6 +103,7 @@ THREE.Extras.Shaders = {
 				"vec4 texel = texture2D( tDiffuse, vUv );",
 				"vec4 add = texture2D( tAdd, vUv );",
 				"gl_FragColor = texel + add * fCoeff;",
+                //"gl_FragColor = add;",
 
 			"}"
 		].join("\n")
