@@ -11,7 +11,7 @@ var material, light;
 var cubes = [];
 var gmeshArr = [];
 
-var COLOR1 = 0xffffe0;
+var COLOR1 = 0xe0;
 var COLOR3 = 0x97a8ba;
 var t = 0;
 
@@ -33,8 +33,7 @@ var grPass;
 var title = 'PostProcessing#00';
 var caption = '<p>I studied  how god ray works. the codes are based on this site: <a href="http://bkcore.com/blog/3d/webgl-three-js-volumetric-light-godrays.html">http://bkcore.com/blog/3d/webgl-three-js-volumetric-light-godrays.html</a></p>';
 var wrapper = createCaption(title, caption, 'https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/sketches/theme/post-processing/postprocessing00/app.js');
-console.log(wrapper);
-wrapper.style.width = (window.innerWidth/2 - 40) + "px"
+wrapper.style.width = (window.innerWidth/2 - 50) + "px";
 wrapper.style.position = "absolute";
 wrapper.style.top = '30px';
 wrapper.style.left = '30px';
@@ -205,12 +204,12 @@ function animate() {
     //console.log(t);
 
     ///**
-    for(var i = 0; i < cubes.length; i++) {
+    //for(var i = 0; i < cubes.length; i++) {
         //cubes[i].rotation.y += 0.01 + ((i - cubes.length) * 0.00001);
         //cubes[i].rotation.x += 0.01 + ((i - cubes.length) * 0.00001);
 
         //gmeshArr[i].rotation.copy(cubes[i].rot    ation)
-    }
+    //}
 
 
     oclcamera.lookAt( scene.position );

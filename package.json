@@ -24,11 +24,12 @@
     "minimist": "^1.1.1",
     "raf": "^3.1.0",
     "three": "^0.73.0",
+    "uglifyjs": "^2.4.10",
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
     "start": "budo main.js:bundle.js --live -t glslify | garnish",
-    "build": "browserify src/js/main.js -t glslify | uglifyjs -nm > example/bundle.js"
+    "build": "browserify main.js -t glslify | uglifyjs -nm > example/bundle.js"
   },
   "keywords": [
     "budo",
