@@ -32,7 +32,7 @@ var grPass;
 
 var title = 'PostProcessing#00';
 var caption = '<p>I studied  how god ray works. the codes are based on this site: <a href="http://bkcore.com/blog/3d/webgl-three-js-volumetric-light-godrays.html">http://bkcore.com/blog/3d/webgl-three-js-volumetric-light-godrays.html</a></p>';
-var wrapper = createCaption(title, caption, 'ttt');
+var wrapper = createCaption(title, caption, 'https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/sketches/theme/post-processing/postprocessing00/app.js');
 console.log(wrapper);
 wrapper.style.width = (window.innerWidth/2 - 40) + "px"
 wrapper.style.position = "absolute";

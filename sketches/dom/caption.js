@@ -9,22 +9,25 @@ module.exports = function( _title, _caption, _url ){
     caption.style.marginBottom = "30px";
 
     var available = document.createElement('div');
-    available.textContent = "codes are available:";
+    var codeP = document.createElement('span');
+    codeP.style.marginRight = "10px";
+    codeP.textContent = "codes are available:";
+    available.appendChild(codeP);
 
-        var url = document.createElement('div');
-        url.textContent = "url: ";
-        var a = document.createElement('a');
-        a.href = url;
-        a.textContent = _url;
+    var url = document.createElement('div');
+    url.textContent = "url: ";
 
-        url.appendChild(a);
+    var a = document.createElement('a');
+    a.href = _url;
+    a.target = "_blank";
+    a.textContent = 'here';
 
-
+    available.appendChild(a);
 
     wrapper.appendChild(title);
     wrapper.appendChild(caption);
     wrapper.appendChild(available);
-    wrapper.appendChild(url);
+    //wrapper.appendChild(url);
 
     document.body.appendChild(wrapper);
 
