@@ -15,7 +15,7 @@ window.GUI   = require('dat-gui').GUI;
 require('gsap');
 
 /** basic **/
-require('./sketches/basic/boxes/app');
+//require('./sketches/basic/boxes/app');
 
 /** undefined **/
 //require('../../sketches/undefined/#000/app');
@@ -24,3 +24,6 @@ require('./sketches/basic/boxes/app');
 /** light **/
 //require('../../sketches/theme/light/point-light#00/app'); // shit
 //require('./sketches/theme/post-processing/godray0/app');
+
+/** postprocessing **/
+require('./sketches/theme/post-processing/postprocessing00/app')

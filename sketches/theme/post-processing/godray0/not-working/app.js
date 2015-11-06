@@ -225,6 +225,7 @@ function render(){
 
     pointLight.position.set( 0, Math.cos(t)*200, 0 );
     vlight.position = pointLight.position;
+
     vlight.updateMatrixWorld();
 
 
