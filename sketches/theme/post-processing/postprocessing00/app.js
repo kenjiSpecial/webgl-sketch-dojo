@@ -7,6 +7,7 @@ var scene, camera, renderer;
 var oclcamera, oclscene;
 var material, light;
 var cubes = [];
+var gmeshArr = [];
 
 var COLOR1 = 0xffffe0;
 var COLOR3 = 0x97a8ba;
@@ -25,7 +26,7 @@ function init(){
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 200;
+    camera.position.z = 100;
 
     renderer = new THREE.WebGLRenderer({alpha: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -36,11 +37,12 @@ function init(){
     oclscene.add( new THREE.AmbientLight( 0xffffff ) );
     oclcamera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 100000 );
 
-    oclcamera.position = camera.position;
+    oclcamera.position.set(camera.position.x, camera.position.y, camera.position.z);
 
     // Vol light
+    //console.log(new THREE.IcosahedronGeometry(50, 3));
     vlight = new THREE.Mesh(
-        new THREE.IcosahedronGeometry(50, 3),
+        new THREE.IcosahedronGeometry(20, 3),
         new THREE.MeshBasicMaterial({
             color: COLOR1
         })
@@ -55,10 +57,10 @@ function init(){
     cameraLight = new THREE.PointLight( 0x666666 );
     camera.add(cameraLight);
 
-    /**
+
     light = new THREE.PointLight(0xFFFFFF, 1);
-    light.position.copy(camera.position); */
-    //scene.add(light);
+    light.position.copy(camera.position);
+    scene.add(light);
 
     material = new THREE.MeshPhongMaterial({color: 0x3a9ceb});
 
@@ -99,20 +101,22 @@ function setEffect(){
 
     grPass = new THREE.ShaderPass( THREE.Extras.Shaders.Godrays );
     grPass.needsSwap = true;
-    grPass.renderToScreen = true;
+    grPass.renderToScreen = false;
 
     var finalPass = new THREE.ShaderPass( THREE.Extras.Shaders.Additive );
     finalPass.needsSwap = true;
     finalPass.renderToScreen = true;
 
-    /**
-    composer.addPass(hblur);
-    composer.addPass(vblur);
-    composer.addPass(hblur);
-    composer.addPass(vblur);
-    composer.addPass(grPass); */
 
-    finalPass.uniforms[ 'tAdd' ].texture = composer.renderTarget1;
+    composer.addPass(hblur);
+    composer.addPass(vblur);
+    composer.addPass(hblur);
+    composer.addPass(vblur);
+    //composer.addPass( effectFXAA );
+    //composer.addPass(grPass);
+
+    //console.log(finalPass.uniforms[ 'tAdd' ]);
+    //finalPass.uniforms[ 'tAdd' ].texture = composer.renderTarget1;
 
     var renderModel = new THREE.RenderPass( scene, camera );
     var renderModelOcl = new THREE.RenderPass( oclscene, oclcamera );
@@ -124,15 +128,16 @@ function setEffect(){
     oclcomposer.addPass( hblur );
     oclcomposer.addPass( vblur );
     oclcomposer.addPass( grPass );
+    //oclcomposer.addPass( effectFXAA );
 
-    finalPass.uniforms[ 'tAdd' ].texture = oclcomposer.renderTarget1;
+    finalPass.uniforms[ 'tAdd' ].texture = renderTargetOcl ;
 
     renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, renderTargetParameters );
 
     finalcomposer = new THREE.EffectComposer( renderer, renderTarget );
 
-    finalcomposer.addPass( renderModel );
-    finalcomposer.addPass( effectFXAA );
+    //finalcomposer.addPass( renderModel );
+    //finalcomposer.addPass( effectFXAA );
     finalcomposer.addPass( finalPass );
 
     //composer.addPass(effectFXAA);
@@ -141,13 +146,15 @@ function setEffect(){
 }
 
 function animate() {
-    t += 0.1;
+    t += 0.01;
     //console.log(t);
 
     ///**
     for(var i = 0; i < cubes.length; i++) {
         cubes[i].rotation.y += 0.01 + ((i - cubes.length) * 0.00001);
         cubes[i].rotation.x += 0.01 + ((i - cubes.length) * 0.00001);
+
+        gmeshArr[i].rotation.copy(cubes[i].rotation)
     }
 
 
@@ -156,31 +163,34 @@ function animate() {
 
 
 
-    pointLight.position.set( 0, Math.cos(t)*200, 0 );
+    pointLight.position.set( 0, Math.sin(t)*80, 0 );
     vlight.position.set(pointLight.position.x, pointLight.position.y, pointLight.position.z);
     vlight.updateMatrixWorld();
 
     var lPos = THREE.Extras.Utils.projectOnScreen(vlight, camera);
     //console.log(lPos);
-    grPass.uniforms["fX"].value = lPos.x;
-    grPass.uniforms["fY"].value = lPos.y;
+    //console.log(lPos.y);
+    grPass.uniforms["fX"].value = 0.5;
+    grPass.uniforms["fY"].value = 0.5;
 
-    oclcomposer.render();
-    //finalcomposer.render();
 
+    oclcomposer.render(.1);
+    //finalPass.uniforms[ 'tAdd' ].texture = composer.renderTarget1;
+    finalcomposer.render(.1);
+    //
 
     raf(animate);
 }
 
 function addCube() {
 
-    var boxGeometry = new THREE.BoxGeometry(20, 20, 20);
+    var boxGeometry = new THREE.BoxGeometry(10, 10, 10);
 
     var cube = new THREE.Mesh( boxGeometry, material );
     cube.position.set(
-        Math.random() * 600 - 300,
-        Math.random() * 600 - 300,
-        Math.random() * -500
+        Math.random() * 200 - 100,
+        Math.random() * 200 - 100,
+        40 + 20 * Math.random()
     );
     cube.rotation.set(
         Math.random() * Math.PI * 2,
@@ -191,7 +201,11 @@ function addCube() {
     var gmat = new THREE.MeshBasicMaterial( { color: 0x000000, map: null } );
     var geometryClone = boxGeometry.clone();
     var gmesh = new THREE.Mesh(geometryClone, gmat);
-    //oclscene.add(gmesh);
+    gmesh.position.copy(cube.position);
+    gmesh.rotation.copy(cube.rotation)
+    oclscene.add(gmesh);
+
+    gmeshArr.push(gmesh);
 
     return cube;
 }

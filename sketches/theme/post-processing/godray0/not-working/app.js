@@ -49,7 +49,7 @@ function init(){
     pointLight = new THREE.PointLight( COLOR3 );
     pointLight.position.set( 0, 100, 0 );
     scene.add( pointLight );
-    cameraLight = new THREE.PointLight( 0x666666 );
+    cameraLight = new THREE.PointLight( 0x666666 )  ;
     camera.add(cameraLight);
 
 
@@ -61,6 +61,9 @@ function init(){
     oclcamera.position = camera.position;
 
     // Vol light
+    console.log('test');
+    console.log(new THREE.IcosahedronGeometry(50, 3));
+
     vlight = new THREE.Mesh(
         new THREE.IcosahedronGeometry(50, 3),
         new THREE.MeshBasicMaterial({
