@@ -29,7 +29,7 @@ var fontSize = 120;
 function init(){
     var textCanvas = document.createElement('canvas');
 
-    var textCanvasWidth  = 740;
+    var textCanvasWidth  = 800;
     var textCanvasHeight = 120;
 
     textCanvas.width  = textCanvasWidth;
@@ -313,4 +313,4 @@ function addCube() {
 
 }
 
-init()
+init();
