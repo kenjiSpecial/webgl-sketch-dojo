@@ -77,7 +77,7 @@ THREE.Extras.Shaders = {
 		uniforms: {
 			tDiffuse: { type: "t", value: 0, texture: null },
 			tAdd: { type: "t", value: 1, texture: null },
-			fCoeff: { type: "f", value: 1.0 }
+			fCoeff: { type: "f", value: 0.4 }
 		},
 
 		vertexShader: [
@@ -102,7 +102,11 @@ THREE.Extras.Shaders = {
 
 				"vec4 texel = texture2D( tDiffuse, vUv );",
 				"vec4 add = texture2D( tAdd, vUv );",
-				"gl_FragColor = texel + add * fCoeff;",
+				"if(texel.r == 0.0){",
+					"gl_FragColor = texel + add * fCoeff;",
+				"}else{",
+					"gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);",
+				"}",
 
 			"}"
 		].join("\n")
