@@ -3,6 +3,8 @@ require('../postprocessing00/sources/Utils');
 require('./Shaders');
 require('gsap');
 
+var createCaption = require('../../../dom/caption');
+
 var raf = require('raf');
 
 var scene, camera, renderer;
@@ -25,6 +27,15 @@ var minX;
 var COLOR1 = 0xfffff0;
 
 var fontSize = 120;
+
+var title = 'PostProcessing#01';
+var caption = '';
+var wrapper = createCaption(title, caption, 'https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/sketches/theme/post-processing/postprocessing01/app.js');
+wrapper.style.width = (window.innerWidth/2 - 50) + "px";
+wrapper.style.position = "absolute";
+wrapper.style.top = '30px';
+wrapper.style.left = '30px';
+wrapper.style.zIndex = 9999;
 
 function init(){
     var textCanvas = document.createElement('canvas');
