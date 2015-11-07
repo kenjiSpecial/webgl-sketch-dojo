@@ -11,7 +11,7 @@ var material, light;
 var cubes = [];
 var gmeshArr = [];
 
-var COLOR1 = 0xe0;
+var COLOR1 = 0xfffff0;
 var COLOR3 = 0x97a8ba;
 var t = 0;
 
