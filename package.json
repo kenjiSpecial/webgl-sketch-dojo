@@ -1,13 +1,11 @@
 {
-  "name": "budo-gulp-starter",
+  "name": "webgl-sketch-dojo",
   "version": "1.0.0",
-  "description": "a starter kit with Budo, LESS and Gulp",
-  "main": "index.js",
+  "description": "",
+  "main": "main.js",
   "license": "MIT",
   "author": {
-    "name": "Matt DesLauriers",
-    "email": "dave.des@gmail.com",
-    "url": "https://github.com/mattdesl"
+    "name": "Kenji Saito"
   },
   "dependencies": {},
   "devDependencies": {
@@ -23,6 +21,7 @@
     "gulp-uglify": "^1.1.0",
     "minimist": "^1.1.1",
     "raf": "^3.1.0",
+    "shader-odango-kit": "0.0.1",
     "three": "^0.73.0",
     "uglifyjs": "^2.4.10",
     "vinyl-source-stream": "^1.1.0"
@@ -41,9 +40,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/mattdesl/budo-gulp-starter.git"
+    "url": "git@github.com:kenjiSpecial/webgl-sketch-dojo.git"
   },
-  "homepage": "https://github.com/mattdesl/budo-gulp-starter",
+  "homepage": "https://github.com/kenjiSpecial/webgl-sketch-dojo",
   "bugs": {
     "url": "https://github.com/mattdesl/budo-gulp-starter/issues"
   }

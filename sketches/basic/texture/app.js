@@ -26,18 +26,13 @@ function init(){
     light.position.copy(camera.position);
     scene.add(light);
 
-    //material = new THREE.MeshPhongMaterial({color: 0x3a9ceb});
-
 
     loader.load('assets/sample3.jpg', function(texture){
-        //console.log(texture);
-
         var geometry = new THREE.PlaneGeometry( width - 20, height -20 );
         var material = new THREE.MeshBasicMaterial( {side: THREE.DoubleSide, map: texture} );
         plane = new THREE.Mesh( geometry, material );
         scene.add( plane );
 
-        //plane.material.map = texture;
     });
 
     raf(animate);

@@ -1,0 +1,13 @@
+{
+  "name": "shader-odango-kit",
+  "version": "0.0.1",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kenjiSpecial/shader-odango-set.git"
+  },
+  "homepage": "https://github.com/kenjiSpecial/shader-odango-set",
+  "devDependencies": {
+    "glslify": "^2.3.1"
+  }
+}
