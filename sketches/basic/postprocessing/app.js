@@ -30,14 +30,8 @@ wrapper.style.left = '30px';
 function init(){
     scene = new THREE.Scene();
 
-
-    /**
     camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
     camera.position.z = 10;
-     */
-
-    camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.z = 400;
 
     scene.add( camera );
 
@@ -47,9 +41,7 @@ function init(){
     document.body.appendChild(renderer.domElement);
 
 
-
-
-
+    // load assets
     loader.load('assets/sample3-sq.jpg', function(texture   ){
 
         var imgWidth = texture.image.width/3;
