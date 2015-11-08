@@ -16,6 +16,7 @@ require('gsap');
 
 /** basic **/
 //require('./sketches/basic/boxes/app');
+require('./sketches/basic/texture/app');
 
 /** undefined **/
 //require('../../sketches/undefined/#000/app');
@@ -27,4 +28,4 @@ require('gsap');
 
 /** postprocessing **/
 //require('./sketches/theme/post-processing/postprocessing00/app')
-require('./sketches/theme/post-processing/postprocessing01/app');
+//require('./sketches/theme/post-processing/postprocessing01/app');
