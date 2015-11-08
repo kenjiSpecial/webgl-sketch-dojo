@@ -1,4 +1,5 @@
 var raf = require('raf');
+var createCaption = require('../../dom/caption');
 
 var ShaderOdangoSet = require('../../../src/js/vendors/shader-odango-set/main');
 var grayShader = ShaderOdangoSet.gray;
@@ -15,6 +16,15 @@ var height = window.innerHeight;
 var loader = new THREE.TextureLoader();
 var composer;
 var object;
+
+
+var title = 'basic post processing';
+var caption = '<p>Shader is implemented by <a href="https://github.com/kenjiSpecial/shader-odango-set">https://github.com/kenjiSpecial/shader-odango-set</a></p>';
+var wrapper = createCaption(title, caption, 'https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/sketches/basic/postprocessing/app.js');
+wrapper.style.width = (window.innerWidth/2 - 50) + "px";
+wrapper.style.position = "absolute";
+wrapper.style.top = '30px';
+wrapper.style.left = '30px';
 
 
 function init(){
