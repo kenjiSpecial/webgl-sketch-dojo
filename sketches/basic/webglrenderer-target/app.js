@@ -10,13 +10,15 @@ var materialRTT;
 var material, light;
 var cubes = [];
 var textureArr = [];
+var texture;
+var quads = [];
 var object, id;
 var stats, wrapper;
 var count = 0;
 
 var isAnimation = true;
 
-for(var ii = 0; ii < 10; ii++) {
+for(var ii = 0; ii < 100; ii++) {
 
     rtTexture = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, {
         minFilter: THREE.LinearFilter,
@@ -26,6 +28,12 @@ for(var ii = 0; ii < 10; ii++) {
 
     textureArr.push(rtTexture)
 }
+
+texture =  new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, {
+    minFilter: THREE.LinearFilter,
+    magFilter: THREE.NearestFilter,
+    format: THREE.RGBFormat
+});
 
 function init(){
     sceneRTT = new THREE.Scene();
@@ -52,27 +60,47 @@ function init(){
 
 
     var c;
-    for(var i = 0; i < 300; i++) {
+    for(var i = 0; i < 100; i++) {
         c = addCube();
         cubes.push(c);
         sceneRTT.add(c);
     }
-    c.position.set(0, 0, 50);
+    c.position.set(0, 0, 100);
 
     setComponent();
 
+    var plane = new THREE.PlaneBufferGeometry( window.innerWidth/3 , window.innerHeight/3  );
+    var material = new THREE.ShaderMaterial({
+        uniforms     : {
+            tDiffuse : { type: "t", value: texture  },
+            opacity  : { type : 'f', value: 1.0 }
+        },
+        vertexShader : glslify('./shader.vert'),
+        fragmentShader : glslify('./shader.frag')
+    });
+
+    var quad = new THREE.Mesh( plane, material );
+    scene.add(quad);
+
     for(var ii = 0; ii < textureArr.length; ii++){
-        var scale = 0.02; // 0.1 + 0.05 * Math.random();
+        var scale = 0.018; // 0.1 + 0.05 * Math.random();
         var plane = new THREE.PlaneBufferGeometry( window.innerWidth * scale, window.innerHeight * scale );
         var material = new THREE.ShaderMaterial({
-            uniforms     : { tDiffuse: { type: "t", value: textureArr[ii] }},
+            uniforms     : {
+                tDiffuse : { type: "t", value: textureArr[ii]  },
+                opacity  : { type : 'f', value: 0.0 }
+            },
             vertexShader : glslify('./shader.vert'),
             fragmentShader : glslify('./shader.frag')
         });
 
         var quad = new THREE.Mesh( plane, material );
-        quad.position.set( window.innerWidth /4* (-ii/10 + .5), 0, 0) //window.innerHeight * (Math.random() - 0.5), 0.0 );
+        var yNum = parseInt(ii / 10) / 9;
+        var xNum = parseInt(ii % 10) / 9;
+        quad.position.set( window.innerWidth /5* (xNum - .5 ), window.innerHeight /5 * (-yNum + .5 - scale/2), 0) //window.innerHeight * (Math.random() - 0.5), 0.0 );
         scene.add(quad);
+
+        quads.push(quad);
 
     }
 
@@ -80,12 +108,11 @@ function init(){
 }
 
 function setComponent(){
-    var title = '';
+    var title = 'Basic WebGLRendererTarget';
     var caption = '';
-    var url = '';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/webglrenderer-target';
 
     wrapper = createCaption(title, caption, url);
-    wrapper.style.width = (window.innerWidth/2 - 50) + "px";
     wrapper.style.position = "absolute";
     wrapper.style.top = '50px';
     wrapper.style.left = '30px';
@@ -111,7 +138,13 @@ function animate() {
     }
 
     renderer.render(sceneRTT, cameraRTT, textureArr[count], true);
+    renderer.render(sceneRTT, cameraRTT, texture, true);
+
+    quads[count].material.uniforms.opacity.value = 1.0;
+    TweenLite.to(quads[count].material.uniforms.opacity, 1.2, {value: 0.0});
+
     count = (count + 1) % textureArr.length;
+
 
     renderer.render(scene, cameraRTT);
     //renderer.render(sceneRTT, cameraRTT);
