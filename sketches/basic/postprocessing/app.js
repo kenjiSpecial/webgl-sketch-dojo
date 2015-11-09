@@ -38,6 +38,8 @@ function init(){
     renderer = new THREE.WebGLRenderer({alpha: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor( 0x000000 );
+    renderer.autoClear = false;
+
     document.body.appendChild(renderer.domElement);
 
 
@@ -83,7 +85,6 @@ function init(){
 }
 
 function animate() {
-    //renderer.render(scene, camera);
     composer.render();
 
     raf(animate);

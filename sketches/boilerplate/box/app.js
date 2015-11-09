@@ -1,9 +1,14 @@
 
 var raf = require('raf');
+var createCaption = require('../../dom/caption');
 
 var scene, camera, renderer;
 var material, light;
 var cubes = [];
+var object, id;
+var stats, wrapper;
+
+var isAnimation = true;
 
 function init(){
     scene = new THREE.Scene();
@@ -30,10 +35,36 @@ function init(){
     }
     c.position.set(0, 0, 50);
 
+    setComponent();
+
     raf(animate);
 }
 
+function setComponent(){
+    var title = '';
+    var caption = '';
+    var url = '';
+
+    wrapper = createCaption(title, caption, url);
+    wrapper.style.width = (window.innerWidth/2 - 50) + "px";
+    wrapper.style.position = "absolute";
+    wrapper.style.top = '50px';
+    wrapper.style.left = '30px';
+
+    stats = new Stats();
+    stats.setMode( 0 ); // 0: fps, 1: ms, 2: mb
+
+    // align top-left
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.bottom  = '0px';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.zIndex= 9999;
+
+    document.body.appendChild( stats.domElement );
+}
+
 function animate() {
+    stats.begin();
 
     for(var i = 0; i < cubes.length; i++) {
         cubes[i].rotation.y += 0.01 + ((i - cubes.length) * 0.00001);
@@ -42,7 +73,9 @@ function animate() {
 
     renderer.render(scene, camera);
 
-    raf(animate);
+    stats.end();
+
+    id = raf(animate);
 }
 
 function addCube() {
@@ -59,5 +92,15 @@ function addCube() {
     );
     return cube;
 }
+
+
+window.addEventListener('keydown', function(ev){
+    if(ev.keyCode == 27){
+        if(isAnimation) raf.cancel(id);
+        else    id = raf(animate);
+
+        isAnimation = !isAnimation;
+    }
+});
 
 init()

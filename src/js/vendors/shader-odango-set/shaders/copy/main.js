@@ -5,6 +5,6 @@ module.exports = {
         "tDiffuse": { type: "t", value: null },
         "opacity":  { type: "f", value: 1.0 }
     },
-    vertexShader   : glslify('../common/shader.vert'),
+    vertexShader   : glslify('../00common/shader.vert'),
     fragmentShader : glslify('./shader.frag')
 };

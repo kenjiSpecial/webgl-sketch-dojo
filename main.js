@@ -1,4 +1,5 @@
 /** global library **/
+require('gsap');
 
 window.THREE = require('three');
 
@@ -12,12 +13,15 @@ require('./src/js/vendors/postprocessing/ShaderPass');
 window.Stats = require('./src/js/vendors/Stats');
 window.GUI   = require('dat-gui').GUI;
 
-require('gsap');
+/** three.js sketch **/
+
+/** boilerplate */
+//require('./sketches/boilerplate/box/app');
 
 /** basic **/
-//require('./sketches/basic/boxes/app');
 //require('./sketches/basic/texture/app');
-require('./sketches/basic/postprocessing/app');
+//require('./sketches/basic/postprocessing/app');
+require('./sketches/basic/webglrenderer-target/app')
 
 /** undefined **/
 //require('../../sketches/undefined/#000/app');
@@ -30,3 +34,4 @@ require('./sketches/basic/postprocessing/app');
 /** postprocessing **/
 //require('./sketches/theme/post-processing/postprocessing00/app')
 //require('./sketches/theme/post-processing/postprocessing01/app');
+//require('./sketches/theme/post-processing/ofx-water/app');

@@ -9,6 +9,8 @@
  */
 
 module.exports = {
-    'copy' : require('./shaders/copy/main'),
-    'gray' : require('./shaders/gray/main')
+    'copy'   : require('./shaders/copy/main'),
+    'gray'   : require('./shaders/gray/main'),
+    'blur'   : require('./shaders/blur/main'),
+    'normal' : require('./shaders/normal/main')
 };

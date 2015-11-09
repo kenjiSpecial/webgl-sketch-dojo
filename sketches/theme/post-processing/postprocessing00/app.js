@@ -166,9 +166,9 @@ function setEffect(){
 
 
 
-    renderTarget = new THREE.WebGLRenderTarget( window.innerWidth/2, window.innerHeight/2, renderTargetParameters );
+    //renderTarget = new THREE.WebGLRenderTarget( window.innerWidth/2, window.innerHeight/2, renderTargetParameters );
 
-    finalcomposer = new THREE.EffectComposer( renderer, renderTarget );
+    finalcomposer = new THREE.EffectComposer( renderer );
 
     finalcomposer.addPass( renderModel );
     finalcomposer.addPass( effectFXAA );

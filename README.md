@@ -10,5 +10,12 @@ url: [blog.kenji-special.info/webgl-sketch-dojo](http://blog.kenji-special.info/
 - [Postprocessing](http://blog.kenji-special.info/webgl-sketch-dojo/app/03-basic-postprocessing/) : [codes](https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/sketches/basic/postprocessing/app.js)
 
 ## Post processing
+
 -  [postprocessing00](http://blog.kenji-special.info/webgl-sketch-dojo/postprocessing00/) : [codes](https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/sketches/theme/post-processing/postprocessing00/app.js)
 -  [postprocessing01](http://blog.kenji-special.info/webgl-sketch-dojo/app/01-postprocessing01/) : [codes](https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/sketches/theme/post-processing/postprocessing01/app.js)
+
+
+## References
+
+- [Three.js](http://threejs.org/)
+- [Learning Three.js](https://github.com/josdirksen/learning-threejs)
