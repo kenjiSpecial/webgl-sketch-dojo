@@ -3,12 +3,13 @@ uniform float opacity;
 uniform vec2 uWindow;
 uniform sampler2D tDiffuse;
 
-float xOffset = 1.0/uWindow.x;
-float yOffset = 1.0/uWindow.y;
 
 void main() {
     float xPos = vUv.x;
     float yPos = vUv.y;
+
+    float xOffset = 1.0/uWindow.x;
+    float yOffset = 1.0/uWindow.y;
 
     float center      = texture2D( tDiffuse, vec2(xPos          , yPos ) ).r;
     float topLeft     = texture2D( tDiffuse, vec2(xPos - xOffset, yPos - yOffset) ).r;

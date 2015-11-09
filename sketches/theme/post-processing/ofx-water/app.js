@@ -7,6 +7,7 @@ var grayShader = ShaderOdangoSet.gray;
 var copyShader = ShaderOdangoSet.copy;
 var blurShader = ShaderOdangoSet.blur;
 var normalShader = ShaderOdangoSet.normal;
+var displacePixelShader = ShaderOdangoSet.displayPixel;
 
 //require('../../../src/js/vendors/shaders/CopyShader')
 
@@ -18,6 +19,7 @@ var height = window.innerHeight;
 
 var loader = new THREE.TextureLoader();
 var composer, composer1, composer2, composer3;
+var finalComposer;
 var object, id;
 
 var isAnimation = true;
@@ -27,7 +29,7 @@ var caption = '<p>Shader is implemented by <a href="https://github.com/kenjiSpec
 var wrapper = createCaption(title, caption, 'https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/sketches/basic/postprocessing/app.js');
 wrapper.style.width = (window.innerWidth/2 - 50) + "px";
 wrapper.style.position = "absolute";
-wrapper.style.top = '50px';
+wrapper.style.top = '30px';
 wrapper.style.left = '30px';
 
 var stats = new Stats();
@@ -35,10 +37,13 @@ stats.setMode( 0 ); // 0: fps, 1: ms, 2: mb
 
 // align top-left
 stats.domElement.style.position = 'absolute';
-stats.domElement.style.right = '0px';
-stats.domElement.style.left = '0px';
+stats.domElement.style.bottom = '20px';
+stats.domElement.style.left = '30px';
 stats.domElement.style.zIndex= 9999;
 document.body.appendChild( stats.domElement );
+
+var buffer, backBuffer, frontBuffer;
+var rtTexture;
 
 
 function init(){
@@ -57,6 +62,24 @@ function init(){
     document.body.appendChild(renderer.domElement);
 
 
+    frontBuffer = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, {
+        minFilter: THREE.LinearFilter,
+        magFilter: THREE.NearestFilter,
+        format: THREE.RGBAFormat
+    });
+
+    backBuffer = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, {
+        minFilter: THREE.LinearFilter,
+        magFilter: THREE.NearestFilter,
+        format: THREE.RGBAFormat
+    });
+
+    rtTexture = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, {
+                                                minFilter: THREE.LinearFilter,
+                                                magFilter: THREE.NearestFilter,
+                                                format: THREE.RGBAFormat
+                                            });
+
     // load assets
     loader.load('assets/sample3-sq.jpg', function(texture   ){
 
@@ -69,6 +92,12 @@ function init(){
         plane = new THREE.Mesh( geometry, material );
         scene.add( plane );
 
+
+        renderer.render(scene, camera, backBuffer);
+        renderer.render(scene, camera, buffer);
+        //setTimeout(function(){renderer.render(scene, camera, backBuffer)}, 100);
+
+        id = raf(animate);
     });
 
     /** GUI Controller **/
@@ -82,23 +111,34 @@ function init(){
 
     /** composer **/
 
-    composer = new THREE.EffectComposer( renderer );
-    composer.addPass( new THREE.RenderPass( scene, camera ) );
+    /**
+    composer = new THREE.EffectComposer( renderer, backBuffer );
+    composer.addPass( new THREE.RenderPass( scene, camera ) ) */
+
+
 
     var grayEffect = new THREE.ShaderPass(grayShader);
     grayEffect.renderToScreen = false;
 
     var blurEffect = new THREE.ShaderPass(blurShader);
     blurEffect.uniforms.uWindow.value = new THREE.Vector2(window.innerWidth, window.innerHeight);
+
     var normalEffect = new THREE.ShaderPass(normalShader);
     normalEffect.uniforms.uWindow.value = new THREE.Vector2(window.innerWidth, window.innerHeight);
+
+    console.log(displacePixelShader);
+    var displacePixelEffect= new THREE.ShaderPass(displacePixelShader);
+    displacePixelEffect.uniforms.uWindow.value = new THREE.Vector2(window.innerWidth, window.innerHeight);
+    displacePixelEffect.uniforms['backBuffer'].value = backBuffer;
+    displacePixelEffect.uniforms['normalTexture'].value =  rtTexture;
 
     var copyEffect = new THREE.ShaderPass(copyShader);
     copyEffect.renderToScreen = true;
 
+    //composer.addPass(copyEffect);
+
     composer1 = new THREE.EffectComposer(renderer);
     composer1.addPass( new THREE.RenderPass( scene, camera ));
-    composer1.addPass(grayEffect);
     composer1.addPass(copyEffect);
     
     composer2 = new THREE.EffectComposer(renderer);
@@ -110,7 +150,7 @@ function init(){
     composer2.addPass(copyEffect);
 
 
-    composer3 = new THREE.EffectComposer(renderer);
+    composer3 = new THREE.EffectComposer(renderer, rtTexture);
     composer3.addPass( new THREE.RenderPass(scene, camera) );
     composer3.addPass(grayEffect);
     composer3.addPass(blurEffect);
@@ -119,9 +159,15 @@ function init(){
     composer3.addPass(normalEffect);
     composer3.addPass(copyEffect);
 
-    id = raf(animate);
-}
+    finalComposer = new THREE.EffectComposer(renderer, frontBuffer);
+    finalComposer.addPass(displacePixelEffect);
+    finalComposer.addPass(copyEffect);
 
+
+
+
+}
+var count = 0;
 function animate() {
     //renderer.render(scene, camera);
     stats.begin();
@@ -135,6 +181,17 @@ function animate() {
 
     renderer.setViewport(window.innerWidth/2, window.innerHeight/2, window.innerWidth/2, window.innerHeight/2);
     composer3.render();
+
+    renderer.setViewport(window.innerWidth/2, 0, window.innerWidth/2, window.innerHeight/2);
+
+    finalComposer.render();
+
+    backBuffer = frontBuffer.clone();
+
+    /**
+    var temp = backBuffer;
+    backBuffer = buffer;
+    buffer = temp; */
 
 
     stats.end();
