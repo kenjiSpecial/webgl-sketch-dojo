@@ -18,7 +18,6 @@ function init(){
 
     renderer = new THREE.WebGLRenderer({alpha: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x323232);
     document.body.appendChild(renderer.domElement);
 
     light = new THREE.PointLight(0xFFFFFF, 1);
@@ -56,8 +55,8 @@ function setComponent(){
 
     // align top-left
     stats.domElement.style.position = 'absolute';
-    stats.domElement.style.bottom  = '0px';
-    stats.domElement.style.left = '0px';
+    stats.domElement.style.bottom  = '30px';
+    stats.domElement.style.left = '30px';
     stats.domElement.style.zIndex= 9999;
 
     document.body.appendChild( stats.domElement );

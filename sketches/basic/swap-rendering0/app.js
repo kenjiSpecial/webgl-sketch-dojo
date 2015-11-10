@@ -14,6 +14,7 @@ var cubes = [];
 var object, id;
 var stats, wrapper;
 var composer;
+var mouse = new THREE.Vector2(-9999, -9999);
 
 var isAnimation = true;
 
@@ -30,11 +31,10 @@ function init(){
 
     renderer = new THREE.WebGLRenderer({alpha: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x323232);
     document.body.appendChild(renderer.domElement);
 
-    texture.front = new THREE.WebGLRenderTarget(1024, 1024, { minFilter: THREE.NearestFilter, maxFilter: THREE.NearestFilter, stencilBuffer: false, depthBuffer: false });
-    texture.back  = new THREE.WebGLRenderTarget(1024, 1024, { minFilter: THREE.NearestFilter, maxFilter: THREE.NearestFilter, stencilBuffer: false, depthBuffer: false });
+    texture.front = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, maxFilter: THREE.NearestFilter, stencilBuffer: false, depthBuffer: false });
+    texture.back  = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, maxFilter: THREE.NearestFilter, stencilBuffer: false, depthBuffer: false });
     texture.front.texture.wrapS = texture.front.texture.wrapT = THREE.RepeatWrapping;
     texture.back.texture.wrapS = texture.back.texture.wrapT = THREE.RepeatWrapping;
     texture.front.texture.magFilter = THREE.NearestFilter;
@@ -67,7 +67,7 @@ function init(){
 function setComponent(){
     var title = 'SWAP RENDERING with EffectComposer';
     var caption = 'rendering back and front buffer(texture) every frame to add effect.';
-    var url = '';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/swap-rendering0';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.position = "absolute";
@@ -101,6 +101,7 @@ function animate() {
     blurEffect = new THREE.ShaderPass(blurShader);
     blurEffect.uniforms.uTexture.value = texture.currentTarget;
     blurEffect.uniforms.uWindow.value = new THREE.Vector2(1024, 1024);
+    blurEffect.uniforms.uMouse.value =  mouse;
 
     var copyEffect = new THREE.ShaderPass(copyShader);
     copyEffect.renderToScreen = true;
@@ -171,6 +172,13 @@ window.addEventListener('keydown', function(ev){
 
         isAnimation = !isAnimation;
     }
+});
+
+window.addEventListener('mousemove', function(ev){
+    mouse.x = ev.clientX;
+    mouse.y = window.innerHeight - ev.clientY;
+    console.log(mouse);
+    blurEffect.uniforms.uMouse.value =  mouse;
 });
 
 init();

@@ -13,7 +13,7 @@ void main(){
     float dy = 1.0/uWindow.y;
     offset[0] = vec2(-dx, -dy);
     offset[1] = vec2(0.0, -dy);
-    offset[2] = vec2(1.0, -dy);
+    offset[2] = vec2(dx, -dy);
 
     offset[3] = vec2(-dx, 0.0);
     offset[4] = vec2(0.0, 0.0);
