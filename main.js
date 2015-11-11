@@ -22,7 +22,8 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/basic/texture/app');
 //require('./sketches/basic/postprocessing/app');
 //require('./sketches/basic/webglrenderer-target/app')
-require('./sketches/basic/swap-rendering0/app');
+//require('./sketches/basic/swap-rendering0/app');
+require('./sketches/basic/swap-rendering1/app');
 
 /** undefined **/
 //require('../../sketches/undefined/#000/app');
