@@ -114,7 +114,6 @@ function animate() {
         fragmentShader : glslify('./blur/shader.frag')
     });
 
-    console.log(glslify('./blur/shader.frag'));
 
     orthShaderMaterial.uniforms.uTexture.value = texture.currentFront;
     orthShaderMaterial.uniforms.uWindow.value  = new THREE.Vector2( window.innerWidth, window.innerHeight );
