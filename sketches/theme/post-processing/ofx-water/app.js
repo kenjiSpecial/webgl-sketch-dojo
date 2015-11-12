@@ -28,7 +28,7 @@ var isAnimation = true;
 
 var title = 'Water painting from image.';
 var caption = '<p>Shaders are imported from <a href="https://github.com/patriciogonzalezvivo/ofxFX">ofxFx</a></p>';
-var wrapper = createCaption(title, caption, 'https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/sketches/basic/postprocessing/app.js');
+var wrapper = createCaption(title, caption, 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/post-processing/ofx-water');
 wrapper.style.position = "absolute";
 wrapper.style.top = '30px';
 wrapper.style.left = '30px';
