@@ -86,8 +86,8 @@ function init(){
 
     document.body.appendChild(renderer.domElement);
     renderer.domElement.style.position = 'absolute';
-    renderer.domElement.style.top = (window.innerWidth - sWidth)/2 + 'px';
-    renderer.domElement.style.left = (window.innerHeight - sWidth)/2 + 'px';
+    renderer.domElement.style.left = (window.innerWidth - sWidth)/2 + 'px';
+    renderer.domElement.style.top = (window.innerHeight - sWidth)/2 + 'px';
 
 
     frontBuffer = new THREE.WebGLRenderTarget(sWidth , sHeight, {
