@@ -40,8 +40,8 @@ function init(){
 
 function setComponent(){
     var title = 'Boilerplate: Shader';
-    var caption = '';
-    var url = '';
+    var caption = 'Boilerplate Three.js shader app';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/boilerplate/shader';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
