@@ -1,10 +1,9 @@
 
-var raf = require('raf');
+var raf     = require('raf');
+var glslify = require('glslify');
 var createCaption = require('../../dom/caption');
 
 var scene, camera, renderer;
-var material, light;
-var cubes = [];
 var object, id;
 var stats, wrapper;
 
@@ -13,26 +12,26 @@ var isAnimation = true;
 function init(){
     scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 200;
+    camera = new THREE.OrthographicCamera( -window.innerWidth/2, window.innerWidth/2, -window.innerHeight/2, window.innerHeight/2, -10000, 10000 );
+    //camera.position.z = -10;
 
     renderer = new THREE.WebGLRenderer({alpha: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    light = new THREE.PointLight(0xFFFFFF, 1);
-    light.position.copy(camera.position);
-    scene.add(light);
+    var geometry = new THREE.PlaneGeometry( window.innerWidth, window.innerHeight );
+    var shaderMaterial = new THREE.ShaderMaterial( {
+        uniforms: {
+            time: { type: "f", value: 1.0 },
+            resolution: { type: "v2", value: new THREE.Vector2() }
+        },
+        vertexShader   : glslify('./shader.vert'),
+        fragmentShader : glslify('./shader.frag'),
+        side : THREE.DoubleSide
+    } );
 
-    material = new THREE.MeshPhongMaterial({color: 0x3a9ceb});
-
-    var c;
-    for(var i = 0; i < 300; i++) {
-        c = addCube();
-        cubes.push(c);
-        scene.add(c);
-    }
-    c.position.set(0, 0, 50);
+    var mesh = new THREE.Mesh( geometry, shaderMaterial );
+    scene.add(mesh);
 
     setComponent();
 
@@ -40,9 +39,9 @@ function init(){
 }
 
 function setComponent(){
-    var title = '';
-    var caption = '';
-    var url = '';
+    var title = 'Boilerplate: Shader';
+    var caption = 'Boilerplate Three.js shader app';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/boilerplate/shader';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
@@ -65,31 +64,11 @@ function setComponent(){
 function animate() {
     stats.begin();
 
-    for(var i = 0; i < cubes.length; i++) {
-        cubes[i].rotation.y += 0.01 + ((i - cubes.length) * 0.00001);
-        cubes[i].rotation.x += 0.01 + ((i - cubes.length) * 0.00001);
-    }
-
     renderer.render(scene, camera);
 
     stats.end();
 
     id = raf(animate);
-}
-
-function addCube() {
-    var cube = new THREE.Mesh(new THREE.BoxGeometry(20, 20, 20), material);
-    cube.position.set(
-        Math.random() * 600 - 300,
-        Math.random() * 600 - 300,
-        Math.random() * -500
-    );
-    cube.rotation.set(
-        Math.random() * Math.PI * 2,
-        Math.random() * Math.PI * 2,
-        Math.random() * Math.PI * 2
-    );
-    return cube;
 }
 
 

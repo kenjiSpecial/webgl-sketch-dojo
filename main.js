@@ -17,6 +17,7 @@ window.GUI   = require('dat-gui').GUI;
 
 /** boilerplate */
 //require('./sketches/boilerplate/box/app');
+require('./sketches/boilerplate/shader/app');
 
 /** basic **/
 //require('./sketches/basic/texture/app');
@@ -24,6 +25,8 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/basic/webglrenderer-target/app')
 //require('./sketches/basic/texture-buffergeometry-image/app');
 //require('./sketches/basic/texture-buffergeometry-canvas/app');
+//require('./sketches/basic/swap-rendering0/app');
+//require('./sketches/basic/swap-rendering1/app');
 
 /** undefined **/
 //require('../../sketches/undefined/#000/app');
@@ -37,6 +40,9 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/theme/post-processing/postprocessing00/app')
 //require('./sketches/theme/post-processing/postprocessing01/app');
 //require('./sketches/theme/post-processing/ofx-water/app');
+//require('./sketches/theme/post-processing/ofx-water/app');
 
 /** brush **/
 require('./sketches/theme/brush/app');
+
+
