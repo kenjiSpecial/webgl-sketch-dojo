@@ -17,7 +17,7 @@ window.GUI   = require('dat-gui').GUI;
 
 /** boilerplate */
 //require('./sketches/boilerplate/box/app');
-require('./sketches/boilerplate/shader/app');
+//require('./sketches/boilerplate/shader/app');
 
 /** basic **/
 //require('./sketches/basic/texture/app');
@@ -38,3 +38,6 @@ require('./sketches/boilerplate/shader/app');
 //require('./sketches/theme/post-processing/postprocessing00/app')
 //require('./sketches/theme/post-processing/postprocessing01/app');
 //require('./sketches/theme/post-processing/ofx-water/app');
+
+/** shader **/
+require('./sketches/theme/shader/00-shader00/app');
