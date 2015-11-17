@@ -23,6 +23,8 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/basic/texture/app');
 //require('./sketches/basic/postprocessing/app');
 //require('./sketches/basic/webglrenderer-target/app')
+//require('./sketches/basic/texture-buffergeometry-image/app');
+//require('./sketches/basic/texture-buffergeometry-canvas/app');
 //require('./sketches/basic/swap-rendering0/app');
 //require('./sketches/basic/swap-rendering1/app');
 
@@ -40,4 +42,10 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/theme/post-processing/ofx-water/app');
 
 /** shader **/
-require('./sketches/theme/shader/00-shader00/app');
+//require('./sketches/theme/shader/00-shader00/app');
+//require('./sketches/theme/post-processing/ofx-water/app');
+
+/** brush **/
+require('./sketches/theme/brush/app');
+
+
