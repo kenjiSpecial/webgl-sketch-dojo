@@ -17,7 +17,7 @@ window.GUI   = require('dat-gui').GUI;
 
 /** boilerplate */
 //require('./sketches/boilerplate/box/app');
-require('./sketches/boilerplate/shader/app');
+//require('./sketches/boilerplate/shader/app');
 
 /** basic **/
 //require('./sketches/basic/texture/app');
