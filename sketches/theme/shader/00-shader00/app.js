@@ -1,11 +1,17 @@
 
 var raf     = require('raf');
 var glslify = require('glslify');
-var createCaption = require('../../dom/caption');
+var createCaption = require('../../../dom/caption');
 
 var scene, camera, renderer;
 var object, id;
 var stats, wrapper;
+var uniforms;
+var fontSize = 210;
+var fontMargin = 50;
+var typeWidth = fontSize * 2 + fontMargin;
+var typeHeight = 350;
+
 
 var isAnimation = true;
 
@@ -19,15 +25,22 @@ function init(){
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
+    var textLeft = (window.innerWidth - typeWidth)/2;
+    var textTop  = (window.innerHeight - fontSize)/2
+
     var geometry = new THREE.PlaneGeometry( window.innerWidth, window.innerHeight );
+    uniforms = {
+            percent     : { type: "v2", value: 0  },
+            time        : { type: "f", value: 1.0 },
+            uResolution : { type: "v2", value: new THREE.Vector2( window.innerWidth, window.innerHeight  ) },
+            uTopLeft    : { type: "v2", value: new THREE.Vector2( textLeft, textTop )}
+        };
+
     var shaderMaterial = new THREE.ShaderMaterial( {
-        uniforms: {
-            time: { type: "f", value: 1.0 },
-            resolution: { type: "v2", value: new THREE.Vector2() }
-        },
-        vertexShader   : glslify('./shader.vert'),
-        fragmentShader : glslify('./shader.frag'),
-        side : THREE.DoubleSide
+        uniforms        : uniforms,
+        vertexShader    : glslify('./shader.vert'),
+        fragmentShader  : glslify('./shader.frag'),
+        side            : THREE.DoubleSide
     } );
 
     var mesh = new THREE.Mesh( geometry, shaderMaterial );
@@ -81,4 +94,4 @@ window.addEventListener('keydown', function(ev){
     }
 });
 
-init();
+init()

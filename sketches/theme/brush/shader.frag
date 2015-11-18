@@ -19,10 +19,11 @@ void main(){
 
     vec4 texel  = texture2D( tDiffuse, vUv );
     float sdf = texel.a;
+
 	float alpha = 0.0;
-    alpha += aastep(0.5, sdf + noise2(vUv * 1000.0) * 0.1) * 1.0;
-    alpha += aastep(0.5, sdf + noise2(vUv * 50.0) * 0.2) * 0.3;
-    alpha += aastep(0.5, sdf + noise2(vUv * 500.0) * 0.2) * 0.3;
+    alpha += (sdf + noise2(vUv * 1000.0) * 0.1) * 0.5;
+    alpha += (sdf + noise2(vUv * 50.0) * 0.2) * 0.3;
+    alpha += (sdf + noise2(vUv * 500.0) * 0.2) * 0.2;
 
     gl_FragColor = vec4( texel.rgb, alpha ); // * opacity + vec4(0.0, 0.0, 0.0, 1.0) * (1. - opacity);
 }

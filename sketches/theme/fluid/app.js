@@ -4,6 +4,7 @@ var glslify = require('glslify');
 var createCaption = require('../../dom/caption');
 
 var scene, camera, renderer;
+
 var object, id;
 var stats, wrapper;
 
@@ -81,4 +82,4 @@ window.addEventListener('keydown', function(ev){
     }
 });
 
-init();
+init()

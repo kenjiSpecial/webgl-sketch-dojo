@@ -62,10 +62,23 @@ function init(){
     ctxPaint.strokeStyle = '#000000';
 
     ctxPaint.beginPath();
-    ctxPaint.moveTo(10, 54);
-    ctxPaint.lineTo(246, 10);
-    ctxPaint.lineWidth = 20;
-    ctxPaint.stroke();
+    /*
+    ctxPaint.moveTo(11, 53);
+    ctxPaint.lineTo(245, 11);
+    ctxPaint.lineWidth = 20; */
+
+    ctxPaint.translate(128, 32);
+
+    for(var ii = -25; ii <25; ii++ ){
+        var rate = (-25 - ii)/50;
+        rate = 1 - rate * rate;
+        var lineWidth = 180 + 12 * Math.random() + rate * 40;
+        ctxPaint.beginPath();
+        ctxPaint.moveTo(-120, ii);
+        ctxPaint.lineTo(lineWidth/2, ii);
+        ctxPaint.stroke();
+    }
+
 
     dynamicTexture = new THREE.Texture(canvasPaint);
     dynamicTexture.wrapS = dynamicTexture.wrapT = THREE.RepeatWrapping;
@@ -153,8 +166,10 @@ function createScene(){
         uniforms : uniforms,
         vertexShader : glslify('./shader.vert'),
         fragmentShader : glslify('./shader.frag'),
-        transparent : true
+        transparent : true,
+        shading : THREE.FlatShading
     });
+
 
 
     plane = new THREE.Mesh( bufferGeometry, mat );
