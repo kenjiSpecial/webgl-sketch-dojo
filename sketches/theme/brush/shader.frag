@@ -3,8 +3,8 @@
 //#endif
 
 
-#pragma glslify: aastep = require('glsl-aastep')
-#pragma glslify: noise2 = require('glsl-noise/simplex/2d')
+#pragma glslify: aastep = require(glsl-aastep)
+#pragma glslify: noise2 = require(glsl-noise/simplex/2d)
 
 
 varying vec2 vUv;
@@ -14,6 +14,7 @@ void main(){
 	/**
     vec4 texel  = texture2D( tDiffuse, vUv );
     float alpha = ink(0, texel.a, vUv);
+
     */
 
 
