@@ -39,7 +39,7 @@ var cubes = [];
 
 var title = 'Imported shader from ofxGlitch';
 var caption = '';
-var wrapper = createCaption(title, caption, '');
+var wrapper = createCaption(title, caption, 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/post-processing/ofx-glitch');
 wrapper.style.width = (window.innerWidth/2 - 50) + "px";
 wrapper.style.position = "absolute";
 wrapper.style.top = '30px';
