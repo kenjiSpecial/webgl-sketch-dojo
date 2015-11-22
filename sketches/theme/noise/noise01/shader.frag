@@ -95,6 +95,35 @@ float snoise(vec3 v)
   return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),
                                 dot(p2,x2), dot(p3,x3) ) );
   }
+
+vec4 hsv_to_rgb(float h, float s, float v, float a)
+{
+	float c = v * s;
+	h = mod((h * 6.0), 6.0);
+	float x = c * (1.0 - abs(mod(h, 2.0) - 1.0));
+	vec4 color;
+
+	if (0.0 <= h && h < 1.0) {
+		color = vec4(c, x, 0.0, a);
+	} else if (1.0 <= h && h < 2.0) {
+		color = vec4(x, c, 0.0, a);
+	} else if (2.0 <= h && h < 3.0) {
+		color = vec4(0.0, c, x, a);
+	} else if (3.0 <= h && h < 4.0) {
+		color = vec4(0.0, x, c, a);
+	} else if (4.0 <= h && h < 5.0) {
+		color = vec4(x, 0.0, c, a);
+	} else if (5.0 <= h && h < 6.0) {
+		color = vec4(c, 0.0, x, a);
+	} else {
+		color = vec4(0.0, 0.0, 0.0, a);
+	}
+
+	color.rgb += v - c;
+
+	return color;
+}
+
 void main() {
     float value2 = snoise(vec3(time/5., vUv * 2.0 ));
     float value = snoise(vec3( time /1.5, value2, vUv.y * resolution.y /2.));
@@ -102,13 +131,11 @@ void main() {
     float value3 = snoise(vec3( time /1.5, value4, vUv.x * resolution.y /2.));
     value = clamp(value, 0., 1.);
 
-//    if(col.r * value > value2){
-//
-//    }else{
-//        gl_FragColor = vec4( colVal );
-//    }
+
  float rate = (value3 + value)/2.;
  float col = (1.0 - rate) * rate/3.;
- gl_FragColor = vec4( col, col, col, 1.0 );
+
+ vec4 col4 = hsv_to_rgb( (cos(time/3.) + 1.0)/2., (cos(value2 * 10.) + 1.0)/2.0, (sin(value2 * 12.) + 1.0)/2.0 , 1.0 ) * col;
+ gl_FragColor = vec4( col4.rgb, 1.0 );
 
 }

@@ -43,6 +43,8 @@ function init(){
     raf(animate);
 }
 
+
+
 function setComponent(){
     var title = 'Noise: Sketch#00';
     var caption = 'Sketch with noise';
