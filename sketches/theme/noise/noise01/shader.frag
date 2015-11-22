@@ -135,7 +135,7 @@ void main() {
  float rate = (value3 + value)/2.;
  float col = (1.0 - rate) * rate/3.;
 
- vec4 col4 = hsv_to_rgb( (cos(time/3.) + 1.0)/2., (cos(value2 * 10.) + 1.0)/2.0, (sin(value2 * 12.) + 1.0)/2.0 , 1.0 ) * col;
+ vec4 col4 = hsv_to_rgb( (cos(time/3.) + 1.0)/2., (cos(value2 * 10.) + 1.0)/2.0, (sin(value2 * 12.) + 1.0)/2.0 , 1.0 ) * col * 2.0;
  gl_FragColor = vec4( col4.rgb, 1.0 );
 
 }
