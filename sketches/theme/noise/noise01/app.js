@@ -48,7 +48,7 @@ function init(){
 function setComponent(){
     var title = 'Noise: Sketch#00';
     var caption = 'Sketch with noise';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/boilerplate/shader';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/noise/noise01';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
