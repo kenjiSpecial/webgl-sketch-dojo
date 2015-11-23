@@ -17,7 +17,7 @@ var isAnimation = true;
 
 var title = 'Image Gallery with Three.js.';
 var caption = '';
-var wrapper = createCaption(title, caption, 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/post-processing/ofx-water');
+var wrapper = createCaption(title, caption, 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/gallery/gallery00');
 wrapper.style.position = "absolute";
 wrapper.style.top = '30px';
 wrapper.style.left = '30px';
