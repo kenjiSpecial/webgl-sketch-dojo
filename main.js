@@ -41,12 +41,21 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/theme/post-processing/postprocessing00/app')
 //require('./sketches/theme/post-processing/postprocessing01/app');
 //require('./sketches/theme/post-processing/ofx-water/app');
+//require('./sketches/theme/post-processing/ofx-glitch/app');
+
+/** gallery **/
+require('./sketches/theme/gallery/gallery00/app');
+
+/** noise **/
+
+//require('./sketches/theme/noise/noise01/app');
 
 /** shader **/
 //require('./sketches/theme/shader/00-shader00/app');
 //require('./sketches/theme/post-processing/ofx-water/app');
 
 /** brush **/
-require('./sketches/theme/brush/app');
+//require('./sketches/theme/brush/app');
+
 
 
