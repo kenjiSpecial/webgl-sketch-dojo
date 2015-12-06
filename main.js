@@ -44,7 +44,8 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/theme/post-processing/ofx-glitch/app');
 
 /** gallery **/
-require('./sketches/theme/gallery/gallery00/app');
+//require('./sketches/theme/gallery/gallery00/app');
+require('./sketches/theme/gallery/gallery01/app');
 
 /** noise **/
 
