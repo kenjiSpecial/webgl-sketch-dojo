@@ -20,14 +20,14 @@ void main(){
         float yPos = (floor(gl_FragCoord.y / imgHeight) + 0.5) * imgHeight / uImage.y;
         float xPos;
         if(uNext > 0.75){
-            xPos = (vUv.x  * (1.-curRate ) + vUv.y /4. * curRate  + uRate *2. * curRate * curRate * curRate);
+            xPos = (vUv.x  * (1.-curRate )   + uRate *2. * curRate * curRate * curRate);
         }else{
-            xPos = (vUv.x  * (1.-curRate ) + (1.-vUv.y /4.) * curRate  - uRate *2. * curRate * curRate * curRate);
+            xPos = (vUv.x  * (1.-curRate ) - uRate *2. * curRate * curRate * curRate);
         }
         xPos = clamp(xPos, 0., 1.);
         vec2 vPos = vec2(xPos, yPos);
 
-        float finalRate = clamp(uRate * uRate * uRate, 0.0, 1.0);
+        float finalRate = clamp(uRate * uRate, 0.0, 1.0);
 
         vec4 transCol =  texture2D(tMain, vPos ) * (1.-finalRate) + texture2D(tNext, vPos ) * finalRate;
         col = transCol;// * (1. - curRate) + blackCol * (curRate);
