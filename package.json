@@ -10,7 +10,7 @@
   "dependencies": {},
   "devDependencies": {
     "browserify": "^9.0.3",
-    "budo": "^4.0.0",
+    "budo": "^8.0.0",
     "dat-gui": "^0.5.0",
     "garnish": "^2.1.3",
     "glsl-aastep": "^1.0.1",
@@ -29,7 +29,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "start": "budo main.js:bundle.js --live -t glslify | garnish",
+    "start": "budo main.js:bundle.js --live -t glslify",
     "build": "browserify main.js -t glslify | uglifyjs -nm > example/bundle.js"
   },
   "keywords": [

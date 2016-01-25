@@ -45,7 +45,7 @@ window.GUI   = require('dat-gui').GUI;
 
 /** gallery **/
 //require('./sketches/theme/gallery/gallery00/app');
-require('./sketches/theme/gallery/gallery01/app');
+//require('./sketches/theme/gallery/gallery01/app');
 
 /** noise **/
 
@@ -59,4 +59,4 @@ require('./sketches/theme/gallery/gallery01/app');
 //require('./sketches/theme/brush/app');
 
 
-
+/** particle **/
