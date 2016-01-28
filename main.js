@@ -60,3 +60,4 @@ window.GUI   = require('dat-gui').GUI;
 
 
 /** particle **/
+require('./sketches/theme/particle-system/particle01/app');

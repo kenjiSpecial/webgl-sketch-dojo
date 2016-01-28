@@ -29,7 +29,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "start": "budo main.js:bundle.js --live -t glslify",
+    "start": "budo main.js:bundle.js --live  -- -t glslify",
     "build": "browserify main.js -t glslify | uglifyjs -nm > example/bundle.js"
   },
   "keywords": [
