@@ -135,11 +135,11 @@ function setEffect(){
 
 
     grPass = new THREE.ShaderPass( THREE.Extras.Shaders.Godrays );
-    grPass.needsSwap = true;
+    //grPass.needsSwap = true;
     grPass.renderToScreen = false;
 
     finalPass = new THREE.ShaderPass( THREE.Extras.Shaders.Additive );
-    finalPass.needsSwap = true;
+    //finalPass.needsSwap = true;
     finalPass.renderToScreen = true;
 
 

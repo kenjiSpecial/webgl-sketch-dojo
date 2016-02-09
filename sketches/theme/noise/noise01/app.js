@@ -31,7 +31,7 @@ function init(){
         },
         vertexShader   : glslify('./shader.vert'),
         fragmentShader : glslify('./shader.frag'),
-        side : THREE.DoubleSide,
+
         transparent : true
     } );
 
