@@ -58,8 +58,6 @@ function init() {
     camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.01, 6000 );
     camera.cameraTheta = 0;
     camera.position.z = 2750;
-    //camera.position.x = 50 * Math.cos(cameraTheta);
-    //camera.position.y = 50 * Math.sin(cameraTheta);
     camera.animationY = 0;
     camera.animationZ = 0;
 
@@ -124,7 +122,7 @@ function init() {
     geometry.addAttribute( 'position', positionAttribute );
     geometry.addAttribute( 'randomTexture', new THREE.BufferAttribute( randomTextureNumbers, 1 ) );
 
-    //geometry.computeBoundingSphere();
+    geometry.computeBoundingSphere();
 
     uniforms =  {
         uTime    :  { type: "f", value: 0 },
