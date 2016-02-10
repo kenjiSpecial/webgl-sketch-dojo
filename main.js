@@ -27,6 +27,7 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/basic/texture-buffergeometry-canvas/app');
 //require('./sketches/basic/swap-rendering0/app');
 //require('./sketches/basic/swap-rendering1/app');
+require('./sketches/basic/buffer-geometry/app');
 
 /** undefined **/
 //require('../../sketches/undefined/#000/app');
@@ -60,4 +61,4 @@ window.GUI   = require('dat-gui').GUI;
 
 
 /** particle **/
-require('./sketches/theme/particle-system/particle01/app');
+//require('./sketches/theme/particle-system/particle01/app');
