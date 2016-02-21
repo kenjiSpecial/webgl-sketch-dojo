@@ -61,6 +61,10 @@ window.GUI   = require('dat-gui').GUI;
 
 /** Marching Cube **/
 //require('./sketches/theme/marching-cube/marching-cube00/app');
-require('./sketches/theme/marching-cube/marching-cube00/app');
+//require('./sketches/theme/marching-cube/marching-cube00/app');
 
+/** particle **/
+//require('./sketches/theme/particle-system/particle01/app');
 
+/** palne **/
+require('./sketches/theme/geometry/animation-geometry/app');
