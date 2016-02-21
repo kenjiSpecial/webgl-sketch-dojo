@@ -9,6 +9,7 @@ var ksUtils = require('ks-utils');
 
 var EarthSnow = function(){
     this.speed = 0;
+    this.time = 0;
     this.geo = new THREE.PlaneGeometry(500, 500,  69, 69      );
 
 
@@ -67,9 +68,9 @@ var EarthSnow = function(){
             type : "f",
             value : 0
         },
-        emissive : {
-            type : "c",
-            value: new THREE.Color(0x846E55)
+        uHorizontalScale : {
+            type : "f",
+            value : 1
         }
     };
 
@@ -108,12 +109,10 @@ var EarthSnow = function(){
 EarthSnow.prototype = Object.create(THREE.Mesh.prototype);
 EarthSnow.prototype.constructor = EarthSnow;
 
-EarthSnow.prototype.update = function(){
-
-    //this.uniforms.uTime.value += 0.1;
-    //this.snowInteraction.update();
-    this.updateGeometry();
-    //console.log('?');
+EarthSnow.prototype.update = function(dt){
+    this.time += dt;
+    this.uniforms.uHorizontalScale.value = 0.96 + 0.07 * Math.cos(this.time * 8);
+    this.updateGeometry(dt);
 };
 
 EarthSnow.prototype.createGeometry = function(){
@@ -143,7 +142,7 @@ EarthSnow.prototype.createGeometry = function(){
     this.geo.computeVertexNormals();
 };
 
-EarthSnow.prototype.updateGeometry = function(){
+EarthSnow.prototype.updateGeometry = function(dt){
     this.speed += 1;
 
     this.selectedVertices.forEach(function( vertice ){
@@ -159,6 +158,7 @@ EarthSnow.prototype.updateGeometry = function(){
     this.geo.normalsNeedUpdate  = true;
     this.geo.computeFaceNormals();
     this.geo.computeVertexNormals();
+
 };
 
 

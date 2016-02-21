@@ -1,10 +1,9 @@
-// #extension GL_EXT_frag_depth : enable
-
 uniform sampler2D tNormal;
 uniform sampler2D tNoise;
 uniform sampler2D tDiffuse;
 uniform sampler2D tInteraction;
 uniform float uTime;
+uniform float uHorizontalScale;
 
 varying vec2 vUv;
 varying vec3 vViewPosition;
@@ -34,13 +33,10 @@ void main(){
     float rate = 1.0 - clamp(dis, 0.0, 1.0);
 //    pos.z *= clamp(0.1 * uTime - 0.1, 0., 1.0);
 
-     pos.x *= rate * rate;
+     pos.x *= rate * rate * uHorizontalScale;
      pos.y *= rate * rate;
-//    }else{
-//        pos.x
-//    }
+//     pos.z *= rate;
 
-//    -texture2D(tInteraction, vUv).r * 20. * normal;
 
     //pos +=
     vec4 worldPosition = modelMatrix * vec4(pos, 1.0);

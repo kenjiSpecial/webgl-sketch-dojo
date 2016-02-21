@@ -18,7 +18,7 @@ export default class  snowWrapperObject extends THREE.Object3D {
     update(dt){
         this.time += dt * 1.5;
 
-        this.position.y = Math.cos(this.time) * 12;
+        this.position.y = Math.cos(this.time) * 20;
 
         this.snowField.update(dt);
         this.snowMesh.update(dt);
