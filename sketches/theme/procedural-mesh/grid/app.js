@@ -58,7 +58,7 @@ function init(){
 function setComponent(){
     var title = '';
     var caption = 'Click the window to change the image';
-    var url = '';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/geometry/animation-geometry';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
