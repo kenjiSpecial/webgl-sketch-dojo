@@ -111,7 +111,7 @@ EarthSnow.prototype.constructor = EarthSnow;
 
 EarthSnow.prototype.update = function(dt){
     this.time += dt;
-    this.uniforms.uHorizontalScale.value = 0.96 + 0.07 * Math.cos(this.time * 8);
+    this.uniforms.uHorizontalScale.value = 0.95 + 0.05 * Math.cos(this.time * 8);
     this.updateGeometry(dt);
 };
 

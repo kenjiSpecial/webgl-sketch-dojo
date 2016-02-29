@@ -50,8 +50,6 @@ export default class SnowFallGeometry extends THREE.BufferGeometry{
 
             this.velocityArray[3 * ii + 1] = this.velocityArray[3 * ii + 1] - 400 * dt;
             if(this.velocityArray[3 * ii + 1] < -200) this.velocityArray[3 * ii + 1] = -200;
-            //this.velocityArray[3 * ii ] = this.velocityArray[3 * ii ] * 0.99;
-            //this.velocityArray[3 * ii+2] = this.velocityArray[3 * ii+2] * 0.99;
             var velX = this.velocityArray[3 * ii];
             var velY = this.velocityArray[3 * ii + 1];
             var velZ = this.velocityArray[3 * ii + 2];
@@ -60,6 +58,11 @@ export default class SnowFallGeometry extends THREE.BufferGeometry{
             var yPos = this.positionArray[3 * ii + 1] + velY * dt;
             var zPos = this.positionArray[3 * ii + 2] + velZ * dt;
 
+            //if(Math.sqrt(xPos * xPos + zPos * zPos) > 500 ){
+
+                this.velocityArray[3 * ii ] = this.velocityArray[3 * ii ] * (0.985 + 0.02*Math.random());
+                this.velocityArray[3 * ii+2] = this.velocityArray[3 * ii+2] * (0.985 + 0.02*Math.random());
+            //}
             this.positionAttribute.setXYZ(ii, xPos, yPos, zPos);
 
             if(this.timeArray[ii] > 5.0){

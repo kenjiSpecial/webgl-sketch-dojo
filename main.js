@@ -67,4 +67,7 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/theme/particle-system/particle01/app');
 
 /** palne **/
-require('./sketches/theme/geometry/animation-geometry/app');
+//require('./sketches/theme/geometry/animation-geometry/app'); // <- snow
+
+/** procedural mesh **/
+require('./sketches/theme/procedural-mesh/grid/app');

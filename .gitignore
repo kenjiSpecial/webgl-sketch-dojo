@@ -4,6 +4,7 @@ node_modules
 .DS_Store
 bundle.js
 app/main.css
+.idea
 
 /9999
 /example
