@@ -50,7 +50,7 @@ function init(){
         meshArr[click].backToInitState();
     });
 
-    setTimeout(function(){meshArr[0].backToInitState()}, 1000);
+    setTimeout(function(){meshArr[0].backToInitState()}, 10);
 
     raf(animate);
 }
