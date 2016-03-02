@@ -7,7 +7,6 @@
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
 
             font-family: 'Roboto', sans-serif;
             background: black;
@@ -21,7 +20,25 @@
 
         .wrapper{
             width: 960px;
+            padding-left:  30px;
+            padding-right: 30px;
             margin: 60px auto;
+        }
+
+        h1{
+            margin-bottom: 50px;
+        }
+
+        h2{
+            margin-bottom: 30px;;
+        }
+
+        .chapter{
+            margin-bottom: 50px;;
+        }
+
+        li{
+            margin-bottom: 10px;;
         }
     </style>
 </head>
@@ -29,10 +46,54 @@
 <div class="wrapper">
     <h1>WEBGL SKETCH DOJO</h1>
 
-    <h2>Post processing</h2>
-    <ul>
-        <li><a href="./postprocessing00">postprocessing00</a></li>
-    </ul>
+    <div class="chapter">
+        <h2>Boilerplate</h2>
+        <ul>
+            <li><a href="./app/09-boilerplate-box">Box</a></li>
+            <li><a href="./app/08-boilerplate-shader">Shader</a></li>
+        </ul>
+    </div>
+
+    <div class="chapter">
+        <h2>Basic</h2>
+        <ul>
+            <li><a href="./app/02-basic-texture">Texture</a></li>
+            <li><a href="./app/03-basic-postprocessing">Postprocessing</a></li>
+            <li><a href="./app/04-basic-webglrenderer-target">WebGLRendererTarget</a></li>
+            <li><a href="./app/05-basic-swap-rendering-with-effectcomposer">Swap Rendering with EffectComposer</a></li>
+            <li><a href="./app/06-basic-swap-rendering-without-effectcomposer">Swap Rendering without EffectComposer</a></li>
+        </ul>
+    </div>
+
+    <div class="chapter">
+        <h2>Post processing</h2>
+        <ul>
+            <li><a href="./app/00-postprocessing00">Postprocessing00</a></li>
+            <li><a href="./app/01-postprocessing01">Postprocessing01</a></li>
+            <li><a href="./app/07-postprocessing-water-paint">Water painting</a></li>
+            <li><a href="./app/11-ofxglitch-import">ofxGlitch Import</a></li>
+
+        </ul>
+    </div>
+
+
+    <div class="chapter">
+        <h2>Noise</h2>
+        <ul>
+            <li><a href="./app/10-noise-sketch/index.html">Sketch#00</a></li>
+        </ul>
+    </div>
+
+    <div class="chapter">
+        <h2>Gallery</h2>
+        <ul>
+            <li><a href="./app/12-three-js-gallery/index.html">Three.js Gallery#00</a></li>
+        </ul>
+        <ul>
+            <li><a href="./app/13-buffergeometry-gallery/index.html">BufferGeometry Gallery#00</a></li>
+        </ul>
+    </div>
+
 </div>
 
 </body>
