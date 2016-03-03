@@ -1,0 +1,25 @@
+.container{
+
+    font-family: Roboto;
+    letter-spacing: 0.5px;
+    margin-top: 60px;
+    max-width: 160rem !important;
+}
+
+#main-container li{
+    list-style: none;
+}
+
+.thumbnail{
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+h6{
+    font-weight: 700;
+}
+
+a{
+    text-decoration: none;
+}

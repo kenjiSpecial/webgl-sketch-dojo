@@ -2,96 +2,60 @@
 <html>
 <head>
     <title>WEB-GL SKETCH DOJO</title>
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
-    <style type="text/css">
-        body {
-            margin: 0;
-            padding: 0;
 
-            font-family: 'Roboto', sans-serif;
-            background: black;
-            color: white;
-            line-height: 1.4em;
-        }
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/main.css">
 
-        a{
-            color: white;
-        }
-
-        .wrapper{
-            width: 960px;
-            padding-left:  30px;
-            padding-right: 30px;
-            margin: 60px auto;
-        }
-
-        h1{
-            margin-bottom: 50px;
-        }
-
-        h2{
-            margin-bottom: 30px;;
-        }
-
-        .chapter{
-            margin-bottom: 50px;;
-        }
-
-        li{
-            margin-bottom: 10px;;
-        }
-    </style>
 </head>
 <body>
-<div class="wrapper">
-    <h1>WEBGL SKETCH DOJO</h1>
+<div class="wrapper container" id="main-container">
 
     <div class="chapter">
-        <h2>Boilerplate</h2>
-        <ul>
-            <li><a href="./app/09-boilerplate-box">Box</a></li>
-            <li><a href="./app/08-boilerplate-shader">Shader</a></li>
-        </ul>
-    </div>
-
-    <div class="chapter">
-        <h2>Basic</h2>
-        <ul>
-            <li><a href="./app/02-basic-texture">Texture</a></li>
-            <li><a href="./app/03-basic-postprocessing">Postprocessing</a></li>
-            <li><a href="./app/04-basic-webglrenderer-target">WebGLRendererTarget</a></li>
-            <li><a href="./app/05-basic-swap-rendering-with-effectcomposer">Swap Rendering with EffectComposer</a></li>
-            <li><a href="./app/06-basic-swap-rendering-without-effectcomposer">Swap Rendering without EffectComposer</a></li>
-        </ul>
-    </div>
-
-    <div class="chapter">
-        <h2>Post processing</h2>
-        <ul>
-            <li><a href="./app/00-postprocessing00">Postprocessing00</a></li>
-            <li><a href="./app/01-postprocessing01">Postprocessing01</a></li>
-            <li><a href="./app/07-postprocessing-water-paint">Water painting</a></li>
-            <li><a href="./app/11-ofxglitch-import">ofxGlitch Import</a></li>
-
-        </ul>
+        <h6>Boilerplate</h6>
+        <div class="row">
+            <div class="one-third column"><a href="./app/09-boilerplate-box">
+                <img class="thumbnail" src="./app/00-postprocessing00/thumbnail.jpg">
+                <p>Box</p>
+            </a></div>
+            <div class="one-third column"><a href="./app/08-boilerplate-shader">
+                <img class="thumbnail"  src="./app/01-postprocessing01/thumbnail.jpg">
+                <p>Shader</p>
+            </a></div>
+        </div>
     </div>
 
 
     <div class="chapter">
-        <h2>Noise</h2>
-        <ul>
-            <li><a href="./app/10-noise-sketch/index.html">Sketch#00</a></li>
-        </ul>
+        <h6>Basic</h6>
+        <div class="row">
+            <div class="one-third column"><a href="./app/02-basic-texture">
+                <img class="thumbnail" src="./app/02-basic-texture/thumbnail.jpg">
+                <p>Texture</p>
+            </a></div>
+        </div>
     </div>
 
     <div class="chapter">
-        <h2>Gallery</h2>
-        <ul>
-            <li><a href="./app/12-three-js-gallery/index.html">Three.js Gallery#00</a></li>
-        </ul>
-        <ul>
-            <li><a href="./app/13-buffergeometry-gallery/index.html">BufferGeometry Gallery#00</a></li>
-        </ul>
+        <h6>Post processing</h6>
+    </div>
+
+    <div class="chapter">
+        <h6>Noise</h6>
+    </div>
+
+    <div class="chapter">
+        <h6>Gallery</h6>
+    </div>
+
+    <div class="chapter">
+        <h6>Particle</h6>
     </div>
 
 </div>
