@@ -2,7 +2,7 @@
 
 webgl, mainly with three.js, sketches for practice and work.
 
-url: [blog.kenji-special.info/webgl-sketch-dojo](http://blog.kenji-special.info/webgl-sketch-dojo/)
+url: [webgl-sketch-dojo.kenji-special.info](http://webgl-sketch-dojo.kenji-special.info/)
 
 ## Basic
 
