@@ -14,6 +14,11 @@
     display: block;
     width: 100%;
     margin-bottom: 5px;
+
+}
+
+#main-container .row{
+    margin-bottom: 20px;
 }
 
 h6{
