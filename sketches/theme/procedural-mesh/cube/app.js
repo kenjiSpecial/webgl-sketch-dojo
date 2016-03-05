@@ -63,9 +63,9 @@ scene = new THREE.Scene();
 })();
 
 function setComponent(){
-    var title = '';
-    var caption = 'Click the window to change the image';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/geometry/animation-geometry';
+    var title = 'Cube with BufferGeometry';
+    var caption = '';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/cube';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
