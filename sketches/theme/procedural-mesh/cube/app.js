@@ -1,5 +1,5 @@
-
 var raf = require('raf');
+require('../../../../src/js/vendors/controls/TrackballControls');
 var createCaption = require('../../../dom/caption');
 import CustomMesh from "./mesh";
 
@@ -17,17 +17,20 @@ var LENGTH;
 var light;
 var id;
 var stats, wrapper;
-var time;
+var time, controls;
 
 var isAnimation = true;
 
 scene = new THREE.Scene();
 
-function init(){
+(function(){
 
 
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 200;
+    camera.position.z = 10;
+    camera.position.x = 10;
+    camera.position.y = 10;
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -37,28 +40,27 @@ function init(){
     light.position.copy(camera.position);
     scene.add(light);
 
+    var axisHelper = new THREE.AxisHelper( 3 );
+    scene.add( axisHelper );
 
     setComponent();
 
     time = new THREE.Clock();
     time.start();
 
-    /**
-    window.addEventListener("click", function(){
-        var prevCount = click;
-        click = (click + 1) % meshArr.length;
-
-        meshArr[prevCount].backToWall();
-        meshArr[click].backToInitState();
-    });
-
-    setTimeout(function(){meshArr[0].backToInitState()}, 10); */
     customMesh = new CustomMesh();
     scene.add(customMesh);
     meshArr.push(customMesh);
 
+    controls = new THREE.TrackballControls(camera, renderer.domElement);
+    controls.rotateSpeed = 5.0;
+    controls.zoomSpeed = 2.2;
+    controls.panSpeed = 1;
+    controls.dynamicDampingFactor = 0.3;
+
+
     raf(animate);
-}
+})();
 
 function setComponent(){
     var title = '';
@@ -85,6 +87,9 @@ function setComponent(){
 
 function animate() {
     stats.begin();
+
+    controls.update();
+
     var dt = time.getDelta ();
 
     meshArr.forEach(function(mesh){
@@ -99,8 +104,6 @@ function animate() {
 }
 
 
-
-
 window.addEventListener('keydown', function(ev){
     if(ev.keyCode == 27){
         if(isAnimation) raf.cancel(id);
@@ -110,20 +113,9 @@ window.addEventListener('keydown', function(ev){
     }
 });
 
+window.addEventListener("resize", function(){
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
 
-/**
-var loader = new THREE.TextureLoader();
-meshURLArr.forEach(function(url){
-     loader.load(url, function(texture){
-         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-         var mesh = new CustomMesh(meshCount, texture);
-         //mesh.animate();
-         meshArr.push(mesh);
-         scene.add(mesh);
-         meshCount++;
-
-         if(meshCount == meshURLArr.length) init();
-    });
-}); */
-
-init();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+});

@@ -9,6 +9,7 @@ module.exports = function( _title, _caption, _url ){
     caption.style.marginBottom = "10px";
 
     var available = document.createElement('div');
+    available.style.marginBottom = "5px";
     var codeP = document.createElement('span');
     codeP.style.marginRight = "10px";
     codeP.textContent = "codes are available:";
@@ -32,6 +33,17 @@ module.exports = function( _title, _caption, _url ){
     twitter.target = "_blank";
     twitter.textContent = '@kenji_Specail';
 
+    var siteDiv = document.createElement('div');
+    var nameDiv = document.createElement('div');
+    nameDiv.textContent = "Web GL SKETCH DOJO";
+
+    var aUrlDiv = document.createElement('div')
+    var aUrl = document.createElement('a');
+    aUrl.href = "http://webgl-sketch-dojo.kenji-special.info";
+    aUrl.target = "_blank";
+    aUrl.textContent = "WebGL Sketch Dojo";
+    aUrlDiv.appendChild(aUrl);
+    siteDiv.appendChild(aUrlDiv);
 
     available.appendChild(a);
     available.appendChild(span);
@@ -40,8 +52,9 @@ module.exports = function( _title, _caption, _url ){
     wrapper.appendChild(title);
     wrapper.appendChild(caption);
     wrapper.appendChild(available);
-    //wrapper.appendChild(url);
+    wrapper.appendChild(siteDiv);
 
+    //document.body.appendChild(siteDiv);
     document.body.appendChild(wrapper);
 
     return wrapper;
