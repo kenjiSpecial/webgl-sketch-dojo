@@ -21,6 +21,10 @@
     margin-bottom: 20px;
 }
 
+.footer{
+    margin-bottom: 100px !important;
+}
+
 h6{
     font-weight: 700;
 }
