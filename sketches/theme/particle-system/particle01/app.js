@@ -40,7 +40,7 @@ var clock = new THREE.Clock()
 var bgColor, bgColor2;
 var cameraControls;
 var debugPlane;
-var dt;
+var dt, id;
 
 var positionAttribute;
 var linePositionAttribute;
