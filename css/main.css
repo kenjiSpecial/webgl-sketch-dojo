@@ -3,7 +3,7 @@
     font-family: Roboto;
     letter-spacing: 0.5px;
     margin-top: 60px;
-    max-width: 160rem !important;
+    max-width: 120rem !important;
 }
 
 #main-container li{
@@ -13,7 +13,7 @@
 .thumbnail{
     display: block;
     width: 100%;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 
 }
 
@@ -25,10 +25,30 @@
     margin-bottom: 100px !important;
 }
 
-h6{
+.one-third {
+    margin-bottom: 20px;
+}
+
+.one-third p{
+    margin-bottom: 5px;
+}
+
+.header{
+    margin-bottom: 50px;
+}
+
+.header h5, .header p{
+    margin-bottom: 5px;
+}
+
+h5, h6{
     font-weight: 700;
 }
 
 a{
     text-decoration: none;
+}
+
+.chapter.resources{
+    margin-bottom: 40px;
 }
