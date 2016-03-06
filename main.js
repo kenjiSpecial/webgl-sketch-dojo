@@ -71,4 +71,5 @@ window.GUI   = require('dat-gui').GUI;
 /** procedural mesh **/
 //require('./sketches/theme/procedural-mesh/grid/app');
 //require('./sketches/theme/procedural-mesh/cube/app');
-require('./sketches/theme/procedural-mesh/cube2/app');
+//require('./sketches/theme/procedural-mesh/cube2/app');
+require('./sketches/theme/procedural-mesh/sphere');
