@@ -70,16 +70,20 @@ export default class CustomGeometry extends THREE.BufferGeometry {
 
         indices = new Uint32Array(indices);
         this.setIndex( new THREE.BufferAttribute( indices, 1 ) );
-        this.addAttribute('position', new THREE.BufferAttribute(vertices, 3));
+        this.positionAttribute = new THREE.BufferAttribute(vertices, 3)
+        this.addAttribute('position', this.positionAttribute);
 
         this.computeFaceNormals();
         this.computeVertexNormals();    // requires correct face normals
+
+        this.curState = 0;
+        this.MAX_STATE = 2;
     }
 
     setVertex( vv, vertices, xx, yy, zz ){
         var vertex = new THREE.Vector3(xx, yy, zz);
         var inner = new THREE.Vector3(xx, yy, zz);
-        this.vertexArray.push(vertex);
+        //this.vertexArray.push(vertex);
 
 
         var roundness = 8;
@@ -114,10 +118,18 @@ export default class CustomGeometry extends THREE.BufferGeometry {
         //    console.log(normal);
         //}
 
-        vertices[vv]   = inner.x + normal.x * roundness;
-        vertices[vv+1] = inner.y + normal.y * roundness;
-        vertices[vv+2] = inner.z + normal.z * roundness;
+        if(!this.targetVertice) this.targetVertice = [];
+        if(!this.randomVertice) this.randomVertice = [];
+        this.targetVertice.push(
+            new THREE.Vector3(inner.x + normal.x * roundness, inner.y + normal.y * roundness, inner.z + normal.z * roundness)
+        );
 
+        var vec3 = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
+        vertices[vv]   = (5 + 20 * Math.random()) * vec3.x;
+        vertices[vv+1] = (5 + 20 * Math.random()) * vec3.y;
+        vertices[vv+2] = (5 + 20 * Math.random()) * vec3.z;
+
+        this.vertexArray.push(new THREE.Vector3(vertices[vv], vertices[vv + 1], vertices[vv + 2]));
 
         return vv + 3
     }
@@ -198,12 +210,50 @@ export default class CustomGeometry extends THREE.BufferGeometry {
     }
 
     updateLoop(dt) {
-        /**
-         this.triangles.forEach(function(triangle){
-            triangle.updateLoop(dt, this.verticesAttribute);
+        if(this.curState != 0) {
+            this.vertexArray.forEach(function (vertex, index) {
+                vertex.x += 0.1 * (Math.random() - 0.5);
+                vertex.y += 0.1 * (Math.random() - 0.5);
+                vertex.z += 0.1 * (Math.random() - 0.5);
+                vertex.x *= (0.002 * Math.random() + 0.999);
+                vertex.y *= (0.002 * Math.random() + 0.999);
+                vertex.z *= (0.002 * Math.random() + 0.999);
+                this.positionAttribute.setXYZ(index, vertex.x, vertex.y, vertex.z);
+            }.bind(this));
+        }
+
+        this.positionAttribute.needsUpdate = true;
+        this.verticesNeedUpdate = true;
+        this.normalsNeedUpdate  = true;
+        this.computeFaceNormals();
+        this.computeVertexNormals();
+    }
+    click(){
+        this.curState = (this.curState + 1) % this.MAX_STATE;
+
+        if(this.curState == 0) this.randomState();
+        else                   this.initState();
+    }
+    initState(){
+        //console.log('init');
+        this.vertexArray.forEach(function(vertex, index){
+            var targetPos = this.targetVertice[index];
+            TweenMax.to(vertex, 0.6, {x: targetPos.x, y: targetPos.y, z: targetPos.z, ease: Power2.easeInOut, onUpdate: function(index, vertex){
+                this.positionAttribute.setXYZ(index, vertex.x, vertex.y, vertex.z);
+            }.bind(this, index, vertex) });
         }.bind(this));
-         this.verticesAttribute.needsUpdate = true;
-         */
+    }
+    randomState(){
+        var random = Math.random();
+        this.vertexArray.forEach(function(vertex, index){
+            var vec3 = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5).normalize();
+            var randX = (5 + 20 * Math.random()) * vec3.x;
+            var randY = random > 0.5 ? (5 + 20 * Math.random()) * vec3.y : Math.random();
+            var randZ = (5 + 20 * Math.random()) * vec3.z;
+            TweenMax.to(vertex, 0.6, {x: randX, y: randY, z: randZ, ease: Power2.easeInOut, onUpdate: function(index, vertex){
+                this.positionAttribute.setXYZ(index, vertex.x, vertex.y, vertex.z);
+            }.bind(this, index, vertex) });
+        }.bind(this));
     }
 
 }

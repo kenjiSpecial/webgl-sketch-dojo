@@ -6,11 +6,7 @@ import CustomMesh from "./mesh";
 var scene, camera, renderer;
 var meshArr = [];
 var customMesh;
-var meshURLArr = [
-    "./assets/portraits/portrait00.jpg",
-    "./assets/portraits/portrait01.jpg",
-    "./assets/portraits/portrait02.jpg",
-];
+
 var meshCount = 0;
 var click = 0;
 var LENGTH;
@@ -27,9 +23,9 @@ scene = new THREE.Scene();
 
 
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 20;
-    camera.position.x = 20;
-    camera.position.y = 20;
+    camera.position.z = 40;
+    camera.position.x = 40;
+    camera.position.y = 40;
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
@@ -40,9 +36,6 @@ scene = new THREE.Scene();
     light.position.copy(camera.position);
     scene.add(light);
 
-    var axisHelper = new THREE.AxisHelper( 3 );
-    scene.add( axisHelper );
-
     setComponent();
 
     time = new THREE.Clock();
@@ -51,6 +44,13 @@ scene = new THREE.Scene();
     customMesh = new CustomMesh();
     scene.add(customMesh);
     meshArr.push(customMesh);
+
+    var size = 100;
+    var step = 10;
+
+    var gridHelper = new THREE.GridHelper( size, step );
+    //gridHelper.position.z = ;
+    scene.add( gridHelper );
 
     controls = new THREE.TrackballControls(camera, renderer.domElement);
     controls.rotateSpeed = 5.0;
@@ -92,9 +92,7 @@ function animate() {
 
     var dt = time.getDelta ();
 
-    meshArr.forEach(function(mesh){
-        mesh.updateLoop(dt)
-    });
+    customMesh.updateLoop(dt)
 
     renderer.render(scene, camera);
 
@@ -118,4 +116,8 @@ window.addEventListener("resize", function(){
     camera.updateProjectionMatrix();
 
     renderer.setSize( window.innerWidth, window.innerHeight );
+});
+
+window.addEventListener("click", function(){
+    customMesh.click();
 });
