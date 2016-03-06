@@ -62,9 +62,9 @@ scene = new THREE.Scene();
 })();
 
 function setComponent(){
-    var title = 'Cube with BufferGeometry';
+    var title = 'Sphere';
     var caption = '';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/cube';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/sphere';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
