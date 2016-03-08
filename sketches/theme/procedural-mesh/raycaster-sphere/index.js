@@ -65,7 +65,7 @@ function init() {
 function setComponent() {
     var title = 'Interaction Eyes';
     var caption = 'Custom BufferGeometry + Simple Physics + Interaction with Raycaster';
-    var url = '';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/raycaster-sphere';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth / 2 - 50) + "px";
