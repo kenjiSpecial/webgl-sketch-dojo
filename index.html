@@ -15,6 +15,14 @@
 
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=692032370919768";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div class="wrapper container" id="main-container">
     <div class="header">
         <h5>Web GL Sketch</h5>
@@ -168,6 +176,10 @@
     <div class="row footer">
         <p class="des">Sketches by <a href="http://kenji-special.tv/" target="_blank">Kenji Satio</a> | <a href="https://twitter.com/kenji_special" target="_blank">twitter</a>, <a href="https://github.com/kenjiSpecial" target="_blank">GitHub</a></p>
         <p>Made with <a href="http://getskeleton.com/">Skeleton</a>.</p>
+
+        <div class="social">
+            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+        </div>
     </div>
 
 </div>
