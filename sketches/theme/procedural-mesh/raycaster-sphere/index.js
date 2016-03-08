@@ -15,6 +15,8 @@ var id;
 var stats, wrapper;
 var time, controls;
 var mouse = new THREE.Vector2();
+var easingMouse = new THREE.Vector2();
+var pos = new THREE.Vector3(0, 0, 10);
 
 var isAnimation = true;
 
@@ -44,8 +46,8 @@ function init() {
         for(var zz = -1; zz <= 1; zz++){
             var mesh = new CustomMesh(texture);
             scene.add(mesh);
-            mesh.position.x = xx * (mesh.radius+ 0.5) * 2;
-            mesh.position.y = zz * (mesh.radius+ 0.5) * 2;
+            mesh.position.x = xx * (mesh.radius) * 3;
+            mesh.position.y = zz * (mesh.radius) * 3;
             meshArr.push(mesh);
         }
     }
@@ -93,13 +95,26 @@ function animate() {
 
     //console.log(intersects);
 
+    easingMouse.x += (mouse.x - easingMouse.x)/50;
+    easingMouse.y += (mouse.y - easingMouse.y)/50;
+    var vector = new THREE.Vector3();
+
+    vector.set(easingMouse.x, easingMouse.y, 0.5 );
+
+    vector.unproject( camera );
+    var dir = vector.sub( camera.position ).normalize();
+    var distance = (30- camera.position.z) / dir.z;
+
+    pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
 
     var dt = time.getDelta();
 
     //customMesh.updateLoop(intersects[0], dt);
     meshArr.forEach(function(mesh){
         mesh.updateLoop(intersects[0], dt);
+        mesh.lookAt(pos);
     });
+
     renderer.render(scene, camera);
 
     stats.end();
@@ -129,6 +144,7 @@ window.addEventListener('mousemove', function (event) {
 
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     mouse.y = -( event.clientY / window.innerHeight ) * 2 + 1;
+
 });
 
 window.addEventListener('click', function(){
