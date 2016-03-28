@@ -50,7 +50,7 @@ function init(){
 function setComponent(){
     var title = '';
     var caption = '';
-    var url = '';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/controller/steam';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
