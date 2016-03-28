@@ -73,4 +73,7 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/theme/procedural-mesh/cube/app');
 //require('./sketches/theme/procedural-mesh/cube2/app');
 //require('./sketches/theme/procedural-mesh/sphere');
-require('./sketches/theme/procedural-mesh/raycaster-sphere');
+//require('./sketches/theme/procedural-mesh/raycaster-sphere');
+
+/** controller **/
+require('./sketches/theme/controller/steam/app');
