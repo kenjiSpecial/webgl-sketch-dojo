@@ -1,1 +1,50 @@
-[{"title":"Texture","url":"./app/02-basic-texture","imgSrc":"./app/02-basic-texture/thumbnail.jpg","sourceCode":"./app/02-basic-texture"},{"title":"Postprocessing","url":"./app/03-basic-postprocessing","imgSrc":"./app/03-basic-postprocessing/thumbnail.jpg","sourceCode":"./app/03-basic-postprocessing"},{"title":"WebGLRendererTarget","url":"./app/04-basic-webglrenderer-target","imgSrc":"./app/04-basic-webglrenderer-target/thumbnail.jpg","sourceCode":"./app/04-basic-webglrenderer-target"},{"title":"Swap Rendering with EffectComposer","url":"./app/05-basic-swap-rendering-with-effectcomposer","imgSrc":"./app/05-basic-swap-rendering-with-effectcomposer/thumbnail.jpg","sourceCode":"./app/05-basic-swap-rendering-with-effectcomposer"},{"title":"Swap Rendering without EffectComposer","url":"./app/06-basic-swap-rendering-without-effectcomposer","imgSrc":"./app/06-basic-swap-rendering-without-effectcomposer/thumbnail.jpg","sourceCode":"./app/06-basic-swap-rendering-without-effectcomposer"},{"title":"Cube with BufferGeometry","url":"./app/14-basic-buffergeometry-cube","imgSrc":"./app/14-basic-buffergeometry-cube/thumbnail.jpg","sourceCode":"./app/14-basic-buffergeometry-cube"},{"title":"Sphere with BufferGeometry","url":"./app/16-basic-buffergeometry-sphere","imgSrc":"./app/16-basic-buffergeometry-sphere/thumbnail.jpg","sourceCode":"./app/16-basic-buffergeometry-sphere"}]
+[
+  {
+    "title": "Texture",
+    "url": "./app/02-basic-texture",
+    "imgSrc": "./app/02-basic-texture/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/texture"
+  },
+  {
+    "title": "Postprocessing",
+    "url": "./app/03-basic-postprocessing",
+    "imgSrc": "./app/03-basic-postprocessing/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/postprocessing"
+  },
+  {
+    "title": "WebGLRendererTarget",
+    "url": "./app/04-basic-webglrenderer-target",
+    "imgSrc": "./app/04-basic-webglrenderer-target/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/webglrenderer-target"
+  },
+  {
+    "title": "Swap Rendering with EffectComposer",
+    "url": "./app/05-basic-swap-rendering-with-effectcomposer",
+    "imgSrc": "./app/05-basic-swap-rendering-with-effectcomposer/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/swap-rendering0"
+  },
+  {
+    "title": "Swap Rendering without EffectComposer",
+    "url": "./app/06-basic-swap-rendering-without-effectcomposer",
+    "imgSrc": "./app/06-basic-swap-rendering-without-effectcomposer/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/swap-rendering1"
+  },
+  {
+    "title": "Plane with BufferGeometry",
+    "url": "./app/19-basic-buffergeometry-plane",
+    "imgSrc": "./app/19-basic-buffergeometry-plane/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/primitive-plane"
+  },
+  {
+    "title": "Cube with BufferGeometry",
+    "url": "./app/14-basic-buffergeometry-cube",
+    "imgSrc": "./app/14-basic-buffergeometry-cube/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/swap-rendering1"
+  },
+  {
+    "title": "Sphere with BufferGeometry",
+    "url": "./app/16-basic-buffergeometry-sphere",
+    "imgSrc": "./app/16-basic-buffergeometry-sphere/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/sphere"
+  }
+]
