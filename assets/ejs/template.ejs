@@ -1,0 +1,24 @@
+<% for( var ii in data ){
+    var dataObj = data[ii];
+    var worksData = dataObj.data;
+%>
+
+<div class="chapter Boilerplate">
+    <h6><%= dataObj.title %></h6>
+    <% for(var jj = 0; jj < worksData.length; jj = jj + 3){ %>
+        <div class="row">
+            <%for(var kk = 0; kk < 3; kk++){ %>
+                <% var workData = worksData[jj + kk]; if(workData){%>
+                   <div class="one-third column">
+                       <a href=<%= workData.url %>>
+                            <img class="thumbnail" src= <%= workData.imgSrc %>>
+                            <p><%= workData.title %></p>
+                            <p><a href=<%= workData.sourceCode %>>Codes</a></p>
+                       </a>
+                   </div>
+            <% }}%>
+        </div>
+    <% }%>
+</div>
+
+<% } %>

@@ -52,3 +52,7 @@ a{
 .chapter.resources{
     margin-bottom: 40px;
 }
+
+#main-container{
+    opacity: 0;
+}
