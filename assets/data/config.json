@@ -1,1 +1,10 @@
-["Boilerplate","Basic","Post Processing","Noise","Gallery","Geometry","Controller","Resources"]
+[
+  "Boilerplate",
+  "Basic",
+  "Post Processing",
+  "Noise",
+  "Gallery",
+  "Geometry",
+  "Controller",
+  "GPGPU"
+]

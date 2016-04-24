@@ -1,0 +1,8 @@
+[
+  {
+    "title" : "GPGPU Basic",
+    "url"   : "./app/20-gpgpu-basic",
+    "imgSrc": "./app/20-gpgpu-basic/thumbnail.jpg",
+    "sourceCode" : "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/gpgpu/gpgpu-basic"
+  }
+]
