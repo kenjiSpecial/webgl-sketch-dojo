@@ -2,7 +2,7 @@ var budo = require('budo');
 var babelify = require('babelify');
 var glslify  = require('glslify');
 var aliasify = require('aliasify');
-
+console.log(glslify);
 // "sections": "./src/sections/",
 budo("main.js", {
     live : true,
@@ -13,9 +13,6 @@ budo("main.js", {
     browserify: {
         transform: babelify.configure({presets: ["es2015"]}),
         transform: glslify,
-        transform: aliasify.configure({
-            "vendors" : "./src/js/vendors/"
-        })
     }
 }).on('connect', function (ev) {
     // console.log('Server running on %s', ev.uri)

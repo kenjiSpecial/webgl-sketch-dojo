@@ -12,6 +12,8 @@ require('./src/js/vendors/postprocessing/ShaderPass');
 
 window.Stats = require('./src/js/vendors/Stats');
 window.GUI   = require('dat-gui').GUI;
+window.ks = {};
+window.ks.createCaption = require('./src/js/vendors/caption');
 
 /** three.js sketch **/
 

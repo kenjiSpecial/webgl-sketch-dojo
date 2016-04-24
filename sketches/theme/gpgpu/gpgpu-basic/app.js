@@ -9,7 +9,11 @@ var id;
 var clock;
 
 var particleNum = 10000;
-console.log(test);
+// console.log(test);
+var title = 'GPGPU Basic';
+var caption = "";
+var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/gpgpu/gpgpu-basic';
+var caption = window.ks.createCaption(title, caption, url);
 
 /** -------- **/
 /** particle **/
@@ -23,6 +27,17 @@ var gpgpuTex;
 
 var pointMesh;
 var simulation;
+
+var stats = new Stats();
+stats.setMode( 0 ); // 0: fps, 1: ms, 2: mb
+
+// align top-left
+stats.domElement.style.position = 'absolute';
+stats.domElement.style.bottom  = '30px';
+stats.domElement.style.left = '30px';
+stats.domElement.style.zIndex= 9999;
+
+document.body.appendChild( stats.domElement );
 
 var loader = new THREE.TextureLoader();
 
@@ -109,6 +124,7 @@ function createLookupGeometry( size ){
 
 
 function loop(){
+    stats.update();
 
     simulationUniforms.dT.value = clock.getDelta();
     simulation.update();
