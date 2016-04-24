@@ -11,9 +11,10 @@ var fs = require('fs')
 var b = browserify();
 b.add(__dirname + '/../main.js');
 b.transform(babelify.configure({presets: ["es2015"]}));
+b.transform(glslify);
 b.transform({global: true}, 'uglifyify')
-b.transform(aliasify.configure({
-    "vendors" : "./src/js/vendors/"
-}));
-b.transform(uglify);
+// b.transform(aliasify.configure({
+//     "vendors" : "./src/js/vendors/"
+// }));
+
 var o = b.bundle().pipe(fs.createWriteStream(__dirname + '/../example/bundle.js'));
