@@ -27,14 +27,14 @@ void main(){
 
   vec3 curl = curlNoise( pos.xyz * noiseSize );
 
-  vel += curl * .01;
-  vel *= .97; // dampening
+  vel += curl ;
+  vel *= .99; // dampening
 
 
   vec3 p = pos.xyz + vel;
-  p.x += 0.01;
-  p.y += 0.01;
-  p.z += 0.01;
+  p *= 0.98;
+//  p.y += 0.01;
+//  p.z += 0.01;
 
 
   gl_FragColor = vec4( p , 1. );

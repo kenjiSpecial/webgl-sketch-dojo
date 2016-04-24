@@ -69,7 +69,7 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/theme/geometry/animation-geometry/app'); // <- snow
 
 /** procedural mesh **/
-require('./sketches/theme/procedural-mesh/primitive-plane/app')
+// require('./sketches/theme/procedural-mesh/primitive-plane/app')
 //require('./sketches/theme/procedural-mesh/grid/app');
 //require('./sketches/theme/procedural-mesh/cube/app');
 //require('./sketches/theme/procedural-mesh/cube2/app');
@@ -80,5 +80,5 @@ require('./sketches/theme/procedural-mesh/primitive-plane/app')
 // require('./sketches/theme/controller/steam/app');
 
 /** gpgpu **/
-// require('./sketches/theme/gpgpu/gpgpu-case00/app');
+require('./sketches/theme/gpgpu/gpgpu-basic/app');
 // require('./sketches/theme/gpgpu/gpgpu-fluid/app');

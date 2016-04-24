@@ -1,6 +1,7 @@
 
 var raf     = require('raf');
 var glslify = require('glslify');
+// var test = require('sketches/vendors/desc');
 var scene, camera, points;
 var buffer, shaderMaterial;
 var renderer, light;
@@ -8,6 +9,7 @@ var id;
 var clock;
 
 var particleNum = 10000;
+console.log(test);
 
 /** -------- **/
 /** particle **/
@@ -46,7 +48,7 @@ function init(){
     var ar = window.innerWidth / window.innerHeight;
 
     camera = new THREE.PerspectiveCamera( 75, ar , 1, 1000 );
-    camera.position.z = 500;
+    camera.position.z = 100;
 
 
     renderer = new THREE.WebGLRenderer({alpha: true});
@@ -79,7 +81,7 @@ function init(){
     simulation.addBoundTexture( renderUniforms.tPos , 'output' );
     simulation.resetRand( 5 );
 
-    simulation.addDebugScene(scene);
+    // simulation.addDebugScene(scene);
 
     id = raf(loop);
 
