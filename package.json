@@ -44,6 +44,7 @@
   },
   "scripts": {
     "start": "node node/app.js",
+    "start2": "budo main.js:bundle.js --live -- -t [babelify --presets es2015] -t glslify",
     "build": "node node/build.js"
   },
   "keywords": [

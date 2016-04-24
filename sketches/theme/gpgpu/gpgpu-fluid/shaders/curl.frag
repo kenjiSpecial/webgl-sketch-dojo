@@ -3,6 +3,8 @@ uniform sampler2D tPos;
 
 uniform float dT;
 uniform float noiseSize;
+uniform float damping;
+uniform float friction;
 uniform vec2  resolution;
 
 varying vec2 vUv;
@@ -27,11 +29,12 @@ void main(){
 
   vec3 curl = curlNoise( pos.xyz * noiseSize );
 
-  vel += curl * .01;
-  vel *= .97; // dampening
+  vel += curl;
+  vel *= damping; // dampening
 
 
   vec3 p = pos.xyz + vel;
+  p *= friction;
 //  p.x += 0.01;
 //  p.y += 0.01;
 //  p.z += 0.01;

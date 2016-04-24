@@ -11,8 +11,11 @@ budo("main.js", {
     serve : "bundle.js",
     verbose : true,
     browserify: {
-        transform: babelify.configure({presets: ["es2015"]}),
-        transform: glslify,
+        transform: [
+            babelify.configure({presets: ["es2015"]}),
+            glslify,
+            aliasify.configure({aliases : {"vendors" : "./src/js/vendors/"}})
+        ]
     }
 }).on('connect', function (ev) {
     // console.log('Server running on %s', ev.uri)

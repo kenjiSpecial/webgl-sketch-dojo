@@ -9,7 +9,4 @@ void main(){
   gl_PointSize =  max(min( 100. ,  400. / length( dif )), 2.0);
 //  pos.x = min(pos.x, 10.);
   gl_Position = projectionMatrix * modelViewMatrix * vec4( pos.xyz, 1. );
-
-
-
 }

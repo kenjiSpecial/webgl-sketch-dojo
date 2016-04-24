@@ -61,7 +61,7 @@ function init(){
     scene = new THREE.Scene();
 
     var ar = window.innerWidth / window.innerHeight;
-
+    
     camera = new THREE.PerspectiveCamera( 75, ar , 1, 1000 );
     camera.position.z = 100;
 

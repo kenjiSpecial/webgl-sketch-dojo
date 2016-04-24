@@ -12,8 +12,7 @@ require('./src/js/vendors/postprocessing/ShaderPass');
 
 window.Stats = require('./src/js/vendors/Stats');
 window.GUI   = require('dat-gui').GUI;
-window.ks = {};
-window.ks.createCaption = require('./src/js/vendors/caption');
+// window.ks.createCaption = require('./src/js/vendors/caption');
 
 /** three.js sketch **/
 
@@ -82,5 +81,5 @@ window.ks.createCaption = require('./src/js/vendors/caption');
 // require('./sketches/theme/controller/steam/app');
 
 /** gpgpu **/
-require('./sketches/theme/gpgpu/gpgpu-basic/app');
-// require('./sketches/theme/gpgpu/gpgpu-fluid/app');
+// require('./sketches/theme/gpgpu/gpgpu-basic/app');
+require('./sketches/theme/gpgpu/gpgpu-fluid/app');
