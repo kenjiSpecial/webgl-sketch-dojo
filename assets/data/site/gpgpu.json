@@ -1,8 +1,14 @@
 [
   {
-    "title" : "GPGPU Basic",
-    "url"   : "./app/20-gpgpu-basic",
-    "imgSrc": "./app/20-gpgpu-basic/thumbnail.jpg",
-    "sourceCode" : "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/gpgpu/gpgpu-basic"
+    "title" : "GPGPU Basic#1",
+    "url"   : "./app/20-gpgpu-basic1",
+    "imgSrc": "./app/20-gpgpu-basic1/thumbnail.jpg",
+    "sourceCode" : "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/gpgpu/gpgpu-basic1"
+  },
+  {
+    "title" : "GPGPU Basic#2",
+    "url"   : "./app/21-gpgpu-basic2",
+    "imgSrc": "./app/21-gpgpu-basic2/thumbnail.jpg",
+    "sourceCode" : "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/gpgpu/gpgpu-basic2"
   }
 ]
