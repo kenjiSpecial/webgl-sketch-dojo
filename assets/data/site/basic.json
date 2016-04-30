@@ -32,7 +32,7 @@
   {
     "title": "Swap Rendering with CustomSwapRenderer",
     "url": "./app/22-basic-swap-rendering-with-customSwapRenderer",
-    "imgSrc": "./app/22-basic-swap-rendering-with-customSwapRenderer/thumbnail.jpg",
+    "imgSrc": "./app/06-basic-swap-rendering-without-effectcomposer/thumbnail.jpg",
     "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/swap-rendering-with-customSwapRenderer"
   },
   {
