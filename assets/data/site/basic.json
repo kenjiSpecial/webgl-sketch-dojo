@@ -30,6 +30,12 @@
     "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/swap-rendering1"
   },
   {
+    "title": "Swap Rendering with CustomSwapRenderer",
+    "url": "./app/22-basic-swap-rendering-with-customSwapRenderer",
+    "imgSrc": "./app/22-basic-swap-rendering-with-customSwapRenderer/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/swap-rendering-with-customSwapRenderer"
+  },
+  {
     "title": "Plane with BufferGeometry",
     "url": "./app/19-basic-buffergeometry-plane",
     "imgSrc": "./app/19-basic-buffergeometry-plane/thumbnail.jpg",
