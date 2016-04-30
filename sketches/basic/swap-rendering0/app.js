@@ -2,7 +2,7 @@
 var raf = require('raf');
 var createCaption = require('../../dom/caption');
 
-var ShaderOdangoSet = require('../../../src/js/vendors/shader-odango-set/main');
+var ShaderOdangoSet = require('vendors/shader-odango-set/main');
 var copyShader = ShaderOdangoSet.copy;
 
 var blurShader = require('./blur/main');

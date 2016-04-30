@@ -1,14 +1,10 @@
 
 var raf = require('raf');
-var createCaption = require('../../dom/caption');
+var createCaption = require('vendors/caption');
 var glslify = require('glslify');
+var SwapRenderer = require('vendors/swapRenderer'), swapRenderer;
 
-var ShaderOdangoSet = require('vendors/shader-odango-set/main');
-var copyShader = ShaderOdangoSet.copy;
-
-var blurShader = require('./blur/main');
 var blurEffect;
-
 var scene, camera, renderer;
 var material, light;
 var cubes = [];
@@ -24,10 +20,6 @@ var orthScene, orthCamera, orthPlane;
 var renderPlane, renderMaterial;
 var renderScene, renderCamera;
 
-var texture = {
-    front : null,
-    back  : null
-};
 
 function init(){
     scene = new THREE.Scene();
@@ -39,16 +31,24 @@ function init(){
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    texture.front = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, maxFilter: THREE.NearestFilter, stencilBuffer: false, depthBuffer: false });
-    texture.back  = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight, { minFilter: THREE.NearestFilter, maxFilter: THREE.NearestFilter, stencilBuffer: false, depthBuffer: false });
-    texture.front.texture.wrapS = texture.front.texture.wrapT = THREE.ClampToEdgeWrapping;
-    texture.back.texture.wrapS = texture.back.texture.wrapT = THREE.ClampToEdgeWrapping;
-    texture.front.texture.magFilter = THREE.NearestFilter;
-    texture.back.texture.magFilter = THREE.NearestFilter;
 
-    // setup a reference to hold whatever the current RT is
-    texture.currentFront = texture.front;
-    texture.currentTarget = texture.back;
+    swapRenderer = new SwapRenderer({
+        shader : glslify('./blur/shader.frag'),
+
+        width : window.innerWidth,
+        height: window.innerHeight,
+        uniforms: {
+            "uTexture" : { type: "t", value: null },
+            "uWindow"  : { type: "v2", value: null },
+            "uMouse"  : { type: "v2", value: null }
+        },
+        renderer : renderer
+    });
+
+    swapRenderer.uniforms.uTexture.value =  swapRenderer.target;
+    swapRenderer.uniforms.uWindow.value  = new THREE.Vector2( window.innerWidth, window.innerHeight );
+    swapRenderer.uniforms.uMouse.value   = mouse;
+
 
     light = new THREE.PointLight(0xFFFFFF, 1);
     light.position.copy(camera.position);
@@ -70,8 +70,8 @@ function init(){
 }
 
 function setComponent(){
-    var title = 'SWAP RENDERING without EffectComposer';
-    var caption = 'rendering back and front buffer(texture) every frame to add effect without effectcomposer.';
+    var title = 'SWAP RENDERING with customSwapRenderer';
+    var caption = 'rendering with adding effect with customSwapRenderer.';
     var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/swap-rendering1';
 
     wrapper = createCaption(title, caption, url);
@@ -99,34 +99,9 @@ function animate() {
         cubes[i].rotation.x += 0.01 + ((i - cubes.length) * 0.00001);
     }
 
-    renderer.render(scene, camera, texture.currentFront );
+    renderer.render( scene, camera, swapRenderer.output, false );
+    renderer.render( scene, camera, swapRenderer.target, false );
 
-    orthScene = new THREE.Scene();
-    orthCamera = new THREE.OrthographicCamera( -window.innerWidth/2, window.innerWidth/2, -window.innerHeight/2, window.innerHeight/2, -10000, 10000 );
-    orthShaderMaterial = new THREE.ShaderMaterial({
-        side : THREE.DoubleSide,
-        uniforms: {
-            "uTexture" : { type: "t", value: null },
-            "uWindow"  : { type: "v2", value: null },
-            "uMouse"  : { type: "v2", value: null }
-        },
-        vertexShader   : glslify('./blur/shader.vert'),
-        fragmentShader : glslify('./blur/shader.frag')
-    });
-
-
-    orthShaderMaterial.uniforms.uTexture.value = texture.currentFront;
-    orthShaderMaterial.uniforms.uWindow.value  = new THREE.Vector2( window.innerWidth, window.innerHeight );
-    orthShaderMaterial.uniforms.uMouse.value   = mouse;
-
-    orthPlane = new THREE.Mesh(
-        new THREE.PlaneGeometry(window.innerWidth, window.innerHeight),
-        orthShaderMaterial
-    );
-
-    orthScene.add(orthPlane);
-
-    //orthCamera.position.z = -100;
 
     /** --------------------- **/
 
@@ -137,7 +112,7 @@ function animate() {
         depthTest : false,
         side : THREE.DoubleSide,
         uniforms : {
-            "tDiffuse" : {type: "t", value: texture.currentTarget }
+            "tDiffuse" : {type: "t", value: swapRenderer.output }
         },
         vertexShader : glslify('./display/shader.vert'),
         fragmentShader : glslify('./display/shader.frag')
@@ -157,21 +132,12 @@ function animate() {
 function loop(){
     stats.begin();
 
-    renderer.render( orthScene, orthCamera, texture.currentTarget );
+    swapRenderer.update()
     renderer.render( renderScene, renderCamera );
+    swapRenderer.swap();
 
-    if(texture.currentFront == texture.front){
-        texture.currentFront = texture.back;
-        texture.currentTarget = texture.front;
-
-    }else{
-        texture.currentFront = texture.front;
-        texture.currentTarget = texture.back;
-    }
-
-    orthShaderMaterial.uniforms.uTexture.value = texture.currentFront;
-    renderMaterial.uniforms.tDiffuse.value = texture.currentTarget;
-
+    swapRenderer.uniforms.uTexture.value = swapRenderer.target;
+    renderMaterial.uniforms.tDiffuse.value = swapRenderer.output;
 
     stats.end();
 
@@ -201,7 +167,7 @@ window.addEventListener('click', function(ev){
         cubes[i].rotation.x = Math.random() * Math.PI * 2;
     }
 
-    renderer.render(scene, camera,texture.currentTarget);
+    renderer.render(scene, camera, swapRenderer.target);
 });
 
 
@@ -216,8 +182,9 @@ window.addEventListener('keydown', function(ev){
 
 window.addEventListener('mousemove', function(ev){
     mouse.x = ev.clientX;
-    mouse.y = window.innerHeight - ev.clientY;
-    orthShaderMaterial.uniforms.uMouse.value =  mouse;
+    mouse.y = ev.clientY;
+    swapRenderer.uniforms.uMouse.value   = mouse;
+
 });
 
 init();

@@ -13,6 +13,6 @@ b.add(__dirname + '/../main.js');
 b.transform(babelify.configure({presets: ["es2015"]}));
 b.transform(glslify);
 b.transform({global: true}, 'uglifyify')
-b.transform(aliasify.configure({aliases : {"vendors" : "./src/js/vendors/"}}));
+b.transform(aliasify.configure({aliases : {"vendors" : "./vendors/"}}));
 
 var o = b.bundle().pipe(fs.createWriteStream(__dirname + '/../example/bundle.js'));

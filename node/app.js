@@ -6,7 +6,7 @@ console.log(glslify);
 // "sections": "./src/sections/",
 budo("main.js", {
     live : true,
-    open : true,
+    // open : true,
     stream : process.stdout,
     serve : "bundle.js",
     verbose : true,
@@ -14,7 +14,11 @@ budo("main.js", {
         transform: [
             babelify.configure({presets: ["es2015"]}),
             glslify,
-            aliasify.configure({aliases : {"vendors" : "./src/js/vendors/"}})
+            aliasify.configure({
+                aliases : {
+                    "vendors" : "./vendors/"
+                }
+            })
         ]
     }
 }).on('connect', function (ev) {
