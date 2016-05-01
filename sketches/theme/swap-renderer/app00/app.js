@@ -75,7 +75,7 @@ function init(){
 function setComponent(){
     var title = 'Swap Rendering with the texture of random color';
     var caption = 'Swap rendering with the texture of random color.';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/swap-rendering-with-customSwapRenderer';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/swap-renderer/app00';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.position = "absolute";
