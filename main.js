@@ -28,7 +28,7 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/basic/texture-buffergeometry-canvas/app');
 //require('./sketches/basic/swap-rendering0/app');
 //require('./sketches/basic/swap-rendering1/app');
-require('./sketches/basic/swap-rendering-with-customSwapRenderer/app');
+// require('./sketches/basic/swap-rendering-with-customSwapRenderer/app');
 
 
 /** undefined **/
@@ -85,6 +85,9 @@ require('./sketches/basic/swap-rendering-with-customSwapRenderer/app');
 // require('./sketches/theme/gpgpu/gpgpu-basic1/app');
 // require('./sketches/theme/gpgpu/gpgpu-basic2/app');
 // require('./sketches/theme/gpgpu/gpgpu-swap-renderer/app');
+
+/** swap renderer **/
+require('./sketches/theme/swap-renderer/app00');
 
 /** fluid **/
 // require('./sketches/theme/fluid/fluid00');

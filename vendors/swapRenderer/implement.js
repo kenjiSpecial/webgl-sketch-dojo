@@ -104,8 +104,8 @@ module.exports = {
 
         var texture = new THREE.DataTexture(
             data,
-            this.size,
-            this.size,
+            this.width,
+            this.height,
             THREE.RGBAFormat,
             THREE.FloatType
         );
