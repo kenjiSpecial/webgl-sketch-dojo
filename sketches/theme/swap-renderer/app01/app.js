@@ -141,7 +141,7 @@ function init(){
 function setComponent(){
     var title = 'Swap Rendering';
     var caption = 'Swap rendering.';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/swap-renderer/app00';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/swap-renderer/app01';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.position = "absolute";
