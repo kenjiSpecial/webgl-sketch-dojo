@@ -87,7 +87,9 @@ window.GUI   = require('dat-gui').GUI;
 // require('./sketches/theme/gpgpu/gpgpu-swap-renderer/app');
 
 /** swap renderer **/
-require('./sketches/theme/swap-renderer/app00');
+// require('./sketches/theme/swap-renderer/app00');
+require('./sketches/theme/swap-renderer/app01');
+
 
 /** fluid **/
-// require('./sketches/theme/fluid/fluid00');
+// require('./sketches/theme/fluid/app00');

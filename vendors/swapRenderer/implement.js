@@ -15,7 +15,7 @@ module.exports = {
         this.target = this.back;
 
         this.texturePassProgramMaterial = this.createTexturePassProgram();
-        this.simulationMateril = this.createSimulationProgram( opts.shader,  opts.uniforms);
+        if(opts.shader && opts.uniforms) this.simulationMateril = this.createSimulationProgram( opts.shader,  opts.uniforms);
 
         /**
          GPGPU Utilities
@@ -24,7 +24,7 @@ module.exports = {
 
         this.camera = new THREE.OrthographicCamera( - 0.5, 0.5, 0.5, - 0.5, 0, 1 );
         this.scene = new THREE.Scene();
-        this.mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 1, 1 ), this.simulationMateril );
+        this.mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 1, 1 ) );
         this.scene.add( this.mesh );
     },
 
@@ -60,10 +60,13 @@ module.exports = {
     },
     
     update : function(){
-        this.mesh.material = this.simulationMateril;
+        if(this.simulationMateril) this.mesh.material = this.simulationMateril;
         this.renderer.render(this.scene, this.camera, this.output, false);
     },
-    
+
+    setSimulationMateril : function(mat){
+        this.simulationMateril = mat;
+    },
 
     render : function(scene, camera, target){
         this.renderer.render( scene, camera, target, false );
@@ -115,6 +118,9 @@ module.exports = {
             texture.needsUpdate = true;
 
         this.reset( texture);
+    },
+    setUniform : function( propertyName, value){
+        this.uniforms[propertyName].value = value;
     }
 
     
