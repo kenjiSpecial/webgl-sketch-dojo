@@ -38,5 +38,60 @@ module.exports = {
 
     random : function(min, max){
         return min + (max - min) * Math.random();
+    },
+    
+    createRandomTexture : function( value, width, height ){
+        var size = width * height;
+        var data = new Float32Array(size * 4);
+        
+        var num;
+        for(var ii = 0; ii < size * 4; ii++){
+            data[ii] = (Math.random() - 0.5) * value;
+            
+            if(ii % 4 == 3) data[ii] = 0;
+        }
+        
+        var randomTexture = new THREE.DataTexture(
+            data,
+            width,
+            height,
+            THREE.RGBAFormat,
+            THREE.FloatType
+        );
+
+        randomTexture.minFilter =  THREE.NearestFilter,
+        randomTexture.magFilter = THREE.NearestFilter,
+        randomTexture.needsUpdate = true
+        
+        return randomTexture;
+    },
+    
+    craeteBlackAndWhiteTexture : function(width, height){
+        var size = width * height;
+        var data = new Float32Array(size * 4);
+
+        var num;
+        for(var ii = 0; ii < size ; ii++){
+            var random = Math.random();
+            data[ii * 4] = random;
+            data[ii * 4 + 1] = random;
+            data[ii * 4 + 2] = random;
+
+            if(ii % 4 == 3) data[4 * ii + 3] = 0;
+        }
+
+        var randomTexture = new THREE.DataTexture(
+            data,
+            width,
+            height,
+            THREE.RGBAFormat,
+            THREE.FloatType
+        );
+
+        randomTexture.minFilter =  THREE.NearestFilter,
+            randomTexture.magFilter = THREE.NearestFilter,
+            randomTexture.needsUpdate = true
+
+        return randomTexture; 
     }
 };

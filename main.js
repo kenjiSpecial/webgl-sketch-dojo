@@ -19,6 +19,7 @@ window.GUI   = require('dat-gui').GUI;
 /** boilerplate */
 //require('./sketches/boilerplate/box/app');
 //require('./sketches/boilerplate/shader/app');
+require('./sketches/boilerplate/interactive/app');
 
 /** basic **/
 //require('./sketches/basic/texture/app');
@@ -88,7 +89,7 @@ window.GUI   = require('dat-gui').GUI;
 
 /** swap renderer **/
 // require('./sketches/theme/swap-renderer/app00');
-require('./sketches/theme/swap-renderer/app01');
+// require('./sketches/theme/swap-renderer/app01');
 
 
 /** fluid **/
