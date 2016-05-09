@@ -1,1 +1,20 @@
-[{"title":"Box","url":"./app/09-boilerplate-box","imgSrc":"./app/09-boilerplate-box/thumbnail.jpg","sourceCode":"https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/boilerplate/box"},{"title":"Shader","url":"./app/08-boilerplate-shader","imgSrc":"./app/08-boilerplate-shader/thumbnail.jpg","sourceCode":"https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/boilerplate/shader"}]
+[
+  {
+    "title": "Box",
+    "url": "./app/09-boilerplate-box",
+    "imgSrc": "./app/09-boilerplate-box/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/boilerplate/box"
+  },
+  {
+    "title": "Shader",
+    "url": "./app/08-boilerplate-shader",
+    "imgSrc": "./app/08-boilerplate-shader/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/boilerplate/shader"
+  },
+  {
+    "title": "Interactive",
+    "url": "./app/25-boilerplate-interactive",
+    "imgSrc": "./app/25-boilerplate-interactive/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/boilerplate/interactive"
+  }
+]
