@@ -172,7 +172,7 @@ function createTexture() {
 }
 
 function setComponent(){
-    var title = 'Image texture in liquid texture';
+    var title = 'Image texture in fluid';
     var caption = '';
     var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/fluid/app00';
 
