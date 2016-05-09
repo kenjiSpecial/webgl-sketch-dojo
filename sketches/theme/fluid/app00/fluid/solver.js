@@ -93,8 +93,8 @@ module.exports = (function(){
             pressure: new SwapRenderer({width: w, height: h, renderer : renderer })
         };
 
-        slabs.velocity.resetRand(1.0);
-        slabs.pressure.resetRand(1.0);
+        slabs.velocity.resetRand(10.0);
+        slabs.pressure.resetRand(10.0);
 
         time.step /= 10;
         // console.log(time);

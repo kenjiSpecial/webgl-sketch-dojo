@@ -9,7 +9,6 @@ module.exports = (function(){
         this.alpha = alpha === undefined ? -1 : alpha;
         this.beta = beta === undefined ? 4 : beta;
         // var fs = glslify('./shaders/jacobiscalar.frag');
-        console.log(fs);
 
         this.renderer = renderer;
 

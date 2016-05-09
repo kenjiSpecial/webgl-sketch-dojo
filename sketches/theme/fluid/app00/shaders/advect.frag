@@ -21,7 +21,7 @@ vec3 bilerpVec3(sampler2D d, vec2 p){
 
 void main(){
     vec2 uv = gl_FragCoord.xy / uWindow.xy;
-    vec2 p = gl_FragCoord.xy -  5. * texture2D(velocity, uv).xy;
+    vec2 p = gl_FragCoord.xy -   texture2D(velocity, uv).xy;
     vec4 outputPos = vec4( bilerpVec3(target, p), 1.0);
 
     gl_FragColor = outputPos;
