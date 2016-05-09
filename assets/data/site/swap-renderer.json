@@ -10,5 +10,11 @@
     "url": "./app/24-swap-renderer",
     "imgSrc": "./app/24-swap-renderer/thumbnail.jpg",
     "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/swap-renderer/app01"
+  },
+  {
+    "title": "Image Texture with Fluid",
+    "url": "./app/26-fluid-image-texture",
+    "imgSrc": "./app/26-fluid-image-texture/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/fluid/app00"
   }
 ]
