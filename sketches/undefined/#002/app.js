@@ -1,6 +1,6 @@
 var raf = require('raf');
 require('vendors/controls/TrackballControls');
-var createCaption = require('../../../dom/caption');
+var createCaption = require('vendors/caption');
 import CustomMesh from "./mesh";
 
 var scene, camera, renderer;
