@@ -3,21 +3,23 @@ require('gsap');
 
 window.THREE = require('three');
 
-require('./src/js/vendors/shaders/CopyShader');
+require('vendors/shaders/CopyShader');
 
-require('./src/js/vendors/postprocessing/EffectComposer');
-require('./src/js/vendors/postprocessing/RenderPass');
-require('./src/js/vendors/postprocessing/MaskPass');
-require('./src/js/vendors/postprocessing/ShaderPass');
+require('vendors/postprocessing/EffectComposer');
+require('vendors/postprocessing/RenderPass');
+require('vendors/postprocessing/MaskPass');
+require('vendors/postprocessing/ShaderPass');
 
-window.Stats = require('./src/js/vendors/Stats');
+window.Stats = require('vendors/Stats');
 window.GUI   = require('dat-gui').GUI;
+// window.ks.createCaption = require('vendors/caption');
 
 /** three.js sketch **/
 
 /** boilerplate */
 //require('./sketches/boilerplate/box/app');
 //require('./sketches/boilerplate/shader/app');
+// require('./sketches/boilerplate/interactive/app');
 
 /** basic **/
 //require('./sketches/basic/texture/app');
@@ -27,6 +29,7 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/basic/texture-buffergeometry-canvas/app');
 //require('./sketches/basic/swap-rendering0/app');
 //require('./sketches/basic/swap-rendering1/app');
+// require('./sketches/basic/swap-rendering-with-customSwapRenderer/app');
 
 
 /** undefined **/
@@ -69,8 +72,25 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/theme/geometry/animation-geometry/app'); // <- snow
 
 /** procedural mesh **/
+// require('./sketches/theme/procedural-mesh/primitive-plane/app')
 //require('./sketches/theme/procedural-mesh/grid/app');
 //require('./sketches/theme/procedural-mesh/cube/app');
 //require('./sketches/theme/procedural-mesh/cube2/app');
 //require('./sketches/theme/procedural-mesh/sphere');
-require('./sketches/theme/procedural-mesh/sphere-collide');
+//require('./sketches/theme/procedural-mesh/raycaster-sphere');
+
+/** controller **/
+// require('./sketches/theme/controller/steam/app');
+
+/** gpgpu **/
+// require('./sketches/theme/gpgpu/gpgpu-basic1/app');
+// require('./sketches/theme/gpgpu/gpgpu-basic2/app');
+// require('./sketches/theme/gpgpu/gpgpu-swap-renderer/app');
+
+/** swap renderer **/
+// require('./sketches/theme/swap-renderer/app00');
+// require('./sketches/theme/swap-renderer/app01');
+
+
+/** fluid **/
+require('./sketches/theme/fluid/app00');
