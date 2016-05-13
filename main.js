@@ -18,10 +18,11 @@ window.GUI   = require('dat-gui').GUI;
 
 /** boilerplate */
 //require('./sketches/boilerplate/box/app');
-//require('./sketches/boilerplate/shader/app');
+// require('./sketches/boilerplate/shader/app');
 // require('./sketches/boilerplate/interactive/app');
 
 /** basic **/
+// require('./sketches/basic/buffer-geometry/app')
 //require('./sketches/basic/texture/app');
 //require('./sketches/basic/postprocessing/app');
 //require('./sketches/basic/webglrenderer-target/app')
@@ -93,4 +94,7 @@ window.GUI   = require('dat-gui').GUI;
 
 
 /** fluid **/
-require('./sketches/theme/fluid/app00');
+// require('./sketches/theme/fluid/app00');
+
+/** others **/
+require('./sketches/undefined/#002/app');
