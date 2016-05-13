@@ -3,7 +3,7 @@ var _ = require('lodash');
 
 module.exports = (function(){
     var SwapRenderer = function(opts){if(this.initialize) this.initialize(opts) };
-
+    
     THREE.EventDispatcher.prototype.apply( SwapRenderer.prototype );
     
     /** property and method **/

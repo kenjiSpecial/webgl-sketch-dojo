@@ -93,4 +93,5 @@ window.GUI   = require('dat-gui').GUI;
 
 
 /** fluid **/
-require('./sketches/theme/fluid/app00');
+// require('./sketches/theme/fluid/app00');
+require('./sketches/theme/fluid/app-2dFluid');

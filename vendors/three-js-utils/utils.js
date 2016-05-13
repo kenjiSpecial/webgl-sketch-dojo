@@ -40,6 +40,27 @@ module.exports = {
         return min + (max - min) * Math.random();
     },
     
+    createRedBlueMaterial : function( colWid, colHig, viewWid, viewHig){
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+        
+        canvas.width = viewWid;
+        canvas.height = viewHig;
+        
+        ctx.fillStyle = "#ff0000";
+        ctx.fillRect( viewWid/2 - colWid * 3/2, viewHig/2 - colHig/2, colWid, colHig);
+        ctx.fillStyle = "#0000ff";
+        ctx.fillRect( viewWid/2 + colWid/2, viewHig/2 - colHig/2, colWid, colHig );
+        
+        var texture = new THREE.Texture(canvas);
+        texture.magFilter = texture.minFilter = THREE.LinearFilter;
+        texture.needsUpdate = true;
+        
+        var mat = new THREE.MeshBasicMaterial({ map : texture, side : THREE.DoubleSide });
+        
+        return mat;
+    },
+    
     createRandomTexture : function( value, width, height ){
         var size = width * height;
         var data = new Float32Array(size * 4);
