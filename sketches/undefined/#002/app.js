@@ -6,11 +6,15 @@ import CustomMesh from "./mesh";
 var scene, camera, renderer;
 var meshArr = [];
 var customMesh;
-var meshURLArr = [
-    "./assets/portraits/portrait00.jpg",
-    "./assets/portraits/portrait01.jpg",
-    "./assets/portraits/portrait02.jpg",
+var imageURLs = [
+    "./assets/instgram/icon-outline.png",
+    "./assets/instgram/icon-normal.png",
+    "./assets/instgram/icon-play.png",
+    "./assets/instgram/icon-pause.png",
 ];
+var mouse = new THREE.Vector2(-9999, -9999);
+var textures = {};
+var loader = new THREE.TextureLoader();
 var meshCount = 0;
 var click = 0;
 var LENGTH;
@@ -20,6 +24,7 @@ var stats, wrapper;
 var time, controls;
 
 var isAnimation = true;
+var raycaster, INTERSECTED;
 
 scene = new THREE.Scene();
 
@@ -28,39 +33,53 @@ scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.z = 400;
-    // camera.position.x = 20;
-    // camera.position.y = 20;
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    light = new THREE.PointLight(0xFFFFFF, 1);
-    light.position.copy(camera.position);
-    scene.add(light);
-
-    var axisHelper = new THREE.AxisHelper( 3 );
-    scene.add( axisHelper );
-
     setComponent();
 
     time = new THREE.Clock();
     time.start();
 
-    customMesh = new CustomMesh();
-    scene.add(customMesh);
-    meshArr.push(customMesh);
+
 
     controls = new THREE.TrackballControls(camera, renderer.domElement);
     controls.rotateSpeed = 5.0;
     controls.zoomSpeed = 2.2;
     controls.panSpeed = 1;
     controls.dynamicDampingFactor = 0.3;
+    var count=0;
 
+    imageURLs.forEach(function(imageURL, index){
+        loader.load(imageURL, function(texture){
+            // textures.push(texture);
+            var imageSrc = texture.image.src;
+
+            if(imageSrc.indexOf("outline") > 0) textures['outline'] = texture;
+            else if(imageSrc.indexOf("normal") > 0)textures['normal'] = texture;
+            else if(imageSrc.indexOf("play") > 0) textures['play'] = texture;
+            else if(imageSrc.indexOf("pause") > 0) textures['pause'] = texture;
+
+            count++;
+            if(imageURLs.length == count) createMesh();
+        }.bind(this))
+    }.bind(this));
+
+    //
+})();
+
+function createMesh(){
+    customMesh = new CustomMesh(textures);
+    scene.add(customMesh);
+    meshArr.push(customMesh);
+
+    raycaster = new THREE.Raycaster();
 
     raf(animate);
-})();
+}
 
 function setComponent(){
     var title = 'Plane with BufferGeometry';
@@ -96,12 +115,44 @@ function animate() {
         mesh.updateLoop(dt)
     });
 
+    raycaster.setFromCamera( mouse, camera );
+    var intersects = raycaster.intersectObjects( meshArr);
+    if ( intersects.length == 1 ) {
+
+        if ( INTERSECTED != intersects[ 0 ].object ) {
+            // if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+            INTERSECTED = intersects[ 0 ].object;
+            document.body.style.cursor = "pointer";
+            INTERSECTED.onOver();
+            // meshArr.forEach(function(mesh){
+            //     mesh.onOver();
+            // });
+            window.addEventListener("click", onClick);
+        }
+    } else {
+        if(INTERSECTED) {
+            document.body.style.cursor = "default";
+            window.removeEventListener("click", onClick);
+            INTERSECTED.onOut();
+            INTERSECTED = null;
+        }
+        // meshArr.forEach(function(mesh){
+        //     mesh.onOut();
+        // });
+    }
+    
     renderer.render(scene, camera);
 
     stats.end();
 
     id = raf(animate);
 }
+
+function onClick(ev){
+    meshArr.forEach(function(mesh){
+        mesh.onClick();
+    });
+};
 
 
 window.addEventListener('keydown', function(ev){
@@ -118,4 +169,10 @@ window.addEventListener("resize", function(){
     camera.updateProjectionMatrix();
 
     renderer.setSize( window.innerWidth, window.innerHeight );
+});
+
+window.addEventListener('mousemove', function(event){
+    event.preventDefault();
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1
 });

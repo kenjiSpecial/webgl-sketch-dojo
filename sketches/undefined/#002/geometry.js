@@ -32,10 +32,6 @@ export default class CustomGeometry extends THREE.BufferGeometry {
             }
         }
 
-        console.log(verticeNum/3);
-        console.log(uvNum/2);
-
-
 
         var indices = [];
         var indexNum = 0;
