@@ -83,7 +83,7 @@ function createMesh(){
 
 function setComponent(){
     var title = 'Instgram Icon Visual Player';
-    var caption = 'It is The first impression I saw new Instgram Icon Logo. You can generate icon by youself, because it is visual player.';
+    var caption = 'This sketch is my first impression I saw new Instgram Icon Logo. You can generate icon by youself, because it is visual player.';
     var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/undefined/%23002';
 
     wrapper = createCaption(title, caption, url);
