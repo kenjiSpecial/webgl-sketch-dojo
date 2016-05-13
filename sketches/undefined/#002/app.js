@@ -82,9 +82,9 @@ function createMesh(){
 }
 
 function setComponent(){
-    var title = 'Plane with BufferGeometry';
-    var caption = '';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/cube';
+    var title = 'Instgram Icon Visual Player';
+    var caption = 'It is The first impression I saw new Instgram Icon Logo. You can generate icon by youself, because it is visual player.';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/undefined/%23002';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
