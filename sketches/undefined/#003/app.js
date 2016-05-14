@@ -76,7 +76,7 @@ scene = new THREE.Scene();
             else if(imageSrc.indexOf("play") > 0) {
                 textures['play'] = texture;
             }
-            else if(imageSrc.indexOf("pause") > 0) {
+            else {
                 textures['pause'] = texture;
             }
 
