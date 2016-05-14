@@ -72,6 +72,7 @@ scene = new THREE.Scene();
             else if(imageSrc.indexOf("normal") > 0)textures['normal'] = texture;
             else if(imageSrc.indexOf("play") > 0) textures['play'] = texture;
             else if(imageSrc.indexOf("pause") > 0) textures['pause'] = texture;
+            console.log(imageSrc);
             console.log(textures);
 
             count++;
