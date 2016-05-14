@@ -4,5 +4,11 @@
     "url": "./app/27-others-instgram-icon",
     "imgSrc": "./app/27-others-instgram-icon/thumbnail.jpg",
     "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/undefined/%23002"
+  },
+  {
+    "title": "Instgram Icon Visual Player",
+    "url": "./app/28-others-insgram-icon-visual-player",
+    "imgSrc": "./app/28-others-insgram-icon-visual-player/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/undefined/%23003"
   }
 ]
