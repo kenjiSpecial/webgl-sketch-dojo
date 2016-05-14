@@ -68,12 +68,17 @@ scene = new THREE.Scene();
             // textures.push(texture);
             var imageSrc = texture.image.src;
 
-            if(imageSrc.indexOf("outline") > 0) textures['outline'] = texture;
-            else if(imageSrc.indexOf("normal") > 0)textures['normal'] = texture;
-            else if(imageSrc.indexOf("play") > 0) textures['play'] = texture;
-            else if(imageSrc.indexOf("pause") > 0) textures['pause'] = texture;
-            console.log(imageSrc);
-            console.log(textures);
+            if(imageSrc.indexOf("outline") > 0) {
+                textures['outline'] = texture;
+            }else if(imageSrc.indexOf("normal") > 0){
+                textures['normal'] = texture;
+            }
+            else if(imageSrc.indexOf("play") > 0) {
+                textures['play'] = texture;
+            }
+            else if(imageSrc.indexOf("pause") > 0) {
+                textures['pause'] = texture;
+            }
 
             count++;
             if(imageURLs.length == count) createMesh();
