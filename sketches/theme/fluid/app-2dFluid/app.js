@@ -7,24 +7,31 @@ var scene, camera, renderer;
 var object, id;
 var stats, wrapper;
 var makeCaption = require('vendors/caption');
-// var SwapRendererTarget = require('')
+var SwapRendererTarget = require('vendors/swapRendererTarget');
+var swapRendererTarget;
 var mesh;
 var utils = require('vendors/three-js-utils/utils');
 var textureColorMaterial = utils.createRedBlueMaterial(100, 100, window.innerWidth, window.innerHeight);
 
 var isAnimation = true;
 
+var plane, planeMesh, camera;
+
 function init(){
     scene = new THREE.Scene();
     var size = 1;
-    camera = new THREE.OrthographicCamera( -size/2, size/2, size/2, -size/2, -10000, 10000 );
-    camera.position.z = 10;
-    var plane = new THREE.PlaneGeometry(size, size);
+    camera = new new THREE.OrthographicCamera( - 0.5, 0.5, 0.5, - 0.5, 0, 1 );
+    camera.updateProjectionMatrix();
+    var plane = new THREE.PlaneGeometry(1, 1);
     mesh = new THREE.Mesh(plane);
     scene.add(mesh);
 
     var mat = utils.createRedBlueMaterial( 100, 100, window.innerWidth, window.innerHeight );
     mesh.material = mat;
+    
+    
+    
+    swapRendererTarget = new SwapRendererTarget({ width: window.innerWidth, height: window.innerHeight });
 
     renderer = new THREE.WebGLRenderer({alpha: true});
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -59,6 +66,8 @@ function animate() {
     stats.begin();
 
     renderer.render(scene, camera);
+    
+    
 
     stats.end();
 

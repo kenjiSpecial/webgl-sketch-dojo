@@ -307,6 +307,7 @@ window.addEventListener("resize", function(ev){
     camera.top = window.innerHeight/2;
     camera.bottom = -window.innerHeight/2;
     camera.updateProjectionMatrix();
+    
 
     renderer.setSize( window.innerWidth, window.innerHeight );
 })
