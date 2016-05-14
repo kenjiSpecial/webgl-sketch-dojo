@@ -70,17 +70,23 @@ scene = new THREE.Scene();
 
             if(imageSrc.indexOf("outline") > 0) {
                 textures['outline'] = texture;
-            }else if(imageSrc.indexOf("normal") > 0){
+            }
+
+            if(imageSrc.indexOf("normal") > 0){
                 textures['normal'] = texture;
             }
-            else if(imageSrc.indexOf("play") > 0) {
+
+            if(imageSrc.indexOf("play") > 0) {
                 textures['play'] = texture;
             }
-            else {
+
+            if(imageSrc.indexOf("pause") > 0) {
                 textures['pause'] = texture;
             }
 
             count++;
+            // console.log(imageURLs.length);
+            // console.log(count);
             if(imageURLs.length == count) createMesh();
         }.bind(this))
     }.bind(this));
