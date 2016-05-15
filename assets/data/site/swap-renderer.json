@@ -16,5 +16,11 @@
     "url": "./app/26-fluid-image-texture",
     "imgSrc": "./app/26-fluid-image-texture/thumbnail.jpg",
     "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/fluid/app00"
+  },
+  {
+    "title": "Fluid based on Perlin noise.",
+    "url": "./app/29-fluid-perlin",
+    "imgSrc": "./app/29-fluid-perlin/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/fluid/advect"
   }
 ]
