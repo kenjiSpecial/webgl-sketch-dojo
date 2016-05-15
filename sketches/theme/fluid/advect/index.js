@@ -1,7 +1,7 @@
 var createCaption = require('vendors/utils').createCaption;
 var title = 'Fluid based on Perlin noise.';
 var caption = '';
-var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/swap-renderer/app00';
+var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/fluid/advect';
 createCaption({title : title, caption: caption, url : url})
 
 var raf     = require('raf');
