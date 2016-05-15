@@ -4,7 +4,7 @@ module.exports = (function(){
     var SwapRendererTarget = function(opts){
         this.width = opts.width;
         this.height = opts.height;
-        
+
         this.front = new THREE.WebGLRenderTarget( this.width, this.height, {minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat, type:THREE.FloatType, stencilBuffer: false});
         this.back = this.front.clone();
         
@@ -16,14 +16,16 @@ module.exports = (function(){
 
     _.extend(SwapRendererTarget.prototype, {
         swap : function(){
+            // if(this.read == this.output) console.log('fuck');
+
             if(this.read == this.front){
                 this.read = this.back;
-                this.ouput = this.front;
+                this.output = this.front;
             }else{
                 this.read = this.front;
-                this.ouput = this.back;
+                this.output = this.back;
             }
-        }
+        },
     });
     
     return SwapRendererTarget;

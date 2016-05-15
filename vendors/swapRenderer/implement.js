@@ -48,6 +48,11 @@ module.exports = {
             fragmentShader : glslify("./shaders/pass/shader.frag")
         });
     },
+    swapUpdate : function(mat){
+        this.mesh.material = mat;
+        this.renderer.render(this.scene, this.camera, this.output, false);
+        this.swap();
+    },
     
     swap : function(){
         if(this.target != this.front){
@@ -77,8 +82,8 @@ module.exports = {
         this.renderer.render( this.scene, this.camera, rTarget, false);
     },
 
-    out: function(shader){
-        this.mesh.material = shader.material;
+    out: function(shaderMat){
+        this.mesh.material = shaderMat;
         this.renderer.render( this.scene, this.camera );
     },
 

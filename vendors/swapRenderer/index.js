@@ -12,6 +12,7 @@ module.exports = (function(){
         initialize : Implement.initialize ,
         createTexturePassProgram : Implement.createTexturePassProgram,
         createSimulationProgram : Implement.createSimulationProgram,
+        swapUpdate : Implement.swapUpdate,
         swap   : Implement.swap,
         update : Implement.update,
         render : Implement.render,
