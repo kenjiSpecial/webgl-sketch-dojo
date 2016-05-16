@@ -101,3 +101,6 @@ require('./sketches/theme/fluid/advect');
 /** others **/
 // require('./sketches/undefined/#002/app');
 // require('./sketches/undefined/#003/app');
+
+/** rawGL **/
+// require('./sketches/rawGL/noise/app');

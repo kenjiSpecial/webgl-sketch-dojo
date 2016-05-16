@@ -23,6 +23,7 @@
     "garnish": "^5.2.0",
     "glsl-aastep": "^1.0.1",
     "glsl-noise": "0.0.0",
+    "glsl-random": "0.0.5",
     "glslify": "^2.3.1",
     "gsap": "^1.18.0",
     "gulp": "^3.8.11",
