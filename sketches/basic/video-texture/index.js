@@ -41,7 +41,7 @@ function onCamReady(){
 function setComponent(){
     var title = 'Web Camera Texture';
     var caption = '';
-    var url = '';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/video-texture';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
