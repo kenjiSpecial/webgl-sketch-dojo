@@ -71,7 +71,7 @@ module.exports = {
 
         for( var i =0; i < data.length; i++ ){
 
-            data[ i ] = (Math.random() - .5 ) * size;
+            data[ i ] = 100; //(Math.random() - .5 ) * size;
 
             if( alpha && i % 4 ===3 ){
                 data[i] = 0;

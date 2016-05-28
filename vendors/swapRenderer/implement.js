@@ -1,6 +1,9 @@
 var glslify = require('glslify');
 
 module.exports = {
+    /**
+     * @param {width, height, shader, uniforms} opts
+     */
     initialize : function(opts){
         this.renderer = opts.renderer;
         this.width = opts.width;
@@ -16,6 +19,7 @@ module.exports = {
 
         this.texturePassProgramMaterial = this.createTexturePassProgram();
         if(opts.shader && opts.uniforms) this.simulationMateril = this.createSimulationProgram( opts.shader,  opts.uniforms);
+        else if(opts.shaderMaterial)     this.simulationMateril = opts.shaderMaterial;
 
         /**
          GPGPU Utilities
@@ -26,6 +30,12 @@ module.exports = {
         this.scene = new THREE.Scene();
         this.mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 1, 1 ) );
         this.scene.add( this.mesh );
+
+        /** debug material **/
+        this.debugMat = new THREE.MeshBasicMaterial({ side : THREE.DoubleSide });
+        this.debugMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 1, 1 ), this.debugMat );
+        this.debugScene = new THREE.Scene();
+        this.debugScene.add( this.debugMesh );
     },
 
     createSimulationProgram : function(sim, uniforms) {
@@ -43,6 +53,7 @@ module.exports = {
     createTexturePassProgram : function(){
         return new THREE.ShaderMaterial({
             uniforms : {
+                baseCol : {type : 'v3',value: new THREE.Vector3() },
                 texture : { type: "t", value: null } },
             vertexShader   : glslify("./shaders/pass/shader.vert"),
             fragmentShader : glslify("./shaders/pass/shader.frag")
@@ -87,7 +98,20 @@ module.exports = {
         this.renderer.render( this.scene, this.camera );
     },
 
-    
+    changeDebugBaseCol : function(col){
+        var baseCol = col || new THREE.Vector3();
+
+        this.texturePassProgramMaterial.uniforms.baseCol.value = col;
+    },
+
+    debugOutput : function(texture) {
+        // if(texture) this.debugMat.map = texture;
+        this.texturePassProgramMaterial.uniforms.texture.value = texture;
+        this.debugMesh.material = this.texturePassProgramMaterial
+        this.renderer.render( this.debugMesh, this.camera );
+    },
+
+
     reset : function( texture ){
         this.texture = texture;
         this.texturePassProgramMaterial.uniforms.texture.value = texture;
@@ -95,7 +119,7 @@ module.exports = {
         this.pass(this.texturePassProgramMaterial, this.front);
         this.pass(this.texturePassProgramMaterial, this.back);
     },
-    resetRand : function( size, alpha ){
+    resetRand : function( size, alpha ){    
         var size = size || 100;
         var data = new Float32Array( this.s2 * 4 );
 

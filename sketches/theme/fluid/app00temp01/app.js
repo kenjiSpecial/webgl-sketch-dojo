@@ -33,6 +33,7 @@ var time = {
     step : 1
 };
 
+var outputRenderer;
 
 function init(){
 

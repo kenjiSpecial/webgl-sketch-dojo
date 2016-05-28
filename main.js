@@ -94,9 +94,12 @@ window.GUI   = require('dat-gui').GUI;
 
 
 /** fluid **/
-// require('./sketches/theme/fluid/app00');
+require('./sketches/theme/fluid/app/index');
+// require('./sketches/theme/fluid/app00/index')
+// require('./sketches/theme/fluid/app01/index')
 // require('./sketches/theme/fluid/app-2dFluid');
-require('./sketches/theme/fluid/advect');
+// require('./sketches/theme/fluid/advect');
+
 
 /** others **/
 // require('./sketches/undefined/#002/app');

@@ -20,6 +20,8 @@ module.exports = (function(){
         out : Implement.out,
         reset : Implement.reset,
         resetRand : Implement.resetRand,
+        changeDebugBaseCol : Implement.changeDebugBaseCol,
+        debugOutput : Implement.debugOutput
     });
     
     

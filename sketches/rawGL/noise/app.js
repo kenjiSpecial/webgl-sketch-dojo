@@ -13,7 +13,6 @@ var igloo = new Igloo(canvas, {alpha: true});
 var quad = igloo.array(Igloo.QUAD2);
 var vertexShader = glslify("./shader.vert");
 var fragmentShader = glslify('./shader.frag');
-var vertexShader = glslify('./shader.vert');
 program = igloo.program(vertexShader, fragmentShader);
 var time = 0;
 
