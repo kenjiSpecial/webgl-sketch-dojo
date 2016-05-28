@@ -52,5 +52,11 @@
     "url": "./app/16-basic-buffergeometry-sphere",
     "imgSrc": "./app/16-basic-buffergeometry-sphere/thumbnail.jpg",
     "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/sphere"
+  },
+  {
+    "title" : "Web Cam Texture",
+    "url"   : "./app/30-basic-web-cam",
+    "imgSrc": "https://cdn0.iconfinder.com/data/icons/huge-business-vector-icons/60/camcorder-512.png",
+    "sourceCode" : "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/basic/video-texture"
   }
 ]
