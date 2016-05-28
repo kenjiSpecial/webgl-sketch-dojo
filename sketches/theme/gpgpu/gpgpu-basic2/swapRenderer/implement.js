@@ -88,7 +88,7 @@ module.exports = {
         );
 
         texture.minFilter =  THREE.NearestFilter,
-            texture.magFilter = THREE.NearestFilter,
+        texture.magFilter = THREE.NearestFilter,
             texture.needsUpdate = true;
 
         this.reset( texture);

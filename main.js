@@ -31,6 +31,7 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/basic/swap-rendering0/app');
 //require('./sketches/basic/swap-rendering1/app');
 // require('./sketches/basic/swap-rendering-with-customSwapRenderer/app');
+require('./sketches/basic/video-texture/index');
 
 
 /** undefined **/
@@ -94,7 +95,7 @@ window.GUI   = require('dat-gui').GUI;
 
 
 /** fluid **/
-require('./sketches/theme/fluid/app/index');
+// require('./sketches/theme/fluid/app/index');
 // require('./sketches/theme/fluid/app00/index')
 // require('./sketches/theme/fluid/app01/index')
 // require('./sketches/theme/fluid/app-2dFluid');
