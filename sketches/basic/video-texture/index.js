@@ -1,17 +1,30 @@
-
+var dat = require('dat-gui');
 var raf = require('raf');
 var createCaption = require('../../dom/caption');
 
 var scene, camera, renderer, mesh;
+var videoScene, videoMesh;
 var plane, mesh;
 var cubes = [];
 var object, id;
 import CamTexture from "vendors/video-texture/webcam"
-var camTexture;
+import VideoTexture from "vendors/video-texture/video"
+var camTexture, videoTexture;
 var stats, wrapper;
+var videoObj = {
+    isVideo : false
+};
 
+var gui = new dat.GUI();
+var videoController = gui.add(videoObj, "isVideo");
+videoController.onChange(onVideoChange);
 
 var isAnimation = true;
+
+var videoFiles = {
+    "mp4" : "assets/video/video.mp4",
+    "ogv" : "assets/video/video.ogv"
+};
 
 function init(){
     scene = new THREE.Scene();
@@ -25,6 +38,10 @@ function init(){
 
     camTexture = new CamTexture({width: 600, height: 400});
     camTexture.eventDispatcher.addEventListener("textuer:ready", onCamReady);
+    
+    videoTexture  = new VideoTexture({files : videoFiles})
+    videoTexture.eventDispatcher.addEventListener("textuer:ready", onVideoReady);
+    videoScene = new THREE.Scene();
 
     setComponent();
 
@@ -32,10 +49,20 @@ function init(){
 }
 
 function onCamReady(){
+    camTexture.eventDispatcher.removeEventListener("textuer:ready", onCamReady);
+    camTexture.setGUI(gui);
     plane = new THREE.PlaneGeometry(600, 400);
     var mat = new THREE.MeshBasicMaterial({map : camTexture, side: THREE.DoubleSide});
     mesh = new THREE.Mesh(plane, mat);
     scene.add(mesh);
+}
+
+function onVideoReady(){
+    videoTexture.eventDispatcher.removeEventListener("textuer:ready", onVideoReady);
+    var mat = new THREE.MeshBasicMaterial({map : videoTexture, side : THREE.DoubleSide });
+    var videoPlane = new THREE.PlaneGeometry( videoTexture.video.width, videoTexture.video.height);
+    videoMesh = new THREE.Mesh(videoPlane, mat);
+    videoScene.add(videoMesh);
 }
 
 function setComponent(){
@@ -64,10 +91,24 @@ function setComponent(){
 function animate() {
     stats.update();
 
-    camTexture.updateTexture();
-    renderer.render(scene, camera);
+    if(videoObj.isVideo){
+        videoTexture.updateTexture();
+
+        renderer.render(videoScene, camera);
+    }else{
+        camTexture.updateTexture();
+        renderer.render(scene, camera);
+    }
 
     id = raf(animate);
+}
+
+function onVideoChange(isVideo){
+    if(isVideo){
+        videoTexture.start();
+    }else{
+        videoTexture.destroy();
+    }
 }
 
 window.addEventListener('keydown', function(ev){

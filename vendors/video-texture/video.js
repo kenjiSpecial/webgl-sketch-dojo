@@ -2,31 +2,55 @@
  * codes are based on threex.videotexture
  * https://github.com/jeromeetienne/threex.videotexture
  */
+var _ = require('lodash');
 
 export default class VideoTexture extends THREE.Texture{
-	construtor(opts){
-		this.available = navigator.webkitGetUserMedia || navigator.mozGetUserMedia ? true : false;
-		console.assert(this.available === true)
-		var videoWidth = opts.width || 320;
-		var videoHeight = opts.height || 240;
+	constructor(opts){
+		super();
+		_.bindAll(this, 'onVideoLoaded');
+
+		this.eventDispatcher = new THREE.EventDispatcher;
+
 		var video	= document.createElement('video');
-		video.width = videoWidth;
-		video.height = videoHeight;
-		video.autoplay = true;
-		video.loop = true;
-		video.src	= opts.src;
+		for(var key in opts.files){
+			var source = document.createElement("source");
+			var path = opts.files[key];
+			if(key == 'mp4'){
+				source.type = "video/mp4";
+				source.src = path;
+				video.appendChild(source);
+			}else if(key == "ogv" || key == "ogg"){
+				source.type = "video/ogg";
+				source.src = path;
+				video.appendChild(source);
+			}
+		}
+		this.video = video;
+		video.addEventListener('loadeddata', this.onVideoLoaded);
+		video.load();
 
-		super(video);
+		this.minFilter =  THREE.NearestFilter,
+        this.magFilter = THREE.NearestFilter;
+	}
+	onVideoLoaded(){
+		this.video.width = this.video.videoWidth;
+		this.video.height = this.video.videoHeight;
+		this.video.loop = true;
 
-		this.videoWidth = videoWidth;
-		this.videoHeight = videoHeight;
+		this.image = this.video;
+		this.needsUpdate;
 
+		this.eventDispatcher.dispatchEvent({type: "textuer:ready"})
+	}
+	start(){
+		this.video.play();
 	}
 	updateTexture(){
-		if( video.readyState !== video.HAVE_ENOUGH_DATA )	return;
+		if( this.video.readyState !== this.video.HAVE_ENOUGH_DATA )	return;
+		//if( video.readyState !== video.HAVE_ENOUGH_DATA )	return;
 		this.needsUpdate	= true;
 	}
 	destroy(){
-		video.pause();
+		this.video.pause();
 	}
 }

@@ -101,6 +101,10 @@ require('./sketches/basic/video-texture/index');
 // require('./sketches/theme/fluid/app-2dFluid');
 // require('./sketches/theme/fluid/advect');
 
+/** camera **/
+// require('./sketches/theme/camera/app00/index') // optical-flow
+// require('./sketches/theme/camera/app01/index');
+
 
 /** others **/
 // require('./sketches/undefined/#002/app');
