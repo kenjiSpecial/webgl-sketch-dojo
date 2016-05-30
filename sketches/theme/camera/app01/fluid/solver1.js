@@ -15,12 +15,9 @@ export default class Solver {
         
         this.velocity = new SwapRenderer({width: this.grid.size.width, height: this.grid.size.height, renderer: renderer});
         this.density  = new SwapRenderer({width: this.grid.size.width, height: this.grid.size.height, renderer: renderer});
-        // this.force = new SwapRenderer({width: this.grid.size.width, height: this.grid.size.height, renderer: renderer, shaderMaterial : new ForceMat() });
         this.velocityDivergence = new SwapRenderer({width: this.grid.size.width, height: this.grid.size.height, renderer: renderer});
         this.velocityVorticity = new SwapRenderer({width: this.grid.size.width, height: this.grid.size.height, renderer: renderer});
         this.pressure = new SwapRenderer({width: this.grid.size.width, height: this.grid.size.height, renderer: renderer});
-
-        // this.velocity.resetRand(10.0);
 
         this.time = {step : 1/60};
 
@@ -30,6 +27,8 @@ export default class Solver {
         this.poissonPressureEq = new slabop.Jacobi(renderer, glslify("./slabop/shaders/jacobiscalar.frag"), grid);
         this.gradient = new slabop.Gradient(renderer, grid);
         this.splat = new slabop.Splat(renderer, grid, 10);
+        this.splat2 = new slabop.Splat2(renderer, grid, 10);
+        // this.poissonPressureEq.beta = 1;
 
 
         this.viscosity = 0.3;
@@ -45,12 +44,19 @@ export default class Solver {
      *
      * @param {x: number, y: number} mouse
      */
-    step(texture){
+    step(texture, isScale){
         var temp =  this.advect.uniforms.dissipation.value;
         this.advect.uniforms.dissipation.value = 0.99;
         this.advect.compute(this.velocity, this.velocity, this.velocity);
 
-        this.densityAdvect.uniforms.dissipation.value = temp;
+        if(isScale){
+            this.splat2.uniforms.uScale.value = 1;
+        }else{
+            this.splat2.uniforms.uScale.value = -1;
+        }
+
+        //
+        this.densityAdvect.uniforms.dissipation.value = 0.99;
         this.densityAdvect.compute(this.velocity, this.density, this.density);
 
         this.addForce(texture);
@@ -58,28 +64,30 @@ export default class Solver {
         this.project();
     }
     
-    addForce(mouse){
+    addForce(texture){
         // console.log(mouse);
-        if(this.prevMouse){
-            var velX = (mouse.x - this.prevMouse.x) * 1000;
-            var velY = (mouse.y - this.prevMouse.y) * 1000;
-            var vel = new THREE.Vector3(velX, velY, 0);
+        // if(this.prevMouse){
+            // var velX = (mouse.x - this.prevMouse.x) * 1000;
+            // var velY = (mouse.y - this.prevMouse.y) * 1000;
+            // var vel = new THREE.Vector3(velX, velY, 0);
             // vel = vel.normalize();
             // vel = new THREE.Vector3(1.0, 0.0, 0.0)
+        var vel = new THREE.Vector3();
+        var col = new THREE.Vector3();
 
             this.splat.compute(
                 this.velocity,
-                mouse,
+                texture,
                 this.grid,
                 vel,
                 this.velocity
             );
-        }
+        // }
 
-        if(!vel) vel = new THREE.Vector3(0, 0, 0);
-        var velLength = vel.length();
-
-        var col = new THREE.Vector3(1 * velLength, 1 * velLength, 1 * velLength);
+        // if(!vel) vel = new THREE.Vector3(0, 0, 0);
+        // var velLength = vel.length();
+        //
+        // var col = new THREE.Vector3(1 * velLength, 1 * velLength, 1 * velLength);
 
         // var dMouse = new THREE.Vector2();
         // if(this.prevMouse) dMouse = dMouse.subVectors(new THREE.Vector2(mouse.x * window.innerWidth, mouse.y * window.innerHeight), new THREE.Vector2( window.innerWidth * this.prevMouse.x, window.innerHeight * this.prevMouse.y ) );
@@ -88,9 +96,9 @@ export default class Solver {
         //
         // }else{
 
-            this.splat.compute(
+            this.splat2 .compute(
                 this.density,
-                mouse,
+                texture,
                 this.grid,
                 col,
                 this.density
@@ -98,7 +106,7 @@ export default class Solver {
         // }
 
 
-        this.prevMouse = mouse.clone();
+        // this.prevMouse = mouse.clone();
    }
 
     project(){

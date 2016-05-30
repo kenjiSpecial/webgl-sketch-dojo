@@ -7,7 +7,8 @@ export default class OpticalFlowMaterial extends THREE.ShaderMaterial {
             uPreviousTexture : {value: null},
             uResolution : {value : new THREE.Vector2(opts.width, opts.height)},
             uOffset : {value : 1.0},
-            uLambda : {value : 0.0}
+            uLambda : {value : 0.0},
+            baseCol : {value: new THREE.Vector3()}
         };
 
         super({
@@ -24,4 +25,8 @@ export default class OpticalFlowMaterial extends THREE.ShaderMaterial {
 
         // this.previousTexture = texture;
     }
+    updateBaseColor(baseCol){
+        this.uniforms.baseCol.value = baseCol;
+    }
+
 }

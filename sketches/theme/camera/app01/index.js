@@ -30,6 +30,7 @@ var velocityRenderer, pressureRenderer;
 
 import Solver1 from './fluid/solver1'
 var solver;
+var renderScene, renderCamera, renderMaterial, renderPlane;
 
 var grid = {
     size : new THREE.Vector2(window.innerWidth/2, window.innerHeight/2),
@@ -43,11 +44,31 @@ var time = {
 var rendererTarget0;
 var gui = new dat.GUI();
 var videoMesh, videoMat;
+var opticalFlowMesh;
 
-var videoFiles = {
-    "mp4" : "assets/video.mp4",
-    "ogv" : "assets/video.ogv"
+var testScene = new THREE.Scene();
+var testPlane = new THREE.PlaneGeometry(100, 100);
+var testMat = new THREE.MeshBasicMaterial({color: 0x00ff00});
+var testMesh = new THREE.Mesh(testPlane, testMat);
+testScene.add(testMesh);
+
+var appStatus = {
+    rendererStatus : 1,
+    isScale : true
 }
+
+gui.add(appStatus, "rendererStatus", { main : 0, velocity: 1, pressure : 2, density: 3 } );
+gui.add(appStatus, 'isScale');
+
+var grayShaderMat = new THREE.ShaderMaterial({
+    uniforms : {
+        uTexture : {value: null},
+        baseCol  : {value: new THREE.Vector3(0.5, 0.5, 0.5)},
+
+    },
+    vertexShader   : glslify('./shaders/shader.vert'),
+    fragmentShader : glslify('./shaders/gray.frag')
+})
 
 function init(){
     scene = new THREE.Scene();
@@ -62,11 +83,11 @@ function init(){
     mainCamera.updateProjectionMatrix();
     mainCamera.position.z = 100;
 
-    renderer = new THREE.WebGLRenderer({alpha: true});
+    renderer = new THREE.WebGLRenderer({alpha: false});
     renderer.autoClear = false;
     renderer.setClearColor ( 0x000000, 1.0 );
 
-    rendererTarget0 = new THREE.WebGLRenderTarget(camWidth, camHeight, {depthBuffer: false});
+    rendererTarget0 = new THREE.WebGLRenderTarget(camWidth, camHeight, {minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat, type:THREE.FloatType, stencilBuffer: false, debugTest : false});
 
     solver = new Solver1(grid, renderer);
 
@@ -77,6 +98,8 @@ function init(){
     camTexture.eventDispatcher.addEventListener("textuer:ready", onCamReady);
 
     opticalFlowMat = new OpticalFlowMaterial({width: camWidth, height: camHeight});
+    // opticalFlowMat.updateBaseColor(new THREE.Vector3(0.5, 0.5, 0.5));
+
 
     swapRenderer = new SwapRenderer({
         shader : glslify('./shaders/advect.frag'),
@@ -125,6 +148,35 @@ function onCamReady(){
     debugMesh.position.set( window.innerWidth/2 - camWidth*scale/2 - 30, -window.innerHeight/2 + camHeight * scale /2 + 30, 0)
     debugScene.add(debugMesh)
 
+    var opDebugMat = new THREE.MeshBasicMaterial();
+    opticalFlowMesh = new THREE.Mesh(debugPlane, opDebugMat);
+    opticalFlowMesh.position.set( window.innerWidth/2 - camWidth*scale/2 * 3 - 40, -window.innerHeight/2 + camHeight * scale /2 + 30, 0)
+    debugScene.add(opticalFlowMesh)
+
+
+    renderScene = new THREE.Scene();
+    renderCamera = new THREE.OrthographicCamera( -window.innerWidth/2, window.innerWidth/2, window.innerHeight/2, -window.innerHeight/2, -10000, 10000 );
+    renderCamera.updateProjectionMatrix();
+
+    renderMaterial = new THREE.ShaderMaterial({
+        depthTest : false,
+        side : THREE.DoubleSide,
+        uniforms : {
+            "tDiffuse" : {type: "t", value: null },
+            "tDensity" : {type: "t", value: null }
+        },
+        vertexShader : glslify('./display/shader.vert'),
+        fragmentShader : glslify('./display/shader2.frag')
+    });
+
+    renderPlane = new THREE.Mesh(
+        new THREE.PlaneBufferGeometry(window.innerWidth, window.innerHeight),
+        renderMaterial
+    );
+
+    renderScene.add(renderPlane);
+
+
     raf(animate);
     setTimeout(function(){
         isStartRender = true;
@@ -156,6 +208,7 @@ function animate() {
     camTexture.updateTexture();
 
     opticalFlowMat.updateShader(camTexture);
+    opticalFlowMesh.material = opticalFlowMat;
     if(isStartRender) {
         render(dt);
     }
@@ -170,6 +223,7 @@ function animate() {
         tex.needsUpdate = true;
 
         opticalFlowMat.uniforms.uPreviousTexture.value = tex;
+
     }
 
 
@@ -178,15 +232,42 @@ function animate() {
 
 function render(dt){
     // renderer.clear();
-
-
     renderer.render(scene, camera, rendererTarget0, false);
-    solver.step(rendererTarget0.texture);
+    solver.step(rendererTarget0.texture, appStatus.isScale);
 
-    swapRenderer.changeDebugBaseCol(new THREE.Vector3(0.5, 0.5, 0.5));
-    swapRenderer.debugOutput(solver.velocity.output);
+    appStatus.rendererStatus = parseInt(appStatus.rendererStatus);
+    switch (appStatus.rendererStatus) {
+        case 0:
+            renderMaterial.uniforms.tDiffuse.value = camTexture; //rendererTarget0.texture;
+            renderMaterial.uniforms.tDensity.value = solver.density.output;
+            renderer.render(renderScene, renderCamera);
+            break;
+        case 1:
+            swapRenderer.changeDebugBaseCol(new THREE.Vector3(0.5, 0.5, 0.5));
+            swapRenderer.debugOutput(solver.velocity.output);
+            break;
+        case 2:
+            swapRenderer.changeDebugBaseCol(new THREE.Vector3(0., 0., 0.));
+            swapRenderer.debugOutput(solver.pressure.output);
+            break;
+        case 3:
+            swapRenderer.changeDebugBaseCol(new THREE.Vector3(0., 0., 0.));
+            swapRenderer.debugOutput(solver.density.output);
+            break;
+        default:
+            break;
 
-    renderer.render(debugScene, mainCamera);
+    }
+
+    // swapRenderer.changeDebugBaseCol(new THREE.Vector3(0.5, 0.5, 0.5));
+    // swapRenderer.debugOutput(solver.velocity.output, mainCamera) ;
+    // grayShaderMat.uniforms.uTexture.value = solver.velocity.output
+    // swapRenderer.out(grayShaderMat);
+
+    // renderer.render(testScene, mainCamera);
+    // renderer.render(debugScene, mainCamera);
+
+
 
     // solver
 }

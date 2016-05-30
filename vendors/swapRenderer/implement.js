@@ -11,7 +11,7 @@ module.exports = {
         
         this.s2 = this.width * this.height;
         
-        this.front = new THREE.WebGLRenderTarget( this.width, this.height, {minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat, type:THREE.FloatType, stencilBuffer: false});
+        this.front = new THREE.WebGLRenderTarget( this.width, this.height, {minFilter: THREE.NearestFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat, type:THREE.FloatType, stencilBuffer: false, debugTest : false});
         this.back = this.front.clone();
 
         this.output = this.front;
@@ -26,13 +26,15 @@ module.exports = {
          From Sporel by Mr.Doob
          @author mrdoob / http://www.mrdoob.com */
 
-        this.camera = new THREE.OrthographicCamera( - 0.5, 0.5, 0.5, - 0.5, 0, 1 );
+        this.camera = new THREE.OrthographicCamera( - 0.5, 0.5, 0.5, - 0.5, 0, 100 );
+        this.camera.position.z = 100;
+        this.camera.updateProjectionMatrix();
         this.scene = new THREE.Scene();
         this.mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 1, 1 ) );
         this.scene.add( this.mesh );
 
         /** debug material **/
-        this.debugMat = new THREE.MeshBasicMaterial({ side : THREE.DoubleSide });
+        this.debugMat = new THREE.MeshBasicMaterial({ side : THREE.DoubleSide, color: 0xff0000 });
         this.debugMesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 1, 1 ), this.debugMat );
         this.debugScene = new THREE.Scene();
         this.debugScene.add( this.debugMesh );
@@ -105,10 +107,12 @@ module.exports = {
     },
 
     debugOutput : function(texture) {
-        // if(texture) this.debugMat.map = texture;
+        if(texture) this.debugMat.map = texture;
         this.texturePassProgramMaterial.uniforms.texture.value = texture;
         this.debugMesh.material = this.texturePassProgramMaterial
-        this.renderer.render( this.debugMesh, this.camera );
+        // this.debugMesh.scale.set(window.innerWidth, window.innerHeight, 1);
+
+        this.renderer.render( this.debugScene, this.camera );
     },
 
 

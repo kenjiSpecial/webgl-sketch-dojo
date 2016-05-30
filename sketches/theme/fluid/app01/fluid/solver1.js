@@ -124,7 +124,7 @@ export default class Solver {
         // this.velocity.swap();
     }
     clearSlab(renderTarget){
-        this.renderer.clearTarget(renderTarget.output, true, false, false);
+        // this.renderer.clearTarget(renderTarget.output, true, false, false);
         this.renderer.clearTarget(renderTarget.target, true, false, false);
         // renderTarget.swap();
     }

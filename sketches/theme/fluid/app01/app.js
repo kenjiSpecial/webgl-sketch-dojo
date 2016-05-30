@@ -38,7 +38,7 @@ var CONSTANS_APP = {
     }
 }
 var appStatus = {
-    rendererStatus : 1
+    rendererStatus : 0
 }
 
 gui.add(appStatus, "rendererStatus", { main : 0, velocity: 1, pressure : 2, density: 3 } );
@@ -190,7 +190,7 @@ function createTexture() {
 function setComponent(){
     var title = 'Image texture in fluid';
     var caption = '';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/fluid/app00';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/fluid/app01';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.position = "absolute";
@@ -303,12 +303,20 @@ function loop(){
 }
 
 function onClick(ev){
+    var i;
+    for( var i = textureScene.children.length - 1; i >= 0; i--) {
+        var obj = textureScene.children[i];
+        textureScene.remove(obj);
+    }
+
 
     var objectId = INTERSECTED.objectId;
     var selctedMesh = originMeshes[objectId];
-    selctedMesh.position.set(window.innerWidth * (Math.random() - 0.5), window.innerHeight * (Math.random() - 0.5), 0);
+    selctedMesh.position.set(0, 0, 0); //window.innerWidth * (Math.random() - 0.5), window.innerHeight * (Math.random() - 0.5), 0);
     textureScene.add(selctedMesh);
 
+    renderer.clearTarget(swapRenderer.target, true, false, false);
+    renderer.clearTarget(swapRenderer.output, true, false, false);
     renderer.render(textureScene, textureCamera, swapRenderer.target, false);
     // renderer.render(textureScene, textureCamera, swapRenderer.output, false);
 
@@ -351,11 +359,19 @@ window.addEventListener('mousemove', function(event){
 
 
 window.addEventListener("resize", function(ev){
-    camera.left = window.innerWidth/-2;
-    camera.right = window.innerWidth/2;
-    camera.top = window.innerHeight/2;
-    camera.bottom = -window.innerHeight/2;
-    camera.updateProjectionMatrix();
+    // camera.left = window.innerWidth/-2;
+    // camera.right = window.innerWidth/2;
+    // camera.top = window.innerHeight/2;
+    // camera.bottom = -window.innerHeight/2;
+    // camera.updateProjectionMatrix();
+    //
+    // renderCamera.left = window.innerWidth/-2;
+    // renderCamera.right = window.innerWidth/2;
+    // renderCamera.top = window.innerHeight/2;
+    // renderCamera.bottom = -window.innerHeight/2;
+    // renderCamera.updateProjectionMatrix();
+
+
     
 
     renderer.setSize( window.innerWidth, window.innerHeight );

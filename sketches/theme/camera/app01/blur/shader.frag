@@ -1,45 +1,46 @@
+/*
+    Horn-Schunke Optical Flow
+    Based on shader by Andrew Benson
+    https://github.com/v002/v002-Optical-Flow/blob/master/v002.GPUHSFlow.frag
+
+    Creative Commons, Attribution – Non Commercial – Share Alike 3.0
+    http://v002.info/licenses/
+*/
 
 varying vec2 vUv;
-uniform sampler2D tDiffuse;
 uniform sampler2D uTexture;
-uniform vec2 uMouse;
-uniform vec2 uWindow;
+uniform sampler2D uPreviousTexture;
 
-float kernel[9];
-vec2  offset[9];
+uniform vec2 uResolution;
+uniform vec2 uScale;
+uniform vec3 baseCol;
+uniform float uOffset;
+uniform float uLambda;
 
 void main(){
-    vec4 sum = vec4(0.0);
+    vec4 curCol = texture2D(uTexture, vUv);
+    vec4 prevCol = texture2D(uPreviousTexture, vUv);
+    vec2 offset = uOffset / uResolution;
+    vec2 x1 = vec2(offset.x, 0.0);
+    vec2 y1 = vec2(0.0, offset.y);
 
-    float distance = distance( uMouse, vec2(gl_FragCoord.xy) );
+    vec4 curDif = prevCol - curCol;
 
-    if(distance < 200.0){
-        sum = texture2D( uTexture, vUv) * (1.00 + 0.03 * (1.0 - distance/200.0));// + vec4(1.0, 0.0, 0.0, 0.0);
-    }else{
-        float dx = 1.0/uWindow.x;
-        float dy = 1.0/uWindow.y;
+    vec4 gradX = texture2D(uTexture, vUv + x1) - texture2D(uTexture, vUv - x1);
+    gradX += texture2D(uPreviousTexture, vUv + x1) - texture2D(uPreviousTexture, vUv - x1);
 
-        offset[0] = vec2(-dx, -dy);
-        offset[1] = vec2(0.0, -dy);
-        offset[2] = vec2(dx, -dy);
+    vec4 gradY = texture2D(uTexture, vUv + y1) - texture2D(uTexture, vUv - y1);
+    gradY += texture2D(uPreviousTexture, vUv + y1) - texture2D(uPreviousTexture, vUv - y1);
 
-        offset[3] = vec2(-dx, 0.0);
-        offset[4] = vec2(0.0, 0.0);
-        offset[5] = vec2(dx, 0.0);
+    vec4 gradMag = sqrt(gradX * gradX + gradY * gradY + vec4(0.0001));
+    vec4 vx = curDif * (gradX/gradMag);
+    float vxd = vx.r;
 
-        offset[6] = vec2(-dx, dy);
-        offset[7] = vec2(0.0, dy);
-        offset[8] = vec2(dx, dy);
+    vec4 vy = curDif * (gradY/gradMag);
+    float vyd = vy.r;
 
-        kernel[0] = 1.0/16.0;   kernel[1] = 2.0/16.0;   kernel[2] = 1.0/16.0;
-        kernel[3] = 2.0/16.0;   kernel[4] = 4.0/16.0;   kernel[5] = 2.0/16.0;
-        kernel[6] = 1.0/16.0;   kernel[7] = 2.0/16.0;   kernel[8] = 1.0/16.0;
-
-        for(int i = 0; i < 9; i++){
-            vec4 tmp = texture2D( uTexture, vUv + offset[i]);
-            sum += tmp * kernel[i];
-        }
-    }
-
-    gl_FragColor = sum;
+    vec3 outputCol = vec3(-vxd + 0.5, -vyd, 0.) + baseCol;
+//    if(vxd < 0.0) outputCol.r = 1.0;
+//    if(vyd < 0.0) outputCol.g = 1.0;
+    gl_FragColor = vec4( outputCol, 1.0); //vec4(xOut.rg, 0.0, 1.0);
 }

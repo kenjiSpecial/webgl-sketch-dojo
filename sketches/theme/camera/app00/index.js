@@ -30,6 +30,7 @@ function init(){
     camTexture.eventDispatcher.addEventListener("textuer:ready", onCamReady);
 
     opticalFlowMat = new OpticalFlowMaterial({width: 600, height: 400});
+    opticalFlowMat.updateBaseColor(new THREE.Vector3(0.5, 0.5, 0.5));
 
 
     setComponent();
