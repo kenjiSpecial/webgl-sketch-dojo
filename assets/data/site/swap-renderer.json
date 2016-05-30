@@ -22,5 +22,11 @@
     "url": "./app/29-fluid-perlin",
     "imgSrc": "./app/29-fluid-perlin/thumbnail.jpg",
     "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/fluid/advect"
+  },
+  {
+    "title" : "Interactive Fluid Image",
+    "url" : "./app/31-fluid-interactive",
+    "imgSrc": "./app/31-fluid-interactive/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/fluid/app01"
   }
 ]
