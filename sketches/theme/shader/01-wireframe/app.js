@@ -71,9 +71,9 @@ scene = new THREE.Scene();
 })();
 
 function setComponent(){
-    var title = 'Plane with BufferGeometry';
+    var title = 'Experiments with single-pass wireframe';
     var caption = '';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/cube';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/shader/01-wireframe';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
