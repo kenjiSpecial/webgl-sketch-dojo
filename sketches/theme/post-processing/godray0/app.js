@@ -51,7 +51,7 @@ function init(){
     spotLight.position.set(60, 0, 30);
     spotLight.castShadow = true;
     scene.add(spotLight);
-
+    
 
     var materialScene = new THREE.MeshBasicMaterial( { color: 0x000000, shading: THREE.FlatShading } );
 

@@ -39,8 +39,9 @@ window.GUI   = require('dat-gui').GUI;
 
 /** theme **/
 /** light **/
-//require('../../sketches/theme/light/point-light#00/app'); // shit
-//require('./sketches/theme/post-processing/godray0/app');
+// require('../../sketches/theme/light/point-light#00/app'); // shit
+// require('./sketches/theme/post-processing/godray0/app');
+// require('./sketches/theme/post-processing/godray1/app');
 
 /** postprocessing **/
 
@@ -48,6 +49,8 @@ window.GUI   = require('dat-gui').GUI;
 //require('./sketches/theme/post-processing/postprocessing01/app');
 //require('./sketches/theme/post-processing/ofx-water/app');
 //require('./sketches/theme/post-processing/ofx-glitch/app');
+
+// require('./sketches/theme/post-processing/bloom/app');
 
 /** gallery **/
 //require('./sketches/theme/gallery/gallery00/app');
@@ -59,6 +62,7 @@ window.GUI   = require('dat-gui').GUI;
 /** shader **/
 //require('./sketches/theme/shader/00-shader00/app');
 //require('./sketches/theme/post-processing/ofx-water/app');
+require('./sketches/theme/shader/01-wireframe/app')
 
 /** brush **/
 //require('./sketches/theme/brush/app');
@@ -75,11 +79,12 @@ window.GUI   = require('dat-gui').GUI;
 
 /** procedural mesh **/
 // require('./sketches/theme/procedural-mesh/primitive-plane/app')
+// require('./sketches/theme/procedural-mesh/grid/app')
 //require('./sketches/theme/procedural-mesh/grid/app');
 //require('./sketches/theme/procedural-mesh/cube/app');
 //require('./sketches/theme/procedural-mesh/cube2/app');
-//require('./sketches/theme/procedural-mesh/sphere');
-//require('./sketches/theme/procedural-mesh/raycaster-sphere');
+// require('./sketches/theme/procedural-mesh/sphere/index');
+// require('./sketches/theme/procedural-mesh/raycaster-sphere/index');
 
 /** controller **/
 // require('./sketches/theme/controller/steam/app');
@@ -97,7 +102,7 @@ window.GUI   = require('dat-gui').GUI;
 /** fluid **/
 // require('./sketches/theme/fluid/app/index');
 // require('./sketches/theme/fluid/app00/index')
-require('./sketches/theme/fluid/app01/index')
+// require('./sketches/theme/fluid/app01/index')
 // require('./sketches/theme/fluid/app-2dFluid');
 // require('./sketches/theme/fluid/advect');
 

@@ -9,10 +9,6 @@ export default class CustomGeometry extends THREE.BufferGeometry {
         this.heightSegment = opts.heightSegment || 2;
         this.halfwidthSegment = this.widthSegment/2;
         this.halfheightSegment = this.heightSegment/2;
-        // console.log(this.width);
-        // console.log(this.height);
-        // console.log(this.widthSegment);
-        // console.log(this.heightSegment);
 
         this.bufferSize = (this.widthSegment +1)* (this.heightSegment + 1);
 
@@ -31,8 +27,6 @@ export default class CustomGeometry extends THREE.BufferGeometry {
                 uvs[uvNum++] = yy/this.heightSegment;
             }
         }
-
-
 
         var indices = [];
         var indexNum = 0;
