@@ -10,5 +10,11 @@
     "url": "./app/28-others-insgram-icon-visual-player",
     "imgSrc": "./app/28-others-insgram-icon-visual-player/thumbnail.jpg",
     "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/undefined/%23003"
+  },
+  {
+    "title": "Instgram Icon Visual Player",
+    "url": "./app/32-others-single-pass",
+    "imgSrc": "./app/32-others-single-pass/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/undefined/%23003"
   }
 ]
