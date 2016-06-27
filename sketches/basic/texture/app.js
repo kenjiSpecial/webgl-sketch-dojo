@@ -29,7 +29,8 @@ function init(){
 
     loader.load('assets/sample3.jpg', function(texture){
         var geometry = new THREE.PlaneGeometry( width - 20, height -20 );
-        var material = new THREE.MeshBasicMaterial( {side: THREE.DoubleSide, map: texture} );
+        var material = new THREE.MeshBasicMaterial( {side: THREE.DoubleSide, map: texture, transparent : true } );
+
         plane = new THREE.Mesh( geometry, material );
         scene.add( plane );
 

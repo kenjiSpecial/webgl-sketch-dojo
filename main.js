@@ -62,10 +62,12 @@ window.GUI   = require('dat-gui').GUI;
 /** shader **/
 //require('./sketches/theme/shader/00-shader00/app');
 //require('./sketches/theme/post-processing/ofx-water/app');
-require('./sketches/theme/shader/01-wireframe/app')
+// require('./sketches/theme/shader/01-wireframe/app')
 
 /** brush **/
 //require('./sketches/theme/brush/app');
+// require('./sketches/theme/paint/brush00/app');
+require('./sketches/theme/paint/brush01/app');
 
 /** Marching Cube **/
 //require('./sketches/theme/marching-cube/marching-cube00/app');
