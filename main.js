@@ -112,7 +112,7 @@ require('./sketches/theme/paint/brush01/app');
 
 /** camera **/
 // require('./sketches/theme/camera/app00/index') // optical-flow
-require('./sketches/theme/camera/app01/index');
+// require('./sketches/theme/camera/app01/index');
 
 /** others **/
 // require('./sketches/undefined/#002/app');
