@@ -58,7 +58,8 @@ window.GUI   = require('dat-gui').GUI;
 
 /** shader **/
 //require('./sketches/theme/shader/00-shader00/app');
-//require('./sketches/theme/post-processing/ofx-water/app');
+// require('./sketches/theme/post-processing/ofx-water/app');
+// require('./sketches/theme/shader/app01/app');
 
 /** brush **/
 //require('./sketches/theme/brush/app');
@@ -97,14 +98,13 @@ window.GUI   = require('dat-gui').GUI;
 /** fluid **/
 // require('./sketches/theme/fluid/app/index');
 // require('./sketches/theme/fluid/app00/index')
-require('./sketches/theme/fluid/app01/index')
+// require('./sketches/theme/fluid/app01/index')
 // require('./sketches/theme/fluid/app-2dFluid');
 // require('./sketches/theme/fluid/advect');
 
 /** camera **/
 // require('./sketches/theme/camera/app00/index') // optical-flow
-// require('./sketches/theme/camera/app01/index');
-
+require('./sketches/theme/camera/app01/index');
 
 /** others **/
 // require('./sketches/undefined/#002/app');
