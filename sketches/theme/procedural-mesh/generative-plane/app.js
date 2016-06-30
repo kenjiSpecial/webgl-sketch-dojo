@@ -1,6 +1,5 @@
 var raf = require('raf');
 require('vendors/controls/TrackballControls');
-// require('../../../../src/')
 var createCaption = require('../../../dom/caption');
 import CustomMesh from "./mesh";
 
@@ -26,10 +25,11 @@ scene = new THREE.Scene();
 
 (function(){
 
+
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 20;
-    camera.position.x = 20;
-    camera.position.y = 20;
+    camera.position.z = 400;
+    // camera.position.x = 20;
+    // camera.position.y = 20;
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
@@ -63,9 +63,9 @@ scene = new THREE.Scene();
 })();
 
 function setComponent(){
-    var title = 'Sphere';
+    var title = 'Plane with BufferGeometry';
     var caption = '';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/sphere';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/cube';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";

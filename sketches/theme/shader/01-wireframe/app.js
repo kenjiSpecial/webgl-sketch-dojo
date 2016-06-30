@@ -1,21 +1,20 @@
 var raf = require('raf');
 require('vendors/controls/TrackballControls');
-// require('../../../../src/')
 var createCaption = require('../../../dom/caption');
 import CustomMesh from "./mesh";
+import  CustomMesh2 from  "./mesh2";
+import CustomMesh3 from "./mesh3";
+import CustomMesh4 from "./mesh4"
+import CustomMesh5 from "./mesh5";
+import CustomMesh6 from "./mesh6";
+import CustomMesh7 from "./mesh7";
+import CustomMesh8 from "./mesh8";
+import CustomMesh9 from "./mesh9";
 
 var scene, camera, renderer;
+var MeshArr = [CustomMesh, CustomMesh2, CustomMesh3, CustomMesh4, CustomMesh9, CustomMesh5, CustomMesh6, CustomMesh8, CustomMesh7];
 var meshArr = [];
 var customMesh;
-var meshURLArr = [
-    "./assets/portraits/portrait00.jpg",
-    "./assets/portraits/portrait01.jpg",
-    "./assets/portraits/portrait02.jpg",
-];
-var meshCount = 0;
-var click = 0;
-var LENGTH;
-var light;
 var id;
 var stats, wrapper;
 var time, controls;
@@ -23,34 +22,42 @@ var time, controls;
 var isAnimation = true;
 
 scene = new THREE.Scene();
+// var gui = new GUI();
+// var data = {
+//     shaderValue : 10
+// };
 
 (function(){
 
+
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 20;
-    camera.position.x = 20;
-    camera.position.y = 20;
+    camera.position.z = 600;
+    camera.position.y = 400;
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    var isDerivatives = renderer.extensions.get( 'OES_standard_derivatives' );
+
+    renderer.setSize(window.innerWidth, window.innerHeight); 
     document.body.appendChild(renderer.domElement);
-
-    light = new THREE.PointLight(0xFFFFFF, 1);
-    light.position.copy(camera.position);
-    scene.add(light);
-
-    var axisHelper = new THREE.AxisHelper( 3 );
-    scene.add( axisHelper );
 
     setComponent();
 
     time = new THREE.Clock();
     time.start();
 
-    customMesh = new CustomMesh();
-    scene.add(customMesh);
-    meshArr.push(customMesh);
+    var MeshSize = Math.ceil(Math.sqrt(MeshArr.length));
+    MeshArr.forEach(function(Mesh, index){
+        customMesh = new Mesh();
+        scene.add(customMesh);
+
+        customMesh.position.x = (customMesh.unitWidth + 30) * (index  % MeshSize - (MeshSize- 1)/2);
+        customMesh.position.z = (customMesh.unitWidth + 30) * (parseInt(index  / MeshSize) - (MeshSize- 1)/2);
+    
+        meshArr.push(customMesh);
+    })
+
+
 
     controls = new THREE.TrackballControls(camera, renderer.domElement);
     controls.rotateSpeed = 5.0;
@@ -58,14 +65,15 @@ scene = new THREE.Scene();
     controls.panSpeed = 1;
     controls.dynamicDampingFactor = 0.3;
 
+    // gui.add(data, 'shaderValue', -5, 5).onChange(onChangeData);
 
     raf(animate);
 })();
 
 function setComponent(){
-    var title = 'Sphere';
+    var title = 'Experiments with single-pass wireframe';
     var caption = '';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/procedural-mesh/sphere';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/shader/01-wireframe';
 
     wrapper = createCaption(title, caption, url);
     wrapper.style.width = (window.innerWidth/2 - 50) + "px";
@@ -103,6 +111,9 @@ function animate() {
     id = raf(animate);
 }
 
+function onChangeData(){
+    customMesh.updateShader(data);
+}
 
 window.addEventListener('keydown', function(ev){
     if(ev.keyCode == 27){

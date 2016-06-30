@@ -1,7 +1,8 @@
 
 var raf     = require('raf');
 var glslify = require('glslify');
-var createCaption = require('../../dom/caption');
+// var createCaption = require('../../dom/caption');
+var createCaption = require('vendors/caption');
 
 var scene, camera, renderer;
 var object, id;
@@ -44,10 +45,6 @@ function setComponent(){
     var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/boilerplate/shader';
 
     wrapper = createCaption(title, caption, url);
-    wrapper.style.width = (window.innerWidth/2 - 50) + "px";
-    wrapper.style.position = "absolute";
-    wrapper.style.top = '50px';
-    wrapper.style.left = '30px';
 
     stats = new Stats();
     stats.setMode( 0 ); // 0: fps, 1: ms, 2: mb

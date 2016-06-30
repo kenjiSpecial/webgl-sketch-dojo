@@ -1,5 +1,5 @@
 var raf = require('raf');
-require('../../../../src/js/vendors/controls/TrackballControls');
+require('vendors/controls/TrackballControls');
 var createCaption = require('../../../dom/caption');
 import CustomMesh from "./mesh";
 
