@@ -116,7 +116,7 @@ function init(){
 function setEffect(){
 
     var renderTargetParameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBFormat, stencilBufer: false };
-    renderTargetOcl = new THREE.WebGLRenderTarget( window.innerWidth/4, window.innerHeight/4, renderTargetParameters );
+    renderTargetOcl = new THREE.WebGLRenderTarget( window.innerWidth/2, window.innerHeight/2, renderTargetParameters );
 
     composer = new THREE.EffectComposer(renderer);
     composer.addPass(new THREE.RenderPass( scene, camera ));
@@ -143,10 +143,10 @@ function setEffect(){
     finalPass.renderToScreen = true;
 
 
-    composer.addPass(hblur);
-    composer.addPass(vblur);
-    composer.addPass(hblur);
-    composer.addPass(vblur);
+    // composer.addPass(hblur);
+    // composer.addPass(vblur);
+    // composer.addPass(hblur);
+    // composer.addPass(vblur);
     //composer.addPass( effectFXAA );
     //composer.addPass(grPass);
 
@@ -171,7 +171,7 @@ function setEffect(){
     finalcomposer = new THREE.EffectComposer( renderer );
 
     finalcomposer.addPass( renderModel );
-    finalcomposer.addPass( effectFXAA );
+    // finalcomposer.addPass( effectFXAA );
     finalcomposer.addPass( finalPass );
 
     finalPass.uniforms[ 'tAdd' ].value = renderTargetOcl ;
@@ -189,7 +189,7 @@ function setEffect(){
     effectComposer2.addPass( vblur );
     effectComposer2.addPass( hblur );
     effectComposer2.addPass( vblur );
-    effectComposer2.addPass( grPass );
+    // effectComposer2.addPass( grPass );
     effectComposer2.addPass( outputFXAA );
 
     createDescription();
@@ -227,14 +227,15 @@ function animate() {
     var lPos = THREE.Extras.Utils.projectOnScreen(vlight, camera);
     //console.log(lPos);
     //console.log(lPos.y);
+    
     grPass.uniforms["fX"].value = lPos.x;
     grPass.uniforms["fY"].value = lPos.y;
 
 
-    oclcomposer.render(.1);
-    finalcomposer.render(.1);
+    oclcomposer.render();
+    finalcomposer.render();
 
-    effectComposer2.render(.1);
+    effectComposer2.render();
 
     rendererRawOcl.render(oclRawScene, camera);
 

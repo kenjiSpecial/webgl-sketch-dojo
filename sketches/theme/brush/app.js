@@ -54,6 +54,7 @@ function init(){
         createScene(texture);
     });
      */
+
     canvasPaint = document.createElement('canvas');
     canvasPaint.width = 256;
     canvasPaint.height = 64;
