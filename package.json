@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "glsl-curl-noise": "0.0.4",
-    "three": "^0.75.0",
+    "three": "^0.81.2",
     "vinyl": "^1.1.1"
   },
   "devDependencies": {
