@@ -30,6 +30,8 @@ var VideoTexture = function(opts){
         this.video = video;
         this.onVideoLoaded();
     }
+
+    if(opts.muted) this.video.muted = opts.muted;
     
     this.minFilter =  THREE.NearestFilter,
         this.magFilter = THREE.NearestFilter;
@@ -48,6 +50,9 @@ VideoTexture.prototype.onVideoLoaded = function(){
     this.eventDispatcher.dispatchEvent({type: "textuer:ready"})
 };
 
+VideoTexture.prototype.start = function(){
+    this.video.play();
+}
 
 VideoTexture.prototype.updateTexture = function(){
     if( this.video.readyState !== this.video.HAVE_ENOUGH_DATA )	return;
@@ -58,7 +63,7 @@ VideoTexture.prototype.updateTexture = function(){
 
 VideoTexture.prototype.destroy = function(){
     this.video.pause();
-    THREE.Texture.prototype.destroy.call(this);
+    THREE.Texture.prototype.dispose.call(this);
 }
 
 
