@@ -1,7 +1,7 @@
 /** global library **/
 require('gsap');
 
-window.THREE = require('three');
+global.THREE = require('three');
 
 require('vendors/shaders/CopyShader');
 
@@ -10,8 +10,8 @@ require('vendors/postprocessing/RenderPass');
 require('vendors/postprocessing/MaskPass');
 require('vendors/postprocessing/ShaderPass');
 
-window.Stats = require('vendors/Stats');
-window.GUI   = require('dat-gui').GUI;
+global.Stats = require('vendors/Stats');
+global.GUI   = require('dat-gui').GUI;
 // window.ks.createCaption = require('vendors/caption');
 
 /** three.js sketch **/
@@ -22,6 +22,7 @@ window.GUI   = require('dat-gui').GUI;
 // require('./sketches/boilerplate/interactive/app');
 
 /** basic **/
+// require('./sketches/basic/video-texture/index')
 // require('./sketches/basic/buffer-geometry/app')
 //require('./sketches/basic/texture/app');
 // require('./sketches/basic/postprocessing/app');
@@ -120,3 +121,6 @@ window.GUI   = require('dat-gui').GUI;
 
 /** rawGL **/
 // require('./sketches/rawGL/noise/app');
+
+/** video */
+require('./sketches/theme/video/videoMask/app');

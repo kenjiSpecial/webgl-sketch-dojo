@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "glsl-curl-noise": "0.0.4",
+    "size": "watsondg/size",
     "three": "^0.81.2",
+    "underscore": "^1.8.3",
     "vinyl": "^1.1.1"
   },
   "devDependencies": {
