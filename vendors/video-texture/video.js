@@ -10,24 +10,29 @@ export default class VideoTexture extends THREE.Texture{
 		_.bindAll(this, 'onVideoLoaded');
 
 		this.eventDispatcher = new THREE.EventDispatcher;
-
-		var video	= document.createElement('video');
-		for(var key in opts.files){
-			var source = document.createElement("source");
-			var path = opts.files[key];
-			if(key == 'mp4'){
-				source.type = "video/mp4";
-				source.src = path;
-				video.appendChild(source);
-			}else if(key == "ogv" || key == "ogg"){
-				source.type = "video/ogg";
-				source.src = path;
-				video.appendChild(source);
+		
+		if(!opts.video){
+			var video = document.createElement('video');
+			for(var key in opts.files){
+				var source = document.createElement("source");
+				var path = opts.files[key];
+				if(key == 'mp4'){
+					source.type = "video/mp4";
+					source.src = path;
+					video.appendChild(source);
+				}else if(key == "ogv" || key == "ogg"){
+					source.type = "video/ogg";
+					source.src = path;
+					video.appendChild(source);
+				}
 			}
+			this.video = video;
+			video.addEventListener('loadeddata', this.onVideoLoaded);
+			video.load();
+		}else{
+			this.video = video;
+			this.onVideoLoaded();
 		}
-		this.video = video;
-		video.addEventListener('loadeddata', this.onVideoLoaded);
-		video.load();
 
 		this.minFilter =  THREE.NearestFilter,
         this.magFilter = THREE.NearestFilter;

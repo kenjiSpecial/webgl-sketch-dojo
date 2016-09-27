@@ -1,10 +1,9 @@
 var raf = require('raf');
-var createCaption = require('../../dom/caption');
+var createCaption = require('vendors/caption');
 
 var ShaderOdangoSet = require('vendors/shader-odango-set/main');
 var grayShader = ShaderOdangoSet.gray;
 var copyShader = ShaderOdangoSet.copy;
-
 
 var scene, camera, renderer;
 var material, light;

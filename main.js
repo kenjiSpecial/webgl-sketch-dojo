@@ -1,7 +1,7 @@
 /** global library **/
 require('gsap');
 
-window.THREE = require('three');
+global.THREE = require('three');
 
 require('vendors/shaders/CopyShader');
 
@@ -10,9 +10,9 @@ require('vendors/postprocessing/RenderPass');
 require('vendors/postprocessing/MaskPass');
 require('vendors/postprocessing/ShaderPass');
 
-window.Stats = require('vendors/Stats');
-window.GUI   = require('dat-gui').GUI;
-window.createCaption = require('vendors/caption');
+global.Stats = require('vendors/Stats');
+global.GUI   = require('dat-gui').GUI;
+// window.ks.createCaption = require('vendors/caption');
 
 /** three.js sketch **/
 
@@ -22,9 +22,10 @@ window.createCaption = require('vendors/caption');
 // require('./sketches/boilerplate/interactive/app');
 
 /** basic **/
+// require('./sketches/basic/video-texture/index')
 // require('./sketches/basic/buffer-geometry/app')
 //require('./sketches/basic/texture/app');
-//require('./sketches/basic/postprocessing/app');
+// require('./sketches/basic/postprocessing/app');
 //require('./sketches/basic/webglrenderer-target/app')
 //require('./sketches/basic/texture-buffergeometry-image/app');
 //require('./sketches/basic/texture-buffergeometry-canvas/app');
@@ -45,9 +46,9 @@ window.createCaption = require('vendors/caption');
 
 /** postprocessing **/
 
-//require('./sketches/theme/post-processing/postprocessing00/app')
+// require('./sketches/theme/post-processing/postprocessing00/app')
 //require('./sketches/theme/post-processing/postprocessing01/app');
-//require('./sketches/theme/post-processing/ofx-water/app');
+// require('./sketches/theme/post-processing/ofx-water/app');
 //require('./sketches/theme/post-processing/ofx-glitch/app');
 
 // require('./sketches/theme/post-processing/bloom/app');
@@ -61,15 +62,15 @@ window.createCaption = require('vendors/caption');
 
 /** shader **/
 //require('./sketches/theme/shader/00-shader00/app');
+// require('./sketches/theme/post-processing/ofx-water/app');
+// require('./sketches/theme/shader/app01/app');
 //require('./sketches/theme/post-processing/ofx-water/app');
 // require('./sketches/theme/shader/01-wireframe/app')
 
 /** brush **/
-//require('./sketches/theme/brush/app');
+// require('./sketches/theme/brush/app');
 // require('./sketches/theme/paint/brush00/app');
 // require('./sketches/theme/paint/brush01/app');
-// require('./sketches/theme/paint/brush02/app')
-// require('./sketches/theme/paint/brush03/app');
 
 /** Marching Cube **/
 //require('./sketches/theme/marching-cube/marching-cube00/app');
@@ -83,7 +84,8 @@ window.createCaption = require('vendors/caption');
 
 /** procedural mesh **/
 // require('./sketches/theme/procedural-mesh/primitive-plane/app')
-// require('./sketches/theme/procedural-mesh/grid/app');
+// require('./sketches/theme/procedural-mesh/grid/app')
+//require('./sketches/theme/procedural-mesh/grid/app');
 //require('./sketches/theme/procedural-mesh/cube/app');
 //require('./sketches/theme/procedural-mesh/cube2/app');
 // require('./sketches/theme/procedural-mesh/sphere/index');
@@ -113,14 +115,6 @@ window.createCaption = require('vendors/caption');
 // require('./sketches/theme/camera/app00/index') // optical-flow
 // require('./sketches/theme/camera/app01/index');
 
-/** buffergeometry **/
-// require('./sketches/theme/buffer-geometry/app00/index');
-// require('./sketches/theme/buffer-geometry/sub-divide/index');
-
-/** vertex displacement **/
-// require('./sketches/theme/vertex-displacement/01-vertex-displacement/index');
-
-
 /** others **/
 // require('./sketches/undefined/#002/app');
 // require('./sketches/undefined/#003/app');
@@ -128,3 +122,5 @@ window.createCaption = require('vendors/caption');
 /** rawGL **/
 // require('./sketches/rawGL/noise/app');
 
+/** video */
+require('./sketches/theme/video/videoMask/app');

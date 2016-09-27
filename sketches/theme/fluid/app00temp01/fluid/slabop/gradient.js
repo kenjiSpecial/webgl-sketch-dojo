@@ -36,7 +36,7 @@ module.exports = (function(){
     _.extend(Divergence.prototype, {
         compute : function(p, w, output) {
             this.uniforms.p.value = p.target;
-            this.uniforms.w.value = w.target;
+            this.uniforms.w.value = w.target;   
 
             this.renderer.render(this.scene, this.camera, output.output, false);
 

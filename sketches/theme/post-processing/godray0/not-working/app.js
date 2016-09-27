@@ -61,8 +61,6 @@ function init(){
     oclcamera.position = camera.position;
 
     // Vol light
-    console.log('test');
-    console.log(new THREE.IcosahedronGeometry(50, 3));
 
     vlight = new THREE.Mesh(
         new THREE.IcosahedronGeometry(50, 3),

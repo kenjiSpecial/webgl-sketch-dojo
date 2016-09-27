@@ -70,13 +70,13 @@ function makeRay(){
     })); */
     var geo = new THREE.PlaneGeometry(100, 100, 10, 10);
     var mat = new THREE.MeshBasicMaterial({
-        color : 0xff3333,
+        color : 0xffffff,
         wireframe : true,
         transparent: true
     });
     var mesh = new THREE.Mesh(geo, mat);
     ray.scene.add(mesh);
-    ray.camera.position.z = 1250;
+    ray.camera.position.z = 100;
 }
 
 function createRenderer() {

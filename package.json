@@ -7,20 +7,11 @@
   "author": {
     "name": "Kenji Saito"
   },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
-  "budo": {
-    "transform": [
-      "babelify"
-    ]
-  },
   "dependencies": {
     "glsl-curl-noise": "0.0.4",
-    "three": "^0.75.0",
-    "three-kiso": "^0.1.7",
+    "size": "watsondg/size",
+    "three": "^0.81.2",
+    "underscore": "^1.8.3",
     "vinyl": "^1.1.1"
   },
   "devDependencies": {
@@ -28,7 +19,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babelify": "^7.2.0",
     "browserify": "^9.0.3",
-    "budo": "^9.0.0",
+    "budo": "^8.0.0",
     "dat-gui": "^0.5.0",
     "envify": "^3.4.0",
     "garnish": "^5.2.0",
@@ -45,14 +36,10 @@
     "ks-utils": "0.0.2",
     "lodash": "^4.9.0",
     "minimist": "^1.1.1",
-    "object-assign": "^4.1.0",
-    "polyline-normals": "^2.0.2",
     "raf": "^3.1.0",
     "shader-odango-kit": "0.0.1",
     "simplex-noise": "^2.2.0",
-    "size": "watsondg/size",
-    "three": "^0.80.1",
-    "three-orbit-controls": "mattdesl/three-orbit-controls",
+    "three": "^0.76.1",
     "uglifyify": "^3.0.1",
     "uglifyjs": "^2.4.10",
     "vinyl-source-stream": "^1.1.0",
