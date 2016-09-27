@@ -2,7 +2,7 @@ var budo = require('budo');
 var babelify = require('babelify');
 var glslify  = require('glslify');
 var aliasify = require('aliasify');
-console.log(glslify);
+
 // "sections": "./src/sections/",
 budo("main.js", {
     live : true,
@@ -22,8 +22,8 @@ budo("main.js", {
         ]
     }
 }).on('connect', function (ev) {
-    // console.log('Server running on %s', ev.uri)
-    // console.log('LiveReload running on port %s', ev.livePort)
+    console.log('Server running on %s', ev.uri)
+    console.log('LiveReload running on port %s', ev.livePort)
 }).on('update', function (buffer) {
-    // console.log('bundle - %d bytes', buffer.length)
+    console.log('bundle - %d bytes', buffer.length)
 })

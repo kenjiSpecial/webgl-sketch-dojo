@@ -12,7 +12,7 @@ require('vendors/postprocessing/ShaderPass');
 
 window.Stats = require('vendors/Stats');
 window.GUI   = require('dat-gui').GUI;
-// window.ks.createCaption = require('vendors/caption');
+window.createCaption = require('vendors/caption');
 
 /** three.js sketch **/
 
@@ -67,7 +67,9 @@ window.GUI   = require('dat-gui').GUI;
 /** brush **/
 //require('./sketches/theme/brush/app');
 // require('./sketches/theme/paint/brush00/app');
-require('./sketches/theme/paint/brush01/app');
+// require('./sketches/theme/paint/brush01/app');
+// require('./sketches/theme/paint/brush02/app')
+// require('./sketches/theme/paint/brush03/app');
 
 /** Marching Cube **/
 //require('./sketches/theme/marching-cube/marching-cube00/app');
@@ -81,8 +83,7 @@ require('./sketches/theme/paint/brush01/app');
 
 /** procedural mesh **/
 // require('./sketches/theme/procedural-mesh/primitive-plane/app')
-// require('./sketches/theme/procedural-mesh/grid/app')
-//require('./sketches/theme/procedural-mesh/grid/app');
+// require('./sketches/theme/procedural-mesh/grid/app');
 //require('./sketches/theme/procedural-mesh/cube/app');
 //require('./sketches/theme/procedural-mesh/cube2/app');
 // require('./sketches/theme/procedural-mesh/sphere/index');
@@ -112,6 +113,13 @@ require('./sketches/theme/paint/brush01/app');
 // require('./sketches/theme/camera/app00/index') // optical-flow
 // require('./sketches/theme/camera/app01/index');
 
+/** buffergeometry **/
+// require('./sketches/theme/buffer-geometry/app00/index');
+// require('./sketches/theme/buffer-geometry/sub-divide/index');
+
+/** vertex displacement **/
+// require('./sketches/theme/vertex-displacement/01-vertex-displacement/index');
+
 
 /** others **/
 // require('./sketches/undefined/#002/app');
@@ -119,3 +127,4 @@ require('./sketches/theme/paint/brush01/app');
 
 /** rawGL **/
 // require('./sketches/rawGL/noise/app');
+

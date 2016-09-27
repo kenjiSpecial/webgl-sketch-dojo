@@ -53,7 +53,7 @@ var testMesh = new THREE.Mesh(testPlane, testMat);
 testScene.add(testMesh);
 
 var appStatus = {
-    rendererStatus : 1,
+    rendererStatus : 3,
     isScale : true
 }
 
@@ -173,6 +173,7 @@ function onCamReady(){
         new THREE.PlaneBufferGeometry(window.innerWidth, window.innerHeight),
         renderMaterial
     );
+    // renderPlane.rotation.y = Math.PI;
 
     renderScene.add(renderPlane);
 

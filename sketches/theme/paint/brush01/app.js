@@ -3,7 +3,7 @@ var raf = require('raf');
 var loopId, scene, camera;
 var width = window.innerWidth, height = window.innerHeight;
 var renderer;
-var lineSize = 40;
+var lineSize = 10;
 var texture;
 var materialTex;
 var brushMesh;
@@ -52,6 +52,18 @@ function init(){
 
         actionQuads(posExampleArr);
 
+        posExampleArr.forEach(function(pos){
+            var xx = pos[0];
+            var yy = pos[1];
+
+            var plane = new THREE.PlaneGeometry(10, 10);
+            var mat = new THREE.MeshBasicMaterial({ color : 0x0000ff, side : THREE.DoubleSide});
+            var mesh = new THREE.Mesh(plane, mat);
+            mesh.position.set(xx, yy, 5);
+
+            scene.add(mesh);
+        });
+
     })
 
     // actionQuads(posExampleArr);
@@ -84,6 +96,7 @@ function actionQuads(pathArr){
 
         var verts = generateQuadVerts( quadCenter, quadForward, rightTan);
         var uvs = [ new THREE.Vector2( 0,0 ), new THREE.Vector2( 0,0 ), new THREE.Vector2( 0,0 ), new THREE.Vector2( 0,0 ), new THREE.Vector2( 0,0 ), new THREE.Vector2( 0,0 ) ];
+
 
         quadVerts.push(verts);
         quadUVs.push(uvs);
@@ -121,11 +134,16 @@ function actionQuads(pathArr){
     updateUVs( quadVerts, quadUVs);
 
     const collectedUvs = [];
+    // console.log(quadUVs);
     quadUVs.forEach( function( uvset ){
         collectedUvs.push( uvset.slice( 0, 3 ) );
         collectedUvs.push( uvset.slice( 3, 6 ) );
     });
+    // console.log(quadVerts);
+    // console.log(collectedUvs);
+
     merged.faceVertexUvs = [ collectedUvs ];
+    console.log(merged);
 
     var mat = new THREE.MeshBasicMaterial({color : 0xffff00, side : THREE.DoubleSide, wireframe : true })
 
@@ -134,8 +152,12 @@ function actionQuads(pathArr){
     if(brushMesh){
         brushMesh.geometry = merged;
     }else{
-        var mesh = new THREE.Mesh(merged, materialTex);
+        // var mesh = new THREE.Mesh(merged, materialTex);
+        var mesh = new THREE.Mesh(merged, mat   );
+        // var mesh2 = new THREE.Mesh(merged, mat);
+        // mesh2.position.z = 10;
         scene.add(mesh);
+        // scene.add(mesh2);
         brushMesh = mesh;
     }
     
@@ -215,7 +237,7 @@ function onMouseMove(ev){
     if (isMouseDown) {
         var dis = mouse.distanceTo(new THREE.Vector2(ev.clientX - window.innerWidth / 2, -ev.clientY + window.innerHeight / 2));
         
-        if(dis > 5){
+        if(dis > lineSize * 2){
             mouse = new THREE.Vector2(ev.clientX - window.innerWidth / 2, -ev.clientY + window.innerHeight / 2);
             // var mouse = new THREE.Vector2(ev.clientX - window.innerWidth / 2, 0);
             mouseArr[mouseArr.length-1].push([mouse.x, mouse.y]);

@@ -1,4 +1,5 @@
 var _ = require('lodash');
+    // http://labs.hyperandroid.com/tag/opengl-lines
 
 var scene, camera, renderer;
 
@@ -434,7 +435,6 @@ function drawLine(){
 
     if(mousePositions.length > 1){
 
-        console.log('??');
         var curMousePosition = mousePositions[mousePositions.length-1];
         var prevMousePosition = mousePositions[mousePositions.length-2];
         var theta = Math.atan2( (curMousePosition.y - prevMousePosition.y), curMousePosition.x - prevMousePosition.x );

@@ -18,19 +18,20 @@ uniform float uOffset;
 uniform float uLambda;
 
 void main(){
-    vec4 curCol = texture2D(uTexture, vUv);
-    vec4 prevCol = texture2D(uPreviousTexture, vUv);
+    vec2 cVUv = vec2(vUv.x * -1.0 + 1.0, vUv.y);
+    vec4 curCol = texture2D(uTexture, cVUv);
+    vec4 prevCol = texture2D(uPreviousTexture, cVUv);
     vec2 offset = uOffset / uResolution;
     vec2 x1 = vec2(offset.x, 0.0);
     vec2 y1 = vec2(0.0, offset.y);
 
     vec4 curDif = prevCol - curCol;
 
-    vec4 gradX = texture2D(uTexture, vUv + x1) - texture2D(uTexture, vUv - x1);
-    gradX += texture2D(uPreviousTexture, vUv + x1) - texture2D(uPreviousTexture, vUv - x1);
+    vec4 gradX = texture2D(uTexture, cVUv + x1) - texture2D(uTexture, cVUv - x1);
+    gradX += texture2D(uPreviousTexture, cVUv + x1) - texture2D(uPreviousTexture, cVUv - x1);
 
-    vec4 gradY = texture2D(uTexture, vUv + y1) - texture2D(uTexture, vUv - y1);
-    gradY += texture2D(uPreviousTexture, vUv + y1) - texture2D(uPreviousTexture, vUv - y1);
+    vec4 gradY = texture2D(uTexture, cVUv + y1) - texture2D(uTexture, cVUv - y1);
+    gradY += texture2D(uPreviousTexture, cVUv + y1) - texture2D(uPreviousTexture, cVUv - y1);
 
     vec4 gradMag = sqrt(gradX * gradX + gradY * gradY + vec4(0.0001));
     vec4 vx = curDif * (gradX/gradMag);
