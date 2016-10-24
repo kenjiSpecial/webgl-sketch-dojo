@@ -10,8 +10,8 @@ require('vendors/postprocessing/RenderPass');
 require('vendors/postprocessing/MaskPass');
 require('vendors/postprocessing/ShaderPass');
 
-global.Stats = require('vendors/Stats');
-global.GUI   = require('dat-gui').GUI;
+window.Stats = require('vendors/Stats');
+window.GUI   = require('dat-gui').GUI;
 
 // window.ks.createCaption = require('vendors/caption');
 
@@ -57,6 +57,7 @@ global.GUI   = require('dat-gui').GUI;
 /** gallery **/
 //require('./sketches/theme/gallery/gallery00/app');
 //require('./sketches/theme/gallery/gallery01/app');
+require('./sketches/theme/gallery/gallery02/app');
 
 /** noise **/
 //require('./sketches/theme/noise/noise01/app');
@@ -124,4 +125,4 @@ global.GUI   = require('dat-gui').GUI;
 // require('./sketches/rawGL/noise/app');
 
 /** video */
-require('./sketches/theme/video/videoMask/app');
+// require('./sketches/theme/video/videoMask/app');
