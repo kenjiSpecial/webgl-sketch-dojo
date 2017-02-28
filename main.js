@@ -29,7 +29,7 @@ window.GUI   = require('dat-gui').GUI;
 // require('./sketches/basic/postprocessing/app');
 //require('./sketches/basic/webglrenderer-target/app')
 //require('./sketches/basic/texture-buffergeometry-image/app');
-//require('./sketches/basic/texture-buffergeometry-canvas/app');
+// require('./sketches/basic/texture-buffergeometry-canvas/app');
 //require('./sketches/basic/swap-rendering0/app');
 //require('./sketches/basic/swap-rendering1/app');
 // require('./sketches/basic/swap-rendering-with-customSwapRenderer/app');
@@ -57,7 +57,7 @@ window.GUI   = require('dat-gui').GUI;
 /** gallery **/
 //require('./sketches/theme/gallery/gallery00/app');
 //require('./sketches/theme/gallery/gallery01/app');
-require('./sketches/theme/gallery/gallery02/app');
+//require('./sketches/theme/gallery/gallery02/app');
 
 /** noise **/
 //require('./sketches/theme/noise/noise01/app');
@@ -66,13 +66,14 @@ require('./sketches/theme/gallery/gallery02/app');
 //require('./sketches/theme/shader/00-shader00/app');
 // require('./sketches/theme/post-processing/ofx-water/app');
 // require('./sketches/theme/shader/app01/app');
+// require('./sketches/theme/shader/app02-lensflare/app');
 //require('./sketches/theme/post-processing/ofx-water/app');
 // require('./sketches/theme/shader/01-wireframe/app')
 
 /** brush **/
 // require('./sketches/theme/brush/app');
 // require('./sketches/theme/paint/brush00/app');
-// require('./sketches/theme/paint/brush01/app');
+require('./sketches/theme/paint/brush01/app');
 
 /** Marching Cube **/
 //require('./sketches/theme/marching-cube/marching-cube00/app');
