@@ -1,3 +1,7 @@
 /example
 /vendors
 npm-debug.log
+bower_components
+node_modules
+*.log
+.DS_Store
