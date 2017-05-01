@@ -1,46 +1,51 @@
 /**
  * Created by kenji on 01/05/2017.
  */
-let count = 0;
-let totalCount = 100;
-let sum = 0;
+var count = 0;
+var totalCount = 100;
+var sum = 0;
 
 function benchMarkDescription(count, perf){
     return `${count}: it takes ${perf} ms.`
 }
 
 function benchmark(){
-    let array = [];
-    let start = (window.performance || Date).now();
-    for(let i = 0; i < 20000; i++){
+    var array = [];
+    var start = (window.performance || Date).now();
+    for(var i = 0; i < 20000; i++){
         array = Math.pow(Math.sin(Math.random()), 2);
     }
-    let end = (window.performance || Date).now();
-    let perf = end - start;
+    var end = (window.performance || Date).now();
+    var perf = end - start;
 
     return perf
 };
 
 
-let title = document.createElement('h1');
+var title = document.createElement('h1');
 title.innerHTML = 'performance';
 document.body.appendChild(title);
 
 
 for(count = 0; count < totalCount; count++){
-    let perf = benchmark();
+    var perf = benchmark();
 
-    let div = document.createElement('div');
+    var div = document.createElement('div');
     div.innerHTML = benchMarkDescription(count, perf);
     document.body.appendChild(div);
 
     sum += perf;
 }
 
-let emptyDiv = document.createElement('div');
+var emptyDiv = document.createElement('div');
 emptyDiv.innerHTML = '</br>========================</br></br>'
 document.body.appendChild(emptyDiv);
-let div = document.createElement('div');
-div.innerHTML = `<strong>average performance is ${(sum/totalCount).toFixed(5)} s</strong>`
+var div = document.createElement('div');
+div.innerHTML = `<strong>average performance is ${(sum/totalCount).toFixed(5)} ms</strong>`
 document.body.appendChild(div);
 
+// memo
+// May/01/2017
+// chrome 57 / MacBook Pro (Retina, 15-inch, Mid 2015) / 16 GB 1600 MHz DDR3 / AMD Radeon R9 M370X 2048 MB Intel Iris Pro 1536 MB average 1.4ms - 1.5ms
+// firefox / MacBook Pro (Retina, 15-inch, Mid 2015) / 16 GB 1600 MHz DDR3 / AMD Radeon R9 M370X 2048 MB Intel Iris Pro 1536 MB average 0.02ms - 0.03ms
+// safari 10.0.2/ MacBook Pro (Retina, 15-inch, Mid 2015) / 16 GB 1600 MHz DDR3 / AMD Radeon R9 M370X 2048 MB Intel Iris Pro 1536 MB average 0.12ms - 0.13ms
