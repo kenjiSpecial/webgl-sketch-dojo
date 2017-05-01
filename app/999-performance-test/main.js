@@ -8,7 +8,7 @@ var sum = 0;
 
 
 function benchMarkDescription(count, perf){
-    return `${count}: it takes ${perf} ms.`
+    return `${count + 1}: it takes ${perf} ms.`
 }
 
 function benchmark(){
