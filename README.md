@@ -8,9 +8,11 @@ url: [webgl-sketch-dojo.kenji-special.info](http://webgl-sketch-dojo.kenji-speci
 [![alt text]( ./assets/site.jpg "site")](http://webgl-sketch-dojo.kenji-special.info/)
 
 
-## easy CPU Performance Test
+## Easy CPU Performance Test
 
-result data - [https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/PerformanceTips.md](https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/PerformanceTips.md)
+url: [http://webgl-sketch-dojo.kenji-special.info/app/999-performance-test/](http://webgl-sketch-dojo.kenji-special.info/app/999-performance-test/)
+
+Result data - [https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/PerformanceTips.md](https://github.com/kenjiSpecial/webgl-sketch-dojo/blob/master/PerformanceTips.md)
 
 ## References
 
