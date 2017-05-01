@@ -15,3 +15,11 @@
 - safari / iphone 5 / 3.5 ms
 - safari / iphont 5s / 0.6ms
 - safari / iphont 6/6 plus/6s/ / 0.4 - 0.5ms
+
+### performance list for project
+
+### iPhone 
+
+- perf < 5 -> good
+- perf < 10 -> bad
+- perf > 10 -> worst
