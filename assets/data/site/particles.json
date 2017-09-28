@@ -1,0 +1,8 @@
+[
+  {
+    "title": "Basic Particles with BufferGeometry",
+    "url": "./app/34-particles-basic-buffergeometry",
+    "imgSrc": "./app/34-particles-basic-buffergeometry/thumbnail.jpg",
+    "sourceCode": "https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/particles/buffergeometry-particle"
+  }
+]

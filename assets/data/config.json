@@ -7,6 +7,7 @@
   "Geometry",
   "Controller",
   "Swap Renderer",
+  "Particles",
   "GPGPU",
   "Others"
 ]
