@@ -39,7 +39,7 @@
     "raf": "^3.1.0",
     "shader-odango-kit": "0.0.1",
     "simplex-noise": "^2.2.0",
-    "three": "^0.76.1",
+    "three": "^0.86.0",
     "uglifyify": "^3.0.1",
     "uglifyjs": "^2.4.10",
     "vinyl-source-stream": "^1.1.0",

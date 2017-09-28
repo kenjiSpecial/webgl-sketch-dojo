@@ -73,7 +73,7 @@ window.GUI   = require('dat-gui').GUI;
 /** brush **/
 // require('./sketches/theme/brush/app');
 // require('./sketches/theme/paint/brush00/app');
-require('./sketches/theme/paint/brush01/app');
+// require('./sketches/theme/paint/brush01/app');
 
 /** Marching Cube **/
 //require('./sketches/theme/marching-cube/marching-cube00/app');
@@ -127,3 +127,6 @@ require('./sketches/theme/paint/brush01/app');
 
 /** video */
 // require('./sketches/theme/video/videoMask/app');
+
+/** particles **/
+require('./sketches/theme/particles/buffergeometry-particle/app')
