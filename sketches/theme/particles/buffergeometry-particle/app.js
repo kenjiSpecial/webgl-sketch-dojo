@@ -88,7 +88,7 @@ function createGeometry (){
 function setComponent(){
     var title = 'Basic Particles with BufferGeometry';
     var caption = 'minimum codes for Rendering particle with buffergeometry.';
-    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/boilerplate/shader';
+    var url = 'https://github.com/kenjiSpecial/webgl-sketch-dojo/tree/master/sketches/theme/particles/buffergeometry-particle';
 
     wrapper = createCaption(title, caption, url);
 
