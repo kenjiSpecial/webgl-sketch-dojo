@@ -66,7 +66,7 @@
     window.onload = function () {
         wrapper = document.getElementById("wrapper");
         mainContainer = document.getElementById("main-container");
-        loadJSON("/assets/data/config.json", onLoadJsonDone);
+        loadJSON("./assets/data/config.json", onLoadJsonDone);
     }
 
 })();
