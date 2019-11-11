@@ -41,7 +41,7 @@
             count++;
             var dataLowerCase = data.toLowerCase().split(' ').join('-')
             dataList[dataLowerCase] = {title : data};
-            var jsonFile = "/assets/data/site/" + dataLowerCase + ".json"
+            var jsonFile = "./assets/data/site/" + dataLowerCase + ".json"
             loadJSON(jsonFile, onLoadJsonDone2, dataLowerCase);
         });
 
@@ -57,7 +57,7 @@
     function init() {
         // console.log(dataList);
         // console.log(ksApp.TemplateEngine(template));
-        var text = new EJS({url : "/assets/ejs/template.ejs"}).render({data: dataList});
+        var text = new EJS({url : "./assets/ejs/template.ejs"}).render({data: dataList});
         wrapper.innerHTML = text;
         console.log(mainContainer   );
         TweenMax.to(mainContainer, 0.8, {opacity : 1, ease: Quint.easeOut });
